@@ -18,7 +18,7 @@
 	<nav>
 		<section id="logo" class="left">
 			<img src="/favicon.png" alt="Organization logo" />
-			<b class="container">
+			<b class="container text-small">
 				Chicago Environmental Justice Network
 			</b>
 		</section>
@@ -31,7 +31,7 @@
 			<section class="left">
 			</section>
 			<section class="right">
-				<button class="button flat" on:click={close}>
+				<button class="button" on:click={close}>
 					X
 				</button>
 			</section>
@@ -102,6 +102,11 @@
 	#logo b {
 		display: flex;
 		align-items: center;
+		max-width: 8rem;
+	}
+
+	#logo img {
+		max-height: 5rem;
 	}
 
 	#expander {
@@ -156,7 +161,6 @@
 			grid-template-areas:
 				"logo expander"
 				"links links";
-			grid-template-rows: 6rem 1fr;;
 			max-width: 1000px;
 			max-height: inherit;
 		}
@@ -180,6 +184,10 @@
 
 		#links ul {
 			flex-direction: row;
+		}
+
+		li > a {
+			font-size: var(--text-small);
 		}
 	}
 </style>

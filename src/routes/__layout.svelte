@@ -20,4 +20,12 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
+
+	@media screen and (min-width: 500px) {
+		main {
+			max-width: 880px;
+			min-width: 500px;
+			width: 90vw;
+		}
+	}
 </style>

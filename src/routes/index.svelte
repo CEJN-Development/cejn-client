@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+	import WhoAreWe from "$lib/index/WhoAreWe.svelte";
 	import About from "../lib/index/About.svelte";
 </script>
 
@@ -11,13 +12,4 @@
 </svelte:head>
 
 <About />
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-</style>
+<WhoAreWe />
