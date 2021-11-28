@@ -3,14 +3,14 @@
 </script>
 
 <script lang="ts">
+	import About from "../lib/index/About.svelte";
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
 
-<section>
-</section>
+<About />
 
 <style>
 	section {

@@ -1,7 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	let showNavbar:boolean = false;
+	let linksList:HTMLElement;
+
+	const close = () => {
+		showNavbar = false;
+	};
+	
+	onMount(() => {
+		Array.from(linksList.getElementsByTagName("li")).forEach(elem => elem.addEventListener("click", close));
+	});
 </script>
 
 <header>
@@ -21,11 +31,11 @@
 			<section class="left">
 			</section>
 			<section class="right">
-				<button class="button flat" on:click={() => showNavbar = false}>
+				<button class="button flat" on:click={close}>
 					X
 				</button>
 			</section>
-			<ul>
+			<ul bind:this={linksList}>
 				<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
 				<li class:active={$page.path === '/about'}><a sveltekit:prefetch href="/about">About Us</a></li>
 				<li class:active={$page.path === '/our-stories'}><a sveltekit:prefetch href="/">Our Stories</a></li>
@@ -62,7 +72,7 @@
 		max-height: 100vh;
 		max-width: 100vw;
 		transition: left 0.3s ease-in-out;
-		background-color: rgba(255,255,255,1);
+		background-color: rgba(255, 255, 255, 1);
 		grid-template-areas:
 			"left right"
 			"links links";
@@ -107,14 +117,12 @@
 
 	ul {
 		position: relative;
-		padding: 0;
-		margin: 0;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
+		padding: 0;
+		margin: 0;
 		list-style: none;
-		background-size: contain;
 		grid-area: links;
 	}
 
@@ -138,10 +146,19 @@
 	}
 
 	@media screen and (min-width: 500px) {
+		header {
+			min-width: 100vw;
+			display: flex;
+			justify-content: center;
+		}
+
 		nav {
 			grid-template-areas:
 				"logo expander"
 				"links links";
+			grid-template-rows: 6rem 1fr;;
+			max-width: 1000px;
+			max-height: inherit;
 		}
 
 		#expander {
