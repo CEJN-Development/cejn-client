@@ -28,11 +28,11 @@
 			<ul>
 				<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
 				<li class:active={$page.path === '/about'}><a sveltekit:prefetch href="/about">About Us</a></li>
-				<li class:active={$page.path === '/our-stories'}><a sveltekit:prefetch href="/our-stories">Our Stories</a></li>
-				<li class:active={$page.path === '/in-the-news'}><a sveltekit:prefetch href="/in-the-news">CEJN in the News</a></li>
-				<li class:active={$page.path === '/who-are-we'}><a sveltekit:prefetch href="/who-are-we">Who is CEJN</a></li>
-				<li class:active={$page.path === '/press-releases'}><a sveltekit:prefetch href="/press-releases">Press</a></li>
-				<li class:active={$page.path === '/contact'}><a sveltekit:prefetch href="/contact">Contact</a></li>
+				<li class:active={$page.path === '/our-stories'}><a sveltekit:prefetch href="/">Our Stories</a></li>
+				<li class:active={$page.path === '/in-the-news'}><a sveltekit:prefetch href="/">CEJN in the News</a></li>
+				<li class:active={$page.path === '/who-are-we'}><a sveltekit:prefetch href="/">Who is CEJN</a></li>
+				<li class:active={$page.path === '/press-releases'}><a sveltekit:prefetch href="/">Press</a></li>
+				<li class:active={$page.path === '/contact'}><a sveltekit:prefetch href="/">Contact</a></li>
 			</ul>
 		</section>
 	</nav>
