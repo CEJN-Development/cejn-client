@@ -26,6 +26,7 @@
   section section img {
     width: 100%;
     border-radius: 50%;
+    flex: min-content;
   }
 
   @media screen and (min-width: 500px) {

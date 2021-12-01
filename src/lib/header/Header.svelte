@@ -8,7 +8,7 @@
 	const close = () => {
 		showNavbar = false;
 	};
-	
+
 	onMount(() => {
 		Array.from(linksList.getElementsByTagName("li")).forEach(elem => elem.addEventListener("click", close));
 	});
@@ -51,6 +51,12 @@
 <style>
 	header {
 		display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		background: rgba(255, 255, 255, 1);
+		box-shadow: 0 2px 6px 7px rgba(255, 255, 255, 1);
 	}
 
 	nav {
@@ -81,8 +87,8 @@
 	}
 
 	#links.active {
-			left: 0%;
-		}
+		left: 0%;
+	}
 
 	#links > .left {
 		grid-area: left;
@@ -155,6 +161,7 @@
 			min-width: 100vw;
 			display: flex;
 			justify-content: center;
+			padding-bottom: 0.5rem;
 		}
 
 		nav {

@@ -11,8 +11,4 @@
     text-align: center;
     width: 100%;
   }
-
-  section {
-    padding-top: 2rem;
-  }
 </style>

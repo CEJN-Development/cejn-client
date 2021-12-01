@@ -14,7 +14,7 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 0 2rem;
+		padding: 5rem 2rem 0 2rem;
 		width: 100%;
 		max-width: 1024px;
 		margin: 0 auto;
@@ -26,6 +26,7 @@
 			max-width: 880px;
 			min-width: 500px;
 			width: 90vw;
+			padding: 7rem 2rem 0 2rem;
 		}
 	}
 </style>
