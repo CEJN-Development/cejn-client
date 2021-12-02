@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+	import LatestPosts from "$lib/index/LatestPosts.svelte";
 	import WhoAreWe from "$lib/index/WhoAreWe.svelte";
 	import About from "../lib/index/About.svelte";
 </script>
@@ -16,3 +17,4 @@
 <hr class="separator stack-48" />
 <WhoAreWe />
 <hr class="separator stack-48" />
+<LatestPosts />
