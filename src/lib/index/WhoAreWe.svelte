@@ -25,7 +25,7 @@
 
   section section img {
     width: 100%;
-    border-radius: 50%;
+    border-radius: 10rem;
     flex: min-content;
   }
 
