@@ -2,7 +2,7 @@
 	export const prerender = true;
 
 	export async function load({ page, fetch, session, stuff }) {
-		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
+		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
 		if (!articlesRes.ok) {
 			return {
 				status: articlesRes.status,
@@ -21,20 +21,16 @@
 </script>
 
 <script lang="ts">
-	import LatestPosts from "$lib/shared/LatestPosts.svelte";
-	import WhoAreWe from "$lib/index/WhoAreWe.svelte";
-	import About from "$lib/index/About.svelte";
+  import LatestPosts from "$lib/shared/LatestPosts.svelte";
 
 	export let articles;
+	console.log(articles);
+	
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
 
-<hr class="separator stack-48" />
-<About />
-<hr class="separator stack-48" />
-<WhoAreWe />
 <hr class="separator stack-48" />
 <LatestPosts {articles} />
