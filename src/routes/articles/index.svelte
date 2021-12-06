@@ -3,11 +3,9 @@
 
 	export async function load({ page, fetch, session, stuff }) {
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
-		if (!articlesRes.ok) {
-			return {
-				status: articlesRes.status,
-				error: new Error("Could not load articles")
-			}
+		if (!articlesRes.ok) return {
+			status: articlesRes.status,
+			error: new Error("Could not load articles")
 		};
 
 		let articles = await articlesRes.json();
@@ -22,9 +20,9 @@
 
 <script lang="ts">
   import LatestPosts from "$lib/shared/LatestPosts.svelte";
+  import type { Article } from "$lib/types/articles";
 
-	export let articles;
-	console.log(articles);
+	export let articles:Article[];
 	
 </script>
 
