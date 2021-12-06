@@ -43,7 +43,7 @@
 
 <hr class="separator stack-48" />
 <About />
-<hr class="separator stack-48" />
+<hr class="separator stack-48" id="who-is-cejn" />
 <WhoAreWe {bios} />
 <hr class="separator stack-48" />
 <LatestPosts {articles} />

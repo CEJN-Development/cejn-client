@@ -1,17 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+	import Links from './Links.svelte';
 
 	let showNavbar:boolean = false;
-	let linksList:HTMLElement;
+
+	const open = () => {
+		showNavbar = true;
+	};
 
 	const close = () => {
 		showNavbar = false;
 	};
-
-	onMount(() => {
-		Array.from(linksList.getElementsByTagName("li")).forEach(elem => elem.addEventListener("click", close));
-	});
 </script>
 
 <header>
@@ -23,7 +21,7 @@
 			</b>
 		</section>
 		<section id="expander" class="right">
-			<button class="button" on:click={() => showNavbar = true}>
+			<button class="button" on:click={open}>
 				&#9776;
 			</button>
 		</section>
@@ -35,15 +33,7 @@
 					X
 				</button>
 			</section>
-			<ul bind:this={linksList}>
-				<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-				<li class:active={$page.path === '/about'}><a sveltekit:prefetch href="/about">About Us</a></li>
-				<li class:active={$page.path === '/our-stories'}><a sveltekit:prefetch href="/">Our Stories</a></li>
-				<li class:active={$page.path === '/in-the-news'}><a sveltekit:prefetch href="/">CEJN in the News</a></li>
-				<li class:active={$page.path === '/who-are-we'}><a sveltekit:prefetch href="/">Who is CEJN</a></li>
-				<li class:active={$page.path === '/press-releases'}><a sveltekit:prefetch href="/">Press</a></li>
-				<li class:active={$page.path === '/contact'}><a sveltekit:prefetch href="/">Contact</a></li>
-			</ul>
+			<Links on:close={close} />
 		</section>
 	</nav>
 </header>
@@ -126,36 +116,6 @@
 		padding-right: 0.5rem;
 	}
 
-	ul {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 0;
-		margin: 0;
-		list-style: none;
-		grid-area: links;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--accent-color);
-	}
-
 	@media screen and (min-width: 500px) {
 		header {
 			min-width: 100vw;
@@ -172,10 +132,6 @@
 			max-height: inherit;
 		}
 
-		#expander {
-			visibility: hidden;
-		}
-
 		#links {
 			position: relative;
 			display: flex;
@@ -184,17 +140,10 @@
 			justify-content: center;
 		}
 
+		#expander,
 		#links .left,
 		#links .right {
 			display: none;
-		}
-
-		#links ul {
-			flex-direction: row;
-		}
-
-		li > a {
-			font-size: var(--text-small);
 		}
 	}
 </style>
