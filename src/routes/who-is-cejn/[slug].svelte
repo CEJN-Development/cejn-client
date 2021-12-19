@@ -19,7 +19,7 @@
 </script>
 
 <script lang="ts">
-  import type { Bio } from "$lib/types/bios";
+  import type { Bio } from "$lib/types/Bios";
 
 	export let bio:Bio;
 </script>

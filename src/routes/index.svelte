@@ -27,11 +27,12 @@
 </script>
 
 <script lang="ts">
-	import LatestPosts from "$lib/shared/LatestPosts.svelte";
-	import WhoAreWe from "$lib/index/WhoAreWe.svelte";
-	import About from "$lib/index/About.svelte";
-	import type { Article } from "$lib/types/articles";
-	import type { Bio } from "$lib/types/bios";
+	import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
+	import WhoAreWe from "$lib/components/index/WhoAreWe.svelte";
+	import About from "$lib/components/index/About.svelte";
+	import type { Article } from "$lib/types/Articles";
+	import type { Bio } from "$lib/types/Bios";
+	import * as ApiService from "$lib/services/ApiService"
 
 	export let articles:Article[];
 	export let bios:Bio[];
