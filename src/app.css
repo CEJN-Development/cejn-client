@@ -135,7 +135,7 @@ button:focus:not(:focus-visible) {
 }
 
 .text-medium {
-	font-weight: normal;
+	font-weight: normal
 }
 
 .text-thin {
