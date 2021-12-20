@@ -10,6 +10,14 @@
 			}
 		};
 
+		const biosRes = await fetch(`${import.meta.env.VITE_API_URL}/bios`);
+		if (!biosRes.ok) {
+			return {
+				status: biosRes.status,
+				error: new Error("Could not load bios")
+			}
+		};
+
 		let articles = await articlesRes.json();
 
 		return {
