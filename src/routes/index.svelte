@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	export const prerender = true;
+	
 	export async function load({ page, fetch, session, stuff }) {
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
 		if (!articlesRes.ok) {
@@ -8,7 +9,9 @@
 				error: new Error("Could not load articles")
 			}
 		};
+
 		let articles = await articlesRes.json();
+
 		return {
 			props: {
 				articles
