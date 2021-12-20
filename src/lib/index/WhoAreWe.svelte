@@ -1,6 +1,5 @@
 <script lang="ts">
   import organizersData from "../../tmp/organizers.json"
-
   let organizers = [...organizersData];
 </script>
 
@@ -22,19 +21,16 @@
   h1 {
     text-align: center;
   }
-
   section section img {
     width: 100%;
-    border-radius: 50%;
+    border-radius: 10rem;
     flex: min-content;
   }
-
   @media screen and (min-width: 500px) {
     section section {
       display: flex;
       grid-gap: 2rem;
     }
-
     section section:nth-child(2n) {
       flex-direction: row-reverse;
     }
