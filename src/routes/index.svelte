@@ -21,7 +21,9 @@
 	import LatestPosts from "$lib/shared/LatestPosts.svelte";
 	import WhoAreWe from "$lib/index/WhoAreWe.svelte";
 	import About from "$lib/index/About.svelte";
-	export let articles;
+	import type { Article } from "$lib/types/articles";
+
+	export let articles:Article[];
 </script>
 
 <svelte:head>
