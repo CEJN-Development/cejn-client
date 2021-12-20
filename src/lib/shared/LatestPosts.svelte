@@ -10,7 +10,7 @@
       {#each article.sample.split("\n\n") as paragraph}
         <p class="stack-8">{@html paragraph}</p>
       {/each}
-      <a href="/">Read full article</a>
+      <a href={`/articles/${article.slug}`}>Read full article &gt;&gt;</a>
     </span>
     <hr class="separator stack-24" />
   {/each}
