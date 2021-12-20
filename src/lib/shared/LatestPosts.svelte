@@ -1,9 +1,11 @@
 <script lang="ts">
-  export let articles = [];
+  import type { Article } from "$lib/types/articles";
+
+  export let articles:Article[] = [];
 </script>
 
 <h1 class="text-strong text-large stack-24">Latest Posts</h1>
-{#if articles.length > 0}
+{#if articles?.length > 0}
   {#each articles as article}
     <p class="text-strong text-normal stack-8">{article.title}</p>
     <span class="text-medium text-normal stack-24">
@@ -25,6 +27,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+
   .separator:last-child {
     width: 100%;
   }
