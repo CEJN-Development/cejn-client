@@ -20,7 +20,7 @@
 
 <script lang="ts">
   import LatestPosts from "$lib/shared/LatestPosts.svelte";
-  import type { Article } from "$lib/types/articles";
+  import type { Article } from "$lib/types/Articles";
 	export let articles:Article[];
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Article } from "$lib/types/articles";
+  import type { Article } from "$lib/types/Articles";
 
   export let articles:Article[] = [];
 </script>
