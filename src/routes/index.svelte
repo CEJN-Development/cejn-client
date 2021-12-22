@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	export const prerender = true;
+
 	export async function load({ page, fetch, session, stuff }) {
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
 		if (!articlesRes.ok) return {
@@ -42,7 +43,7 @@
 
 <hr class="separator stack-48" />
 <About />
-<hr class="separator stack-48" />
+<hr class="separator stack-48" id="who-is-cejn" />
 <WhoAreWe {bios} />
 <hr class="separator stack-48" />
 <LatestPosts {articles} />
