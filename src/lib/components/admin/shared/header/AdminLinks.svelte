@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
   import { createEventDispatcher } from "svelte";
-  
+
   const dispatch = createEventDispatcher();
+
 	const close = () => {
     dispatch("close");
 	};
@@ -12,36 +13,6 @@
   <li class:active={$page.path === '/'}>
     <a href="/" on:click={close}>
       Home
-    </a>
-  </li>
-  <li class:active={$page.path === '/about'}>
-    <a sveltekit:prefetch href="/about" on:click={close}>
-      About Us
-    </a>
-  </li>
-  <li class:active={$page.path === '/our-stories'}>
-    <a href="/articles" on:click={close}>
-      Our Stories
-    </a>
-  </li>
-  <li class:active={$page.path === '/in-the-news'}>
-    <a href="/" on:click={close}>
-      CEJN in the News
-    </a>
-  </li>
-  <li class:active={$page.path === '/who-are-we'}>
-    <a href="/#who-are-we" on:click={close}>
-      Who is CEJN
-    </a>
-  </li>
-  <li class:active={$page.path === '/press-releases'}>
-    <a href="/" on:click={close}>
-      Press
-    </a>
-  </li>
-  <li class:active={$page.path === '/contact'}>
-    <a sveltekit:prefetch href="/" on:click={close}>
-      Contact
     </a>
   </li>
 </ul>
