@@ -35,7 +35,7 @@
 
     if (response.status === 200) {
       user.set(json);
-      goto("/");
+      goto("/admin");
     } else if (response.status === 401) {
       json.error ?
         errors = [...errors, json.error] :
