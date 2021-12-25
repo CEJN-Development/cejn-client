@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from '$lib/components/admin/shared/header/Header.svelte';
+	import Header from '$lib/components/admin/Navigation/Header.svelte';
 	import '../../app.css';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -19,30 +19,28 @@
 	});
 </script>
 
-<Header />
-
-<main>
-	<slot />
-</main>
+<div id="admin">
+	<Header />
+	<main>
+		<slot />
+	</main>
+</div>
 
 <style>
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 5rem 2rem 0 2rem;
+
+	#admin {
+		display: grid;
+		grid-template-areas: "navigation content";
+		grid-template-columns: minmax(200px, 20%) 1fr;
 		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
+		max-width: 100vw;
+		min-height: 100vh;
+		overflow-x: hidden;
 	}
 
-	@media screen and (min-width: 500px) {
-		main {
-			max-width: 880px;
-			min-width: 500px;
-			width: 90vw;
-			padding: 7rem 2rem 0 2rem;
-		}
+	main {
+		grid-area: content;
+		width: 100%;
 	}
+
 </style>

@@ -9,7 +9,7 @@
 	--tertiary-color: #edf0f8;
 	--accent-color: #ff3e00;
 	--heading-color: rgba(0, 0, 0, 0.7);
-	--text-color: #444444;
+	--color-metadata: rgb(100, 100, 100);
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
@@ -21,6 +21,9 @@
 	--spacing-24: 1.5rem;
 	--spacing-32: 2rem;
 	--spacing-48: 2.5rem;
+	--breakpoint-mobile: 500px;
+	--breakpoint-tablet: 700px;
+	--breakpoint-desktop: 900px;
 	font-size: 16px;
 }
 
@@ -73,6 +76,37 @@ button:focus:not(:focus-visible) {
 	outline: none;
 }
 
+input[type="file"],
+input[type="text"],
+textarea {
+	border-radius: 0.2rem;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(225, 225, 225, 1);
+	box-shadow: inset 1px 1px 2px 0 rgba(0,0,0,0.3);
+}
+
+input[type="file"]::file-selector-button {
+	display: inline-flex;
+	background-color: rgba(255, 255, 255, 1);
+	border: none;
+	border-radius: 0.2rem;
+	box-shadow: 2px 1px 2px -1px rgba(0, 0, 0, 0.3),
+							inset 1px 1px 2px -1px rgba(0,0,0,0.2),
+							inset 0px -1px 2px -1px rgba(0,0,0,0.2);
+	z-index: +1;
+	padding: 10px;
+	margin-right: var(--spacing-8);
+}
+
+input[type="file"].panel {
+	background-image: none;
+}
+
+input[type="file"].panel::file-selector-button {
+	background-image: linear-gradient(to top, rgba(225, 225, 225, 0.2) 25%, rgba(255, 255, 255, 0) 100%);
+}
+
 .button {
 	display: inline-block;
 	background-color: rgba(255, 255, 255, 1);
@@ -85,12 +119,15 @@ button:focus:not(:focus-visible) {
 	padding: 10px;
 }
 
-.button:hover {
-	cursor: pointer;
+.button.button-flat {
+	box-shadow: none;
+	background-color: transparent;
+	border: 0;
 }
 
-.container {
-	padding: 0.2rem;
+input[type="file"]::file-selector-button,
+.button:hover {
+	cursor: pointer;
 }
 
 .flex-row {
@@ -98,17 +135,67 @@ button:focus:not(:focus-visible) {
 	flex-direction: column;
 }
 
-.text-large {
-	font-size: var(--text-large);
+/*****************************************************
+******************************************************
+	PADDING RULES
+******************************************************
+*****************************************************/
+
+.squeeze-8 {
+	padding-left: var(--spacing-8);
+	padding-right: var(--spacing-8);
 }
 
-.text-normal {
-	font-size: var(--text-normal);
+.squeeze-16 {
+	padding-right: var(--spacing-16);
+	padding-left: var(--spacing-16);
 }
 
-.text-small {
-	font-size: var(--text-small);
+.squeeze-24 {
+	padding-left: var(--spacing-24);
+	padding-right: var(--spacing-24);
 }
+
+.squeeze-32 {
+	padding-left: var(--spacing-32);
+	padding-right: var(--spacing-32);
+}
+
+.squeeze-48 {
+	padding-left: var(--spacing-48);
+	padding-right: var(--spacing-48);
+}
+
+.squish-8 {
+	padding-top: var(--spacing-8);
+	padding-bottom: var(--spacing-8);
+}
+
+.squish-16 {
+	padding-top: var(--spacing-16);
+	padding-bottom: var(--spacing-16);
+}
+
+.squish-24 {
+	padding-top: var(--spacing-24);
+	padding-bottom: var(--spacing-24);
+}
+
+.squish-32 {
+	padding-top: var(--spacing-32);
+	padding-bottom: var(--spacing-32);
+}
+
+.squish-48 {
+	padding-top: var(--spacing-48);
+	padding-bottom: var(--spacing-48);
+}
+
+/*****************************************************
+******************************************************
+	SPACING RULES
+******************************************************
+*****************************************************/
 
 .stack-8 {
 	margin-bottom: var(--spacing-8);
@@ -130,6 +217,64 @@ button:focus:not(:focus-visible) {
 	margin-bottom: var(--spacing-48);
 }
 
+.spread-8 {
+	margin-right: var(--spacing-8);
+}
+
+.spread-16 {
+	margin-right: var(--spacing-16);
+}
+
+.spread-24 {
+	margin-right: var(--spacing-24);
+}
+
+.spread-32 {
+	margin-right: var(--spacing-32);
+}
+
+.spread-48 {
+	margin-right: var(--spacing-48);
+}
+
+.push-8 {
+	margin-left: var(--spacing-8);
+}
+
+.push-16 {
+	margin-left: var(--spacing-16);
+}
+
+.push-24 {
+	margin-left: var(--spacing-24);
+}
+
+.push-32 {
+	margin-left: var(--spacing-32);
+}
+
+.push-48 {
+	margin-left: var(--spacing-48);
+}
+
+/*****************************************************
+******************************************************
+	TEXT RULES
+******************************************************
+*****************************************************/
+
+.text-large {
+	font-size: var(--text-large);
+}
+
+.text-normal {
+	font-size: var(--text-normal);
+}
+
+.text-small {
+	font-size: var(--text-small);
+}
+
 .text-strong {
 	font-weight: bold;
 }
@@ -140,6 +285,29 @@ button:focus:not(:focus-visible) {
 
 .text-thin {
 	font-weight: lighter;
+}
+
+.text-style-metadata {
+	color: var(--color-metadata);
+}
+
+.text-style-italic {
+	font-style: italic;
+}
+
+/*****************************************************
+******************************************************
+	BOUTIQUE CLASSES
+******************************************************
+*****************************************************/
+
+.container {
+	padding: 0.2rem;
+}
+
+.panel {
+	background-image: linear-gradient(to top, rgba(225, 225, 225, 0.2) 25%, rgba(255, 255, 255, 0) 100%);
+	box-shadow: 0 1px 2px -1px rgba(50, 50, 50, 0.7);
 }
 
 .separator {

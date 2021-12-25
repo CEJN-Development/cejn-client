@@ -19,15 +19,17 @@
 </script>
 
 <script lang="ts">
-  import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
+  import ArticlesTable from "$lib/components/admin/Articles/ArticlesTable.svelte";
   import type { Article } from "$lib/types/Articles";
 
 	export let articles:Article[];
 </script>
 
 <svelte:head>
-	<title>Our Stories</title>
+	<title>Admin | Our Stories</title>
 </svelte:head>
 
-<hr class="separator stack-48" />
-<LatestPosts {articles} />
+<main class="squeeze-16 squish-16">
+  <h1 class="stack-16">Our Stories</h1>
+  <ArticlesTable {articles} />
+</main>
