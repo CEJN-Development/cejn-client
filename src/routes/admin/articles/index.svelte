@@ -2,7 +2,7 @@
 	export const prerender = true;
 
 	export async function load({ page, fetch, session, stuff }) {
-		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
+		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/articles`);
 		if (!articlesRes.ok) return {
 			status: articlesRes.status,
 			error: new Error("Could not load articles")
