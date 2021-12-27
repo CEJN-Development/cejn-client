@@ -6,4 +6,5 @@ export interface Article {
   slug: string
   title: string
   updated_at: Date
+  authors?: any[]
 }

@@ -1,33 +1,31 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-  import { createEventDispatcher } from "svelte";
-
-  const dispatch = createEventDispatcher();
-
-	const close = () => {
-    dispatch("close");
-	};
 </script>
 
 <ul>
 	<li class:active={$page.path === '/'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/about" on:click={close}>
+    <a href="/admin/about">
       About Us
     </a>
   </li>
 	<li class:active={$page.path === '/'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/articles" on:click={close}>
+    <a href="/admin/articles">
       Our Stories
     </a>
   </li>
   <li class:active={$page.path === '/'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/home" on:click={close}>
+    <a href="/admin/home">
       Splash
     </a>
   </li>
-	<li class:active={$page.path === '/'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/bios" on:click={close}>
+	<li class:active={$page.path === '/who-is-cejn'} class="squish-8 squeeze-8 panel">
+    <a href="/admin/bios">
       Who is CEJN
+    </a>
+  </li>
+	<li class:active={$page.path === '/writers'} class="squish-8 squeeze-8 panel">
+    <a href="/admin/writers">
+      Writers
     </a>
   </li>
 </ul>
