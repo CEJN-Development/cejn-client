@@ -6,14 +6,15 @@
 </script>
 
 <table>
-  <tr>
-    <th>Full name</th>
-    <th>Date added</th>
-  </tr>
-  {#each writers as writer}
-    <Row {writer} />
-  {/each}
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Date added</th>
+    </tr>
+  </thead>
+  <tbody> 
+    {#each writers as writer}
+      <Row {writer} />
+    {/each}
+  </tbody>
 </table>
-
-<style>
-</style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from '$lib/components/admin/Navigation/Header.svelte';
+	import Header from '$lib/components/admin/Navigation/AdminPanel.svelte';
 	import '../../app.css';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';

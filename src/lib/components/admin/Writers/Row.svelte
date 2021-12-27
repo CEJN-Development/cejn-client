@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Writer } from "$lib/types/Writers";
+  import moment from "moment";
 
   export let writer:Writer;
 </script>
@@ -12,7 +13,7 @@
   </td>
   <td>
     <p class="text-medium text-normal">
-      {writer.created_at}
+      {moment(writer.created_at).format('LLL')} CST
     </p>
   </td>
 </tr>
