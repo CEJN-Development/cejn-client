@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import AdminLinks from './AdminLinks.svelte';
 
 	let showNavbar:boolean = false;
@@ -12,26 +13,28 @@
 	};
 </script>
 
-<header>
-	<div id="top">
-		<section id="expander" class="right panel">
-			<button class="button button-flat" on:click={open}>
-				&#9776;
-			</button>
-		</section>
-		<section id="logo" class="panel squish-16 squeeze-8">
-			<img src="/favicon.png" alt="Organization logo" />
-			<b class="container text-small">
-				Chicago Environmental Justice Network
-			</b>
-		</section>
-	</div>
-	<nav>
-		<section id="links" class:active={showNavbar}>
-			<AdminLinks on:close={close} />
-		</section>
-	</nav>
-</header>
+{#if $page.path !== "/admin/login"}
+	<header>
+		<div id="top">
+			<section id="expander" class="right panel">
+				<button class="button button-flat" on:click={open}>
+					&#9776;
+				</button>
+			</section>
+			<section id="logo" class="panel squish-16 squeeze-8">
+				<img src="/favicon.png" alt="Organization logo" />
+				<b class="container text-small">
+					Chicago Environmental Justice Network
+				</b>
+			</section>
+		</div>
+		<nav>
+			<section id="links" class:active={showNavbar}>
+				<AdminLinks on:close={close} />
+			</section>
+		</nav>
+	</header>
+{/if}
 
 <style>
 	header {

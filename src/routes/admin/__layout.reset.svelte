@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from '$lib/components/admin/Navigation/AdminPanel.svelte';
+	import Panel from '$lib/components/admin/Navigation/AdminPanel.svelte';
 	import '../../app.css';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -20,7 +20,7 @@
 </script>
 
 <div id="admin">
-	<Header />
+	<Panel />
 	<main>
 		<slot />
 	</main>
