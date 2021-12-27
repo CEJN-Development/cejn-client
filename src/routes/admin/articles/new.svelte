@@ -2,17 +2,20 @@
   let title:string;
   let author:string;
   let body:string;
+  let excerpt:string;
   let coverImage:string | ArrayBuffer;
   let imageUploadInput:HTMLInputElement;
 
   const submit = () => {
     console.log(title, "title");
+    console.log(excerpt, "excerpt");
     console.log(body, "body");
     console.log(coverImage, "coverImage");
   };
 
   const saveDraft = () => {
     console.log(title, "title");
+    console.log(excerpt, "excerpt");
     console.log(body, "body");
     console.log(coverImage, "coverImage");
     console.log(author, "author");
@@ -44,13 +47,22 @@
     bind:value={title}
   />
   <label for="author" class="text-small text-style-metadata text-style-italic">
-    Author
+    Author(s)
   </label>
   <input
     name="author"
     type="text"
     class="stack-16 squeeze-8 squish-8"
     bind:value={author}
+  />
+  <label for="body" class="text-small text-style-metadata text-style-italic">
+    Excerpt
+  </label>
+  <textarea
+    name="body"
+    class="stack-16 squeeze-8 squish-8 text-medium text-normal"
+    rows="4"
+    bind:value={excerpt}
   />
   <label for="body" class="text-small text-style-metadata text-style-italic">
     Body
