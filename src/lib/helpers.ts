@@ -82,3 +82,7 @@ export function browserDetector(navigator:Navigator, window:any) {
   };
   return module;
 };
+
+export const truncateWithEllipses = (text:string, max:number) => {
+  return text.length > max ? `${text.split("", max).join("")}&hellip;` : text;
+};

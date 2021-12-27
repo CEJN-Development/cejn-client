@@ -1,3 +1,5 @@
+import type { Writer } from "./Writers"
+
 export interface Article {
   body?: string
   created_at: Date
@@ -6,5 +8,5 @@ export interface Article {
   slug: string
   title: string
   updated_at: Date
-  authors?: any[]
+  authors?: Writer[]
 }

@@ -2,7 +2,7 @@
 	export const prerender = true;
 
 	export async function load({ page, fetch, session, stuff }) {
-		const writersRes = await fetch(`${import.meta.env.VITE_API_URL}/writers`);
+		const writersRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/writers`);
 		if (!writersRes.ok) return {
 			status: writersRes.status,
 			error: new Error("Could not load writers")
@@ -19,7 +19,10 @@
 </script>
 
 <script lang="ts">
-	export let writers;
+  import WritersTable from "$lib/components/admin/Writers/WritersTable.svelte";
+  import type { Writer } from "$lib/types/Writers";
+
+	export let writers:Writer[];
 </script>
 
 <svelte:head>
@@ -28,7 +31,5 @@
 
 <main class="squeeze-16 squish-16">
   <h1 class="stack-16">Our Contributors</h1>
-  {#each writers as writer}
-		{writer.full_name}
-	{/each}
+  <WritersTable {writers} />
 </main>

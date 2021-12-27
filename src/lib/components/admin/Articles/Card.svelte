@@ -1,14 +1,11 @@
 <script lang="ts">
   import type { Article } from "$lib/types/Articles";
+  import { truncateWithEllipses } from "$lib/helpers";
 
   export let article:Article;
 
   let sample:string;
   let authorNames:string;
-
-  const truncateWithEllipses = (text:string, max:number) => {
-    return text.length > max ? `${text.split("", max).join("")}&hellip;` : text;
-  };
 
   $: {
     sample = truncateWithEllipses(article.sample, 300);
