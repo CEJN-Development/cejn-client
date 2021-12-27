@@ -1,10 +1,8 @@
 <script lang="ts">
-  import type { Writer } from "$lib/types/Writers";
   import Row from "./Row.svelte";
+  import type { Writer } from "$lib/types/Writers";
 
-  export let writers:Writer[] = [];
-  console.log(writers);
-  
+  export let writers:Writer[] = [];  
 </script>
 
 <table>
