@@ -1,13 +1,27 @@
 <script lang="ts">
+	import { aud } from '$lib/stores/UserAgentStore';
+  import * as ApiService from "$lib/services/ApiService";
+
   let name:string;
   let byline:string;
   let photo:string | ArrayBuffer;
   let imageUploadInput:HTMLInputElement;
 
-  const submit = () => {
-    console.log(name, "name");
-    console.log(byline, "byline");
-    console.log(photo, "photo");
+  const submit = async () => {
+    let data:any = {
+      full_name: name,
+      byline,
+    }
+    if (photo) data.photo = photo;
+    const { response, json } = await ApiService.post(
+      String(import.meta.env.VITE_API_URL),
+      "/admin/writers", 
+      {
+        writer: data,
+        creds: true
+      },
+      { aud: $aud }
+    );
   };
 
   const getBaseUrl = (e) => {

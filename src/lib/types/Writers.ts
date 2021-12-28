@@ -5,4 +5,5 @@ export interface Writer {
   id: number
   slug: string
   updated_at: Date
+  cloudinary_image_url?: string
 }

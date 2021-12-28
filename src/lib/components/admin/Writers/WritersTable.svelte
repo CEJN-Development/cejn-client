@@ -8,6 +8,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Full name</th>
       <th>Date added</th>
     </tr>
