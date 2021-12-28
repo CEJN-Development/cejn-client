@@ -78,6 +78,8 @@ button:focus:not(:focus-visible) {
 
 input[type="file"],
 input[type="text"],
+input[type="email"],
+input[type="password"],
 textarea {
 	border-radius: 0.2rem;
 	border-style: solid;

@@ -27,7 +27,6 @@
 </div>
 
 <style>
-
 	#admin {
 		display: grid;
 		grid-template-areas: "navigation content";
@@ -42,5 +41,4 @@
 		grid-area: content;
 		width: 100%;
 	}
-
 </style>

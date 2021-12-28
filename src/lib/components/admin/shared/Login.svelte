@@ -2,7 +2,6 @@
   import { aud, ip, os, browser } from "$lib/stores/UserAgentStore";
   import * as ApiService from "$lib/services/ApiService";
   import { user } from "$lib/stores/UserStore";
-  import { goto } from "$app/navigation"
 
   let email:string,
       password:string,
@@ -35,53 +34,52 @@
 
     if (response.status === 200) {
       user.set(json);
-      goto("/admin");
+      window.location.href = "/admin";
     } else if (response.status === 401) {
       json.error ?
         errors = [...errors, json.error] :
         errors = [...errors, "Error."];
     } else if (response.status === 500) {
       errors = ["Oops, something went wrong! How embarrassing, try again soon."];
-    }
+    };
 
     submitting = false;
-  }
+  };
 </script>
 
-<form class="flex-row">
-  <label for="email">Email</label>
+<form class="flex-row squeeze-32 squish-32 card">
+  <label for="email" class="text-small text-style-metadata text-style-italic">
+    Email
+  </label>
   <input
     type="email"
     name="email"
+    class="stack-16 squeeze-8 squish-8"
     bind:value={email}
   />
-  <label for="password">Password</label>
+  <label for="password" class="text-small text-style-metadata text-style-italic">
+    Password
+  </label>
   <input
     type="password"
     name="password"
+    class="stack-16 squeeze-8 squish-8"
     bind:value={password}
   />
-  <button
-    on:click|preventDefault={attemptLogin}
-    disabled={submitting}
-  >
-    Login
-  </button>
+  <div>
+    <button
+      class="panel button"
+      on:click|preventDefault={attemptLogin}
+      disabled={submitting}
+    >
+      Login
+    </button>
+  </div>
 </form>
 
 <style>
-  label,
-  input {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-  input {
-    box-shadow: inset 1px 1px 2px -1px black;
-  }
   form {
     max-width: 500px;
-    grid-gap: 5px;
+    width: 100%;
   }
 </style>
