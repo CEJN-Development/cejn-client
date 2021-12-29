@@ -7,7 +7,7 @@
   const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/cejn-dev/image/upload";
   const cloudinary_public_id = writer.cloudinary_image_url.split(CLOUDINARY_BASE_URL)[1];
 
-  let image_path:string = `${CLOUDINARY_BASE_URL}/b_auto,c_fill_pad,g_auto,h_50,w_50${cloudinary_public_id}`;
+  let image_path:string = `${CLOUDINARY_BASE_URL}/b_auto,c_fill_pad,g_auto,h_40,w_40${cloudinary_public_id}`;
 </script>
 
 <tr>
@@ -28,3 +28,9 @@
     </p>
   </td>
 </tr>
+
+<style>
+  img {
+    border-radius: 50%;
+  }
+</style>

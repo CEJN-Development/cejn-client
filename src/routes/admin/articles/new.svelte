@@ -1,36 +1,48 @@
 <script lang="ts">
+	import { aud } from '$lib/stores/UserAgentStore';
+  import * as ApiService from "$lib/services/ApiService";
+
   let title:string;
-  let author:string;
+  // let author:string[];
   let body:string;
   let excerpt:string;
-  let coverImage:string | ArrayBuffer;
+  let photo:string | ArrayBuffer;
   let imageUploadInput:HTMLInputElement;
 
-  const submit = () => {
-    console.log(title, "title");
-    console.log(excerpt, "excerpt");
-    console.log(body, "body");
-    console.log(coverImage, "coverImage");
+  const submit = async () => {
+    let data:any = {
+      title,
+      body,
+      excerpt,
+    }
+    if (photo) data.photo = photo;
+    const { response, json } = await ApiService.post(
+      String(import.meta.env.VITE_API_URL),
+      "/admin/articles", 
+      {
+        article: data,
+        creds: true
+      },
+      { aud: $aud }
+    );
   };
-
   const saveDraft = () => {
     console.log(title, "title");
     console.log(excerpt, "excerpt");
     console.log(body, "body");
-    console.log(coverImage, "coverImage");
-    console.log(author, "author");
+    console.log(photo, "photo");
   };
 
   const getBaseUrl = (e) => {
     let file = e.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = () => coverImage = reader.result;
+    reader.onloadend = () => photo = reader.result;
   };
 
   const clearImageUploadInput = () => {
     imageUploadInput.files[0] = undefined;
-    coverImage = undefined;
+    photo = undefined;
   };
 </script>
 
@@ -49,12 +61,12 @@
   <label for="author" class="text-small text-style-metadata text-style-italic">
     Author(s)
   </label>
-  <input
+  <!-- <input
     name="author"
     type="text"
     class="stack-16 squeeze-8 squish-8"
     bind:value={author}
-  />
+  /> -->
   <label for="body" class="text-small text-style-metadata text-style-italic">
     Excerpt
   </label>
