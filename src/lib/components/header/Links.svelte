@@ -24,21 +24,21 @@
       Our Stories
     </a>
   </li>
-  <li class:active={$page.path === '/in-the-news'}>
+  <!-- <li class:active={$page.path === '/in-the-news'}>
     <a href="/" on:click={close}>
       CEJN in the News
     </a>
-  </li>
+  </li> -->
   <li class:active={$page.path === '/who-is-cejn'}>
     <a href="/#who-are-we" on:click={close}>
       Who is CEJN
     </a>
   </li>
-  <li class:active={$page.path === '/press-releases'}>
+  <!-- <li class:active={$page.path === '/press-releases'}>
     <a href="/" on:click={close}>
       Press
     </a>
-  </li>
+  </li> -->
   <li class:active={$page.path === '/contact'}>
     <a sveltekit:prefetch href="/" on:click={close}>
       Contact
