@@ -24,7 +24,9 @@
 	--breakpoint-mobile: 500px;
 	--breakpoint-tablet: 700px;
 	--breakpoint-desktop: 900px;
+	--font-family--primary: Arial;
 	font-size: 16px;
+	line-height: 1.1rem;
 }
 
 @media screen and (min-width: 900px) {
@@ -52,8 +54,13 @@ p {
 	margin: 0;
 }
 
+ul,
 h1 {
 	margin: 0;
+}
+
+ul {
+	list-style: none;
 }
 
 a {
@@ -86,6 +93,8 @@ textarea {
 	border-width: 1px;
 	border-color: rgba(225, 225, 225, 1);
 	box-shadow: inset 1px 1px 2px 0 rgba(0,0,0,0.3);
+	font-family: var(--font-family--primary);
+	box-sizing: border-box;
 }
 
 input[type="file"]::file-selector-button {
@@ -110,7 +119,6 @@ input[type="file"].panel::file-selector-button {
 }
 
 .button {
-	display: inline-block;
 	background-color: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(225, 225, 225, 1);
 	border-radius: 0.25rem;
@@ -132,9 +140,38 @@ input[type="file"]::file-selector-button,
 	cursor: pointer;
 }
 
+.cursor-pointer {
+	cursor: pointer;
+}
+
+/*****************************************************
+******************************************************
+	CONTAINER RULES
+******************************************************
+*****************************************************/
+
 .flex-row {
 	display: flex;
 	flex-direction: column;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+/*****************************************************
+******************************************************
+	SIZING RULES
+******************************************************
+*****************************************************/
+
+.full-width {
+	width: 100%;
 }
 
 /*****************************************************
@@ -259,6 +296,41 @@ input[type="file"]::file-selector-button,
 	margin-left: var(--spacing-48);
 }
 
+.gap-8 {
+	grid-gap: var(--spacing-8);
+	gap: var(--spacing-8);
+}
+
+.gap-16 {
+	grid-gap: var(--spacing-16);
+	gap: var(--spacing-16);
+}
+
+.gap-824 {
+	grid-gap: var(--spacing-24);
+	gap: var(--spacing-24);
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.align-baseline {
+	align-items: baseline;
+}
+
+.align-first-baseline {
+	align-items: first baseline;
+}
+
+.align-start {
+	align-items: start;
+}
+
 /*****************************************************
 ******************************************************
 	TEXT RULES
@@ -299,6 +371,79 @@ input[type="file"]::file-selector-button,
 
 /*****************************************************
 ******************************************************
+	PERIMETER RULES
+******************************************************
+*****************************************************/
+
+.border-bottom--square {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+.border-top--square {
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
+.border-left--square {
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
+.border-right--square {
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.border--square {
+	border-radius: 0 !important;
+}
+
+.border--rounded-8 {
+	border-radius: var(--spacing-8);
+}
+
+.bordered {
+	border: 1px solid rgba(225, 225, 225, 1);
+	border-radius: 0.25rem;
+}
+
+.bordered-horizontal {
+	border-right-width: 0;
+	border-left-width: 0;
+}
+
+.bordered-vertical {
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
+
+.bordered-top {
+	border-right-width: 0;
+	border-left-width: 0;
+	border-bottom-width: 0;
+}
+
+.bordered-bottom {
+	border-right-width: 0;
+	border-top-width: 0;
+	border-left-width: 0;
+}
+
+.bordered-left {
+	border-right-width: 0;
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
+
+.bordered-right {
+	border-left-width: 0;
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
+
+/*****************************************************
+******************************************************
 	BOUTIQUE CLASSES
 ******************************************************
 *****************************************************/
@@ -327,4 +472,8 @@ input[type="file"]::file-selector-button,
 	box-shadow: 0px 3px 8px -2px rgba(50, 50, 50, 0.5);
 	border-radius: 0.5rem;
 	overflow: hidden;
+}
+
+.raised {
+	box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.7);
 }

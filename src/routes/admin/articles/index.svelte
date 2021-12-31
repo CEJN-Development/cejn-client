@@ -30,6 +30,26 @@
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
-  <h1 class="stack-16">Our Stories</h1>
+	<a
+		href="/admin/articles/new"
+		class="button panel"
+	>
+		New article
+	</a>
+  <span class="text-large text-strong stack-16">Our Stories</span>
   <ArticlesTable {articles} />
 </main>
+
+<style>
+	a {
+		float: right;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+	
+	main > span {
+		display: inline-block;
+	}
+</style>
