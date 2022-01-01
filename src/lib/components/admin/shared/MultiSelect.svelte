@@ -15,6 +15,7 @@
 
   let filteredObjects:objectArrayType[] = [...objectArray];
   let inputElement:HTMLInputElement;
+  let formElement:HTMLFormElement;
   let expanded:boolean = false;
   let selectedObjects:objectArrayType[];
 
@@ -22,6 +23,7 @@
     expanded = true;
     await tick();
     inputElement.focus();
+    formElement.style.width = `${inputElement.offsetWidth - 2}px`;
   };
 
   const filterObjects = (e) => {
@@ -88,7 +90,7 @@
     <div class="stack-16">
       <form
         class="dropdown bordered border-top--square raised"
-        style={inputElement ? `width: ${inputElement.offsetWidth - 2}px` : ""}
+        bind:this={formElement}
       >
         <div
           id="selected-objects"
