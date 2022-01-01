@@ -22,19 +22,22 @@
 	import { aud } from '$lib/stores/UserAgentStore';
   import * as ApiService from "$lib/services/ApiService";
   import type { Writer } from '$lib/types/Writers';
-  import AuthorMultiSelect from '$lib/components/admin/Articles/AuthorMultiSelect.svelte';
+  import AuthorMultiSelect from '$lib/components/admin/shared/MultiSelect.svelte';
+  import type { MultiSelectObject } from '$lib/types/MultiSelect';
+  import type { ArticleCreate } from '$lib/types/Articles';
 
   export let writers:Writer[];
 
   let title:string;
-  let authoredBy:number[];
   let body:string;
   let excerpt:string;
   let photo:string | ArrayBuffer;
   let imageUploadInput:HTMLInputElement;
+  let multiSelectWriters:MultiSelectObject[];
+  let authorIds:number[];
 
   const submit = async () => {
-    let data:any = {
+    let data:ArticleCreate = {
       body,
       excerpt,
       title,
@@ -71,6 +74,17 @@
     imageUploadInput.files[0] = undefined;
     photo = undefined;
   };
+
+  $: {
+    multiSelectWriters = writers
+      .map(writer => {
+        return {
+          text: writer.full_name,
+          key: writer.id,
+          elementName: writer.slug,
+        };
+      });
+  };
 </script>
 
 <h1 class="squish-16 squeeze-16">Our Stories | New</h1>
@@ -90,8 +104,9 @@
       Author(s)
     </label>
     <AuthorMultiSelect
-      {writers}
-      bind:authoredBy
+      bind:objectArray={multiSelectWriters}
+      bind:keyArray={authorIds}
+      className={"Writer"}
     />
     <label for="excerpt" class="text-small text-style-metadata text-style-italic">
       Excerpt

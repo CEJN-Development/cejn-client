@@ -1,16 +1,22 @@
 <script lang="ts">
-  import type { Writer } from "$lib/types/Writers";
   import Icon from "$lib/components/admin/shared/Icon.svelte";
-  import { onMount, tick } from "svelte";
-  import AuthorMultiSelectPill from "./AuthorMultiSelectPill.svelte";
+  import { tick } from "svelte";
+  import MultiSelectPill from "$lib/components/admin/shared/MultiSelectPill.svelte";
 
-  export let writers:Writer[] = [];
-  export let authoredBy:number[] = [];
+  export let objectArray:objectArrayType[] = [];
+  export let keyArray:number[] = [];
+  export let className:string = "Object";
 
-  let filteredWriters:Writer[] = [...writers];
+  interface objectArrayType {
+    text: string
+    key: number
+    elementName: string
+  };
+
+  let filteredObjects:objectArrayType[] = [...objectArray];
   let inputElement:HTMLInputElement;
   let expanded:boolean = false;
-  let selectedAuthors:Writer[];
+  let selectedObjects:objectArrayType[];
 
   const expand = async () => {
     expanded = true;
@@ -18,17 +24,17 @@
     inputElement.focus();
   };
 
-  const filterWriters = (e) => {
-    filteredWriters = writers
-      .filter(writer =>
-        writer
-          .full_name
+  const filterObjects = (e) => {
+    filteredObjects = objectArray
+      .filter(object =>
+        object
+          .text
           .toLowerCase()
           .includes(e.target.value.toLowerCase()));
   };
 
   const updateSelection = (e) => {
-    authoredBy = [...e.detail];
+    keyArray = [...e.detail];
   };
 
   const evaluateNextClick = (e) => {
@@ -44,8 +50,7 @@
   };
 
   $: {
-    filteredWriters
-    selectedAuthors = authoredBy.map(author_id => writers.find(writer => writer.id == author_id));
+    selectedObjects = keyArray.map(key => objectArray.find(object => object.key == key));
   };
 </script>
 
@@ -54,8 +59,8 @@
     class="flex-column align-start space-between stack-16 squeeze-8 squish-8 bordered raised cursor-pointer"
     on:click={expand}
   >
-    <div id="selected-authors">
-      {selectedAuthors.map(author => author.full_name).join(", ")}
+    <div id="selected-objects">
+      {selectedObjects.map(object => object.text).join(", ")}
     </div>
     <div class="flex-row">
       <Icon
@@ -72,13 +77,13 @@
     on:focus={voidEvaluation}
   >
     <input
-      name="author"
+      name="object"
       type="text"
       class="squeeze-8 squish-8 border-bottom--square full-width"
       bind:this={inputElement}
-      on:keyup={filterWriters}
-      on:change={filterWriters}
-      placeholder={"Filter by writer's name"}
+      on:keyup={filterObjects}
+      on:change={filterObjects}
+      placeholder={`Filter by ${className.toLocaleLowerCase()}'s name`}
     />
     <div class="stack-16">
       <form
@@ -86,33 +91,34 @@
         style={inputElement ? `width: ${inputElement.offsetWidth - 2}px` : ""}
       >
         <div
-          id="selected-authors"
+          id="selected-objects"
           class="bordered bordered-bottom border--square squeeze-8 squish-8 flex-column flex-wrap gap-8"
           class:active={expanded}
         >
-          {#if selectedAuthors.length}
-            {#each selectedAuthors as author}
-              <AuthorMultiSelectPill
-                {author}
-                {authoredBy}
+          {#if selectedObjects.length}
+            {#each selectedObjects as object}
+              <MultiSelectPill
+                text={object.text}
+                selectionId={object.key}
+                selectionIds={keyArray}
                 on:deselect={updateSelection}
-              /> 
+              />
             {/each}
           {/if}
         </div>
         <ul class="squeeze-16 squish-16">
-          {#each writers as writer}
-            <li class:hidden={!filteredWriters.map(filteredWriter => Number(filteredWriter.id)).includes(Number(writer.id))}>
+          {#each objectArray as object}
+            <li class:hidden={!filteredObjects.map(filteredObject => Number(filteredObject.key)).includes(Number(object.key))}>
               <input
                 class="stack-8 cursor-pointer"
                 type="checkbox"
-                bind:group={authoredBy}
-                name={writer.slug}
-                id={writer.slug}
-                value={writer.id}
+                bind:group={keyArray}
+                name={object.elementName}
+                id={object.elementName}
+                value={object.key}
               />
-              <label class="cursor-pointer" for={writer.slug}>
-                {writer.full_name}
+              <label class="cursor-pointer" for={object.elementName}>
+                {object.text}
               </label>
             </li>
           {/each}
@@ -136,7 +142,7 @@
     overflow: hidden;
   }
 
-  #selected-authors.active {
+  #selected-objects.active {
     min-height: calc(var(--spacing-32) + 3px);
   }
 </style>

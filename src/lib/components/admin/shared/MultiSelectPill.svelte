@@ -1,21 +1,21 @@
 <script lang="ts">
-  import type { Writer } from "$lib/types/Writers";
   import Icon from "$lib/components/admin/shared/Icon.svelte";
   import { createEventDispatcher } from "svelte";
 
-  export let author:Writer;
-  export let authoredBy:number[];
+  export let text:string;
+  export let selectionIds:number[];
+  export let selectionId:number;
 
   const dispatch = createEventDispatcher();
 
-  const deselect = () => dispatch('deselect', [...authoredBy.filter(id => id != author.id)]);
+  const deselect = () => dispatch('deselect', [...selectionIds.filter(id => id != selectionId)]);
 </script>
 
 <span
   on:click={deselect}
   class="rounded bordered squish-8 squeeze-8 cursor-pointer raised"
 >
-  {author.full_name}
+  {text}
   <Icon
     name="close"
     alt="button for removing this item from selection"

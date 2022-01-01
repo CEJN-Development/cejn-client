@@ -11,3 +11,10 @@ export interface Article {
   updated_at: Date
   authors?: Writer[]
 }
+
+export interface ArticleCreate {
+  body: string
+  excerpt: string
+  title: string
+  photo?: string | ArrayBuffer
+}
