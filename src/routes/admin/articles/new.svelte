@@ -41,6 +41,9 @@
       body,
       excerpt,
       title,
+      author_ids: [
+        ...authorIds
+      ],
     };
 
     if (photo) data.photo = photo;

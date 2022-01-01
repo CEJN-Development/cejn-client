@@ -13,8 +13,9 @@ export interface Article {
 }
 
 export interface ArticleCreate {
+  author_ids: number[]
   body: string
   excerpt: string
-  title: string
   photo?: string | ArrayBuffer
+  title: string
 }
