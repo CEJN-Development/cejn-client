@@ -34,7 +34,6 @@
     "@lukeed/uuid": "^2.0.0",
     "cookie": "^0.4.1",
     "crypto-js": "^4.1.1",
-    "moment": "^2.29.1",
     "node-fetch": "^2.6.6"
   }
 }
