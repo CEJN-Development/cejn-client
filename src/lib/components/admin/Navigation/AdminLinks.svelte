@@ -8,7 +8,7 @@
       About Us
     </a>
   </li>
-	<li class:active={$page.path === '/'} class="squish-8 squeeze-8 panel">
+	<li class:active={$page.path === '/admin/articles'} class="squish-8 squeeze-8 panel">
     <a href="/admin/articles">
       Our Stories
     </a>
@@ -18,12 +18,12 @@
       Splash
     </a>
   </li>
-	<li class:active={$page.path === '/who-is-cejn'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/bios">
-      Who is CEJN
+	<li class:active={$page.path === '/admin/staff'} class="squish-8 squeeze-8 panel">
+    <a href="/admin/staff">
+      Staff
     </a>
   </li>
-	<li class:active={$page.path === '/writers'} class="squish-8 squeeze-8 panel">
+	<li class:active={$page.path === '/admin/writers'} class="squish-8 squeeze-8 panel">
     <a href="/admin/writers">
       Writers
     </a>
