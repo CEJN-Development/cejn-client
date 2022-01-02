@@ -1,16 +1,17 @@
 <script lang="ts">
   import type { Writer } from "$lib/types/Writers";
-  import moment from "moment";
+  import { getLocaleString } from "$lib/helpers";
 
   export let writer:Writer;
 
   const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/cejn-dev/image/upload";
   const cloudinary_public_id = writer?.cloudinary_image_url?.split(CLOUDINARY_BASE_URL)[1];
 
-  let image_path:string;
+  let imagePath:string;
+  let createdDate:Date = new Date(writer.created_at);
 
   $: {
-    image_path = cloudinary_public_id
+    imagePath = cloudinary_public_id
       ? `${CLOUDINARY_BASE_URL}/b_auto,c_fill_pad,g_auto,h_40,w_40${cloudinary_public_id}`
       : "";
   }
@@ -19,7 +20,7 @@
 <tr>
   <td>
     <img
-      src={image_path}
+      src={imagePath}
     />
   </td>
   <td class="squish-16 squeeze-16">
@@ -29,7 +30,7 @@
   </td>
   <td>
     <p class="text-medium text-normal">
-      {moment(writer.created_at).format('LLL')} CST
+      {getLocaleString(createdDate)}
     </p>
   </td>
 </tr>
