@@ -1,11 +1,12 @@
 import sha256 from 'crypto-js/sha256.js';
+import type { DateTimeFormatOptions } from "$lib/types/DateTimeFormatOptions";
 
-export const audBuilder = (bd) => {
+export const audBuilder = (bd):string => {
   const version = parseInt(bd.browser.version);
   const str = `${bd.os.name}||${bd.os.version}||||${bd.browser.name}||${version}`;
 
   return sha256(str).toString();
-}
+};
 
 /*
  * 
@@ -44,13 +45,13 @@ export function browserDetector(navigator:Navigator, window:any) {
       { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' }
     ],
     init: function () {
-      let agent = this.header.join('');
-      let os = this.matchItem(agent, this.dataOS);
-      let browser = this.matchItem(agent, this.dataBrowser);
+      const agent = this.header.join('');
+      const os = this.matchItem(agent, this.dataOS);
+      const browser = this.matchItem(agent, this.dataBrowser);
       return { os, browser };
     },
     matchItem: (string:string, data:any[]) => {
-      var i = 0,
+      let i = 0,
           j = 0,
           regex:RegExp,
           regexv:RegExp,
@@ -83,6 +84,39 @@ export function browserDetector(navigator:Navigator, window:any) {
   return module;
 };
 
-export const truncateWithEllipses = (text:string, max:number) => {
+export const truncateWithEllipses = (text:string, max:number):string => {
   return text.length > max ? `${text.split("", max).join("")}&hellip;` : text;
+};
+
+export const getLocaleString = (date:Date, options:DateTimeFormatOptions = {}):string => {
+	const localeStringOptions:DateTimeFormatOptions = {
+		weekday: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+		hour: "numeric",
+		minute: "numeric",
+	};
+
+  options = {
+    ...localeStringOptions,
+    ...options
+  };
+
+  return date.toLocaleString(undefined, options);
+};
+
+export const numericArrayEquality = (array1:number[], array2:number[]):boolean => {
+  array1 = numericSort(array1);
+  array2 = numericSort(array2);
+
+  // Tim Down: http://stackoverflow.com/a/7837725/308645
+  let i = array1.length;
+  if (i != array2.length) return false;
+  while (i--) if (array1[i] !== array2[i]) return false;
+  return true;
+};
+
+const numericSort = (array:number[]) => {
+  return array.sort((a,b) => a - b);
 };

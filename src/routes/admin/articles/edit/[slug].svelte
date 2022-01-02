@@ -8,25 +8,38 @@
 			error: new Error("Could not load writers")
 		};
 
+    const articleRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/articles/${page.params.slug}`);
+		if (!articleRes.ok) return {
+			status: articleRes.status,
+			error: new Error("Could not load article")
+		};
+
+		let article:Article = await articleRes.json();
 		let writers:Writer[] = await writersRes.json();
 
 		return {
 			props: {
-				writers
+        article,
+				writers,
 			},
 		};
 	};
 </script>
 
 <script lang="ts">
-  import type { Writer } from '$lib/types/Writers';
   import ArticleForm from '$lib/components/admin/Articles/ArticleForm.svelte';
+  import type { Article } from '$lib/types/Articles';
+  import type { Writer } from '$lib/types/Writers';
 
+  export let article:Article;
   export let writers:Writer[];
 </script>
 
 <h1 class="squish-16 squeeze-16">Our Stories | New</h1>
 
 <div>
-  <ArticleForm {writers} />
+  <ArticleForm
+    {article}
+    {writers}
+  />
 </div>

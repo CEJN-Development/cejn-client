@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "$lib/components/admin/shared/Icon.svelte";
+  import Icon from "$lib/components/shared/Icon.svelte";
   import { tick } from "svelte";
   import MultiSelectPill from "$lib/components/admin/shared/MultiSelectPill.svelte";
 
@@ -13,10 +13,10 @@
     elementName: string
   };
 
-  let filteredObjects:objectArrayType[] = [...objectArray];
-  let inputElement:HTMLInputElement;
-  let formElement:HTMLFormElement;
   let expanded:boolean = false;
+  let filteredObjects:objectArrayType[] = [...objectArray];
+  let formElement:HTMLFormElement;
+  let inputElement:HTMLInputElement;
   let selectedObjects:objectArrayType[];
 
   const expand = async () => {
@@ -33,6 +33,12 @@
           .text
           .toLowerCase()
           .includes(e.target.value.toLowerCase()));
+  };
+
+  const isFilteredOut = (key:number, filterResults:objectArrayType[]) => {
+    return !filterResults
+      .map(filterResults => Number(filterResults.key))
+      .includes(Number(key))
   };
 
   const updateSelection = (e) => {
@@ -110,7 +116,7 @@
         </div>
         <ul class="squeeze-16 squish-16">
           {#each objectArray as object}
-            <li class:hidden={!filteredObjects.map(filteredObject => Number(filteredObject.key)).includes(Number(object.key))}>
+            <li class:hidden={isFilteredOut(object.key, filteredObjects)}>
               <input
                 class="stack-8 cursor-pointer"
                 type="checkbox"

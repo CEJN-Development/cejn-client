@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Article } from "$lib/types/Articles";
-  import { truncateWithEllipses } from "$lib/helpers";
-  import moment from "moment";
+  import { getLocaleString, truncateWithEllipses } from "$lib/helpers";
+  import Icon from "$lib/components/shared/Icon.svelte";
 
   export let article:Article;
 
@@ -11,13 +11,15 @@
   let sample:string;
   let authorNames:string;
   let image_path:string;
+	let publishedDate:Date;
 
   $: {
     sample = truncateWithEllipses(article.sample, 300);
     authorNames = article.authors.map(author => { return author.full_name }).join(", ");
     image_path = cloudinary_public_id
-      ? `${CLOUDINARY_BASE_URL}/b_auto,c_fill_pad,g_auto,h_169,w_300${cloudinary_public_id}`
+      ? `${CLOUDINARY_BASE_URL}/c_fill,g_auto,h_169,w_300${cloudinary_public_id}`
       : "";
+    publishedDate = new Date(article.created_at);
   };
 </script>
 
@@ -30,22 +32,28 @@
     />
   {/if}
   <div class="squeeze-16 stack-8">
-    <p class="text-strong text-normal stack-8">
+    <div class="text-strong text-normal stack-8">
       {article.title}
-    </p>
+    </div>
     {#if article.authors.length >= 1}
-      <p class="text-thin text-small">
+      <div class="text-thin text-small">
         <span class="text-style-italic">By:</span>
         {authorNames} 
-      </p>
+      </div>
     {/if}
-    <p class="text-thin text-small stack-8">
+    <div class="text-thin text-small stack-8">
       <span class="text-style-italic">On:</span>
-      {moment(article.created_at).format('LLL')} CST
-    </p>
-    <p class="text-medium text-normal">
-      {@html sample}
-    </p>
+      {getLocaleString(publishedDate)}
+    </div>
+    <div class="text-medium text-normal stack-16">
+      {article.excerpt}
+    </div>
+  </div>
+  <div class="squeeze-16 flex-column space-between stack-16">
+    <a href={`/admin/articles/edit/${article.id}`}>
+      <Icon name="edit" />
+    </a>
+    <Icon name="delete" />
   </div>
 </div>
 

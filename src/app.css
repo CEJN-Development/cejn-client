@@ -15,7 +15,8 @@
 	--column-margin-top: 4rem;
 	--text-small: 0.85rem;
 	--text-normal: 1rem;
-	--text-large: 1.5rem;
+	--text-large: 1.25rem;
+	--text-huge: 1.5rem;
 	--spacing-8: 0.5rem;
 	--spacing-16: 1rem;
 	--spacing-24: 1.5rem;
@@ -26,7 +27,7 @@
 	--breakpoint-desktop: 900px;
 	--font-family--primary: Arial;
 	font-size: 16px;
-	line-height: 1.1rem;
+	line-height: 1.2rem;
 }
 
 @media screen and (min-width: 900px) {
@@ -50,7 +51,8 @@ body {
 }
 
 p {
-	line-height: 1.5;
+	line-height: 2rem;
+	font-size: 1rem;
 	margin: 0;
 }
 
@@ -336,6 +338,10 @@ input[type="file"]::file-selector-button,
 	TEXT RULES
 ******************************************************
 *****************************************************/
+
+.text-huge {
+	font-size: var(--text-huge);
+}
 
 .text-large {
 	font-size: var(--text-large);

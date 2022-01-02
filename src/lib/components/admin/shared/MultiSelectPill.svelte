@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "$lib/components/admin/shared/Icon.svelte";
+  import Icon from "$lib/components/shared/Icon.svelte";
   import { createEventDispatcher } from "svelte";
 
   export let text:string;
