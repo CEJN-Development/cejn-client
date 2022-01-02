@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Writer } from "$lib/types/Writers";
   import { getLocaleString } from "$lib/helpers";
+import Icon from "$lib/components/shared/Icon.svelte";
 
   export let writer:Writer;
 
@@ -32,6 +33,15 @@
     <p class="text-medium text-normal">
       {getLocaleString(createdDate)}
     </p>
+  </td>
+  <td>
+    <a href={`/admin/writers/edit/${writer.id}`}>
+      <Icon
+        classes="spread-8 push-8"
+        name="edit"
+      />
+    </a>
+    <Icon name="delete" />
   </td>
 </tr>
 

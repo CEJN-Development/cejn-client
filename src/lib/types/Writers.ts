@@ -15,5 +15,5 @@ export interface WriterCreate {
 }
 
 export interface WriterUpdate extends WriterCreate {
-  id: number
+  id?: number
 }

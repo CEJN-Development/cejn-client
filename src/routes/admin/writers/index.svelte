@@ -26,10 +26,10 @@
 </script>
 
 <svelte:head>
-	<title>Admin | Our Stories</title>
+	<title>Admin | Our Contributors</title>
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
-  <h1 class="stack-16">Our Contributors</h1>
+  <h1 class="stack-32">Our Contributors</h1>
   <WritersTable {writers} />
 </main>

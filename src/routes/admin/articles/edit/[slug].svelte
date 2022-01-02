@@ -35,7 +35,7 @@
   export let writers:Writer[];
 </script>
 
-<h1 class="squish-16 squeeze-16">Our Stories | New</h1>
+<h1 class="squish-16 squeeze-16">Our Stories | Edit</h1>
 
 <div>
   <ArticleForm

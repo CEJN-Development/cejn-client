@@ -11,6 +11,7 @@
       <th></th>
       <th>Full name</th>
       <th>Date added</th>
+      <th></th>
     </tr>
   </thead>
   <tbody> 
