@@ -1,43 +1,46 @@
 <script lang="ts">
   import { aud } from '$lib/stores/UserAgentStore';
   import * as ApiService from "$lib/services/ApiService";
-  import type { Writer, WriterCreate, WriterUpdate } from '$lib/types/Writers';
+  import type { Bio, BioCreate, BioUpdate } from '$lib/types/Bios';
 
-  export let writer:Writer = null;
+  export let bio: Bio = null;
 
-  let imageUploadInput:HTMLInputElement;
-  let photo:string | ArrayBuffer;
-  let name:string;
-  let byline:string;
+  let imageUploadInput: HTMLInputElement;
+  let photo: string | ArrayBuffer;
+  let name: string;
+  let blurb: string;
+  let body: string;
 
   const submit = async () => {
-    let data:WriterCreate = {
-      byline,
-      full_name: name,
+    let data: BioCreate = {
+      blurb,
+      body,
+      name,
     };
 
     if (photo) data.photo = photo;
 
     const { response, json } = await ApiService.post(
       String(import.meta.env.VITE_API_URL),
-      "admin/writers",
-      { writer: data, creds: true },
+      "admin/bios",
+      { bio: data, creds: true },
       { aud: $aud },
     );
   };
 
   const update = async () => {
-    let data:WriterUpdate = {
-      byline,
-      full_name: name,
+    let data: BioUpdate = {
+      blurb,
+      body,
+      name,
     };
 
     if (photo) data.photo = photo;
 
     const { response, json } = await ApiService.put(
       String(import.meta.env.VITE_API_URL),
-      `admin/writers/${writer.id}`,
-      { writer: data, creds: true },
+      `admin/bios/${bio.id}`,
+      { bio: data, creds: true },
       { aud: $aud },
     );
   };
@@ -55,9 +58,10 @@
     photo = undefined;
   };
 
-  if (writer) {
-    byline = writer.byline;
-    name = writer.full_name;
+  if (bio) {
+    blurb = bio.blurb;
+    body = bio.body;
+    name = bio.name;
   };
 </script>
 
@@ -71,14 +75,23 @@
     class="stack-16 squeeze-8 squish-8"
     bind:value={name}
   />
+  <label for="blurb" class="text-small text-style-metadata text-style-italic">
+    Blurb
+  </label>
+  <textarea
+    name="blurb"
+    class="stack-16 squeeze-8 squish-8 text-medium text-normal"
+    rows="5"
+    bind:value={blurb}
+  />
   <label for="body" class="text-small text-style-metadata text-style-italic">
-    Byline
+    Body
   </label>
   <textarea
     name="body"
     class="stack-16 squeeze-8 squish-8 text-medium text-normal"
-    rows="5"
-    bind:value={byline}
+    rows="15"
+    bind:value={body}
   />
   <label for="cover-image" class="text-small text-style-metadata text-style-italic">
     Photo
@@ -92,7 +105,7 @@
     on:change={getBaseUrl}
   />
   <div>
-    {#if writer?.id}
+    {#if bio?.id}
       <button
         class="panel button spread-8"
         type="submit"

@@ -2,7 +2,7 @@
   import type { Bio } from "$lib/types/Bios";
   import Card from "./Card.svelte";
 
-  export let bios:Bio[] = [];
+  export let bios: Bio[] = [];
 </script>
 
 <section>

@@ -7,17 +7,17 @@
   import type { Article, ArticleCreate, ArticleUpdate } from '$lib/types/Articles';
   import { numericArrayEquality } from '$lib/helpers';
 
-  export let article:Article = null;
-  export let writers:Writer[];
+  export let article: Article = null;
+  export let writers: Writer[];
 
-  let authorIds:number[] = [];
-  let body:string;
-  let imageUploadInput:HTMLInputElement;
-  let excerpt:string;
-  let multiSelectWriters:MultiSelectObject[];
-  let photo:string | ArrayBuffer;
-  let title:string;
-  let authorIdsOnLoad:number[] = article
+  let authorIds: number[] = [];
+  let body: string;
+  let imageUploadInput: HTMLInputElement;
+  let excerpt: string;
+  let multiSelectWriters: MultiSelectObject[];
+  let photo: string | ArrayBuffer;
+  let title: string;
+  let authorIdsOnLoad: number[] = article
     ?.authors
     .map(author => author.id)
     .sort((a,b) => a - b);

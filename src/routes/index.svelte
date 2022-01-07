@@ -33,8 +33,8 @@
 	import type { Article } from "$lib/types/Articles";
 	import type { Bio } from "$lib/types/Bios";
 
-	export let articles:Article[];
-	export let bios:Bio[];
+	export let articles: Article[];
+	export let bios: Bio[];
 </script>
 
 <svelte:head>

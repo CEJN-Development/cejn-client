@@ -22,7 +22,7 @@
   import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
   import type { Article } from "$lib/types/Articles";
 
-	export let articles:Article[];
+	export let articles: Article[];
 </script>
 
 <svelte:head>

@@ -3,12 +3,12 @@ import type { Opts, SendParams } from "$lib/types/ApiTypes"
  * Make requests to some backend
  * Based on https://github.com/sveltejs/realworld/blob/master/src/node_modules/api.js
  */
-async function send({ method, path, data, session, base }:SendParams) {
+async function send({ method, path, data, session, base }: SendParams) {
   const fetch =
     typeof window !== "undefined" ?
       window.fetch :
       await import("node-fetch").then((mod) => mod.default);
-  const opts:Opts = { method, headers: {} };
+  const opts: Opts = { method, headers: {} };
 
   if (data) {
     if (data.creds) {
@@ -54,18 +54,18 @@ async function send({ method, path, data, session, base }:SendParams) {
 /*
  * Shortcut methods for send
  */
-export function get(base:string, path:string, session:any) {
+export function get(base: string, path: string, session: any) {
   return send({ method: "GET", path, session, base });
 };
 
-export function del(base:string, path:string, data:any, session:any) {
+export function del(base: string, path: string, data: any, session: any) {
   return send({ method: "DELETE", path, data, session, base });
 };
 
-export function post(base:string, path:string, data:any, session:any) {
+export function post(base: string, path: string, data: any, session: any) {
   return send({ method: "POST", path, data, session, base });
 };
 
-export function put(base:string, path:string, data:any, session:any) {
+export function put(base: string, path: string, data: any, session: any) {
   return send({ method: "PUT", path, data, session, base });
 };

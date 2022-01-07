@@ -22,7 +22,7 @@
   import BiosTable from "$lib/components/admin/Bios/BiosTable.svelte";
   import type { Bio } from "$lib/types/Bios";
 
-	export let bios:Bio[];
+	export let bios: Bio[];
 </script>
 
 <svelte:head>

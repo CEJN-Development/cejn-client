@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import AdminLinks from './AdminLinks.svelte';
 
-	let showNavbar:boolean = false;
+	let showNavbar: boolean = false;
 
 	const open = () => {
 		showNavbar = true;

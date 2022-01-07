@@ -3,9 +3,9 @@
   import { tick } from "svelte";
   import MultiSelectPill from "$lib/components/admin/shared/MultiSelectPill.svelte";
 
-  export let objectArray:objectArrayType[] = [];
-  export let keyArray:number[] = [];
-  export let className:string = "Object";
+  export let objectArray: objectArrayType[] = [];
+  export let keyArray: number[] = [];
+  export let className: string = "Object";
 
   interface objectArrayType {
     text: string
@@ -13,11 +13,11 @@
     elementName: string
   };
 
-  let expanded:boolean = false;
-  let filteredObjects:objectArrayType[] = [...objectArray];
-  let formElement:HTMLFormElement;
-  let inputElement:HTMLInputElement;
-  let selectedObjects:objectArrayType[];
+  let expanded: boolean = false;
+  let filteredObjects: objectArrayType[] = [...objectArray];
+  let formElement: HTMLFormElement;
+  let inputElement: HTMLInputElement;
+  let selectedObjects: objectArrayType[];
 
   const expand = async () => {
     expanded = true;
@@ -35,7 +35,7 @@
           .includes(e.target.value.toLowerCase()));
   };
 
-  const isFilteredOut = (key:number, filterResults:objectArrayType[]) => {
+  const isFilteredOut = (key:number, filterResults: objectArrayType[]) => {
     return !filterResults
       .map(filterResults => Number(filterResults.key))
       .includes(Number(key))

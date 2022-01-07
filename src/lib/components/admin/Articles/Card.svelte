@@ -3,15 +3,15 @@
   import { getLocaleString, truncateWithEllipses } from "$lib/helpers";
   import Icon from "$lib/components/shared/Icon.svelte";
 
-  export let article:Article;
+  export let article: Article;
 
   const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/cejn-dev/image/upload";
   const cloudinary_public_id = article.cloudinary_image_url?.split(CLOUDINARY_BASE_URL)[1];
 
-  let sample:string;
-  let authorNames:string;
-  let imagePath:string;
-	let publishedDate:string;
+  let sample: string;
+  let authorNames: string;
+  let imagePath: string;
+	let publishedDate: string;
 
   $: {
     sample = truncateWithEllipses(article.sample, 300);

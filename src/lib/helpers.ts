@@ -1,7 +1,7 @@
 import sha256 from 'crypto-js/sha256.js';
 import type { DateTimeFormatOptions } from "$lib/types/DateTimeFormatOptions";
 
-export const audBuilder = (bd):string => {
+export const audBuilder = (bd): string => {
   const version = parseInt(bd.browser.version);
   const str = `${bd.os.name}||${bd.os.version}||||${bd.browser.name}||${version}`;
 
@@ -18,7 +18,7 @@ export const audBuilder = (bd):string => {
  * 
  */
 
-export function browserDetector(navigator:Navigator, window:any) {
+export function browserDetector(navigator: Navigator, window: any) {
   const module = {
     options: [],
     header: [navigator.platform, navigator.userAgent, navigator.appVersion, navigator.vendor, window.opera],
@@ -84,11 +84,11 @@ export function browserDetector(navigator:Navigator, window:any) {
   return module;
 };
 
-export const truncateWithEllipses = (text:string, max:number):string => {
+export const truncateWithEllipses = (text: string, max: number): string => {
   return text.length > max ? `${text.split("", max).join("")}&hellip;` : text;
 };
 
-export const getLocaleString = (date:Date, options:DateTimeFormatOptions = {}):string => {
+export const getLocaleString = (date: Date, options: DateTimeFormatOptions = {}): string => {
 	const localeStringOptions:DateTimeFormatOptions = {
 		weekday: "long",
 		year: "numeric",
@@ -106,7 +106,7 @@ export const getLocaleString = (date:Date, options:DateTimeFormatOptions = {}):s
   return date.toLocaleString(undefined, options);
 };
 
-export const numericArrayEquality = (array1:number[], array2:number[]):boolean => {
+export const numericArrayEquality = (array1: number[], array2: number[]): boolean => {
   array1 = numericSort(array1);
   array2 = numericSort(array2);
 
@@ -117,6 +117,6 @@ export const numericArrayEquality = (array1:number[], array2:number[]):boolean =
   return true;
 };
 
-const numericSort = (array:number[]) => {
+const numericSort = (array: number[]) => {
   return array.sort((a,b) => a - b);
 };

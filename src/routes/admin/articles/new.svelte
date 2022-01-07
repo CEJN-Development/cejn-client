@@ -8,7 +8,7 @@
 			error: new Error("Could not load writers")
 		};
 
-		let writers:Writer[] = await writersRes.json();
+		let writers: Writer[] = await writersRes.json();
 
 		return {
 			props: {
@@ -22,7 +22,7 @@
   import type { Writer } from '$lib/types/Writers';
   import ArticleForm from '$lib/components/admin/Articles/ArticleForm.svelte';
 
-  export let writers:Writer[];
+  export let writers: Writer[];
 </script>
 
 <h1 class="squish-16 squeeze-16">Our Stories | New</h1>

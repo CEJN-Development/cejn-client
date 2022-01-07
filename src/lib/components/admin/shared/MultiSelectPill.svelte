@@ -2,9 +2,9 @@
   import Icon from "$lib/components/shared/Icon.svelte";
   import { createEventDispatcher } from "svelte";
 
-  export let text:string;
-  export let selectionIds:number[];
-  export let selectionId:number;
+  export let text: string;
+  export let selectionIds: number[];
+  export let selectionId: number;
 
   const dispatch = createEventDispatcher();
 

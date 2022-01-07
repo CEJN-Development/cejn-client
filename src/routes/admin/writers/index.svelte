@@ -22,7 +22,7 @@
   import WritersTable from "$lib/components/admin/Writers/WritersTable.svelte";
   import type { Writer } from "$lib/types/Writers";
 
-	export let writers:Writer[];
+	export let writers: Writer[];
 </script>
 
 <svelte:head>

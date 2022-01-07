@@ -2,7 +2,7 @@
   import type { Article } from "$lib/types/Articles";
   import Card from "./Card.svelte";
 
-  export let articles:Article[] = [];
+  export let articles: Article[] = [];
 </script>
 
 <section>

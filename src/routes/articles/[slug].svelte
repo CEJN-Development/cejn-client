@@ -22,13 +22,13 @@
 	import { getLocaleString } from "$lib/helpers";
   import type { Article } from "$lib/types/Articles";
 
-	export let article:Article;
+	export let article: Article;
 
   const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/cejn-dev/image/upload";
   const cloudinary_public_id = article.cloudinary_image_url?.split(CLOUDINARY_BASE_URL)[1];
 
-	let publishedDate:Date = new Date(article.created_at);
-  let imagePath:string;
+	let publishedDate: Date = new Date(article.created_at);
+  let imagePath: string;
 
 	$: {
 		imagePath = cloudinary_public_id

@@ -8,7 +8,7 @@
 			error: new Error("Could not load writer")
 		};
 
-		let writer:Writer = await writerRes.json();
+		let writer: Writer = await writerRes.json();
 
 		return {
 			props: {
@@ -22,7 +22,7 @@
   import WriterForm from '$lib/components/admin/Writers/WriterForm.svelte';
 	import type { Writer } from '$lib/types/Writers';
 
-  export let writer:Writer;
+  export let writer: Writer;
 </script>
 
 <h1 class="squish-16 squeeze-16">Our Contributors | Edit</h1>

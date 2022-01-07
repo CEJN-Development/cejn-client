@@ -3,9 +3,9 @@
   import * as ApiService from "$lib/services/ApiService";
   import { user } from "$lib/stores/UserStore";
 
-  let email:string,
-      password:string,
-      submitting:boolean = false,
+  let email: string,
+      password: string,
+      submitting: boolean = false,
       errors = [];
 
   const attemptLogin = async () => {

@@ -8,3 +8,14 @@ export interface Bio {
   slug: string
   updated_at: Date
 }
+
+export interface BioCreate {
+  blurb: string
+  body: string
+  name: string
+  photo?: string | ArrayBuffer
+}
+
+export interface BioUpdate extends BioCreate {
+  id?: number
+}

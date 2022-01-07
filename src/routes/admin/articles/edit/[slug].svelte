@@ -14,8 +14,8 @@
 			error: new Error("Could not load article")
 		};
 
-		let article:Article = await articleRes.json();
-		let writers:Writer[] = await writersRes.json();
+		let article: Article = await articleRes.json();
+		let writers: Writer[] = await writersRes.json();
 
 		return {
 			props: {
@@ -31,8 +31,8 @@
   import type { Article } from '$lib/types/Articles';
   import type { Writer } from '$lib/types/Writers';
 
-  export let article:Article;
-  export let writers:Writer[];
+  export let article: Article;
+  export let writers: Writer[];
 </script>
 
 <h1 class="squish-16 squeeze-16">Our Stories | Edit</h1>

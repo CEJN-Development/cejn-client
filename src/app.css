@@ -172,8 +172,20 @@ input[type="file"]::file-selector-button,
 ******************************************************
 *****************************************************/
 
-.full-width {
+.width-100 {
 	width: 100%;
+}
+
+.width-75 {
+	width: 75%;
+}
+
+.width-50 {
+	width: 50%;
+}
+
+.width-25 {
+	width: 25%;
 }
 
 /*****************************************************
@@ -308,7 +320,7 @@ input[type="file"]::file-selector-button,
 	gap: var(--spacing-16);
 }
 
-.gap-824 {
+.gap-24 {
 	grid-gap: var(--spacing-24);
 	gap: var(--spacing-24);
 }
@@ -407,6 +419,10 @@ input[type="file"]::file-selector-button,
 
 .border--rounded-8 {
 	border-radius: var(--spacing-8);
+}
+
+.border--rounded-16 {
+	border-radius: var(--spacing-16);
 }
 
 .bordered {

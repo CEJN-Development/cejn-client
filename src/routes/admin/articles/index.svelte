@@ -22,7 +22,7 @@
   import ArticlesTable from "$lib/components/admin/Articles/ArticlesTable.svelte";
   import type { Article } from "$lib/types/Articles";
 
-	export let articles:Article[];
+	export let articles: Article[];
 </script>
 
 <svelte:head>
