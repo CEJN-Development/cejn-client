@@ -30,6 +30,22 @@
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
+	<a
+		href="/admin/writers/new"
+		class="button panel"
+	>
+		New writer
+	</a>
   <h1 class="stack-32">Our Contributors</h1>
   <WritersTable {writers} />
 </main>
+
+<style>
+	a {
+		float: right;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+</style>

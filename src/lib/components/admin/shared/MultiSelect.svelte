@@ -87,7 +87,7 @@
     <input
       name="object"
       type="text"
-      class="squeeze-8 squish-8 border-bottom--square full-width"
+      class="squeeze-8 squish-8 border-bottom--square width-100"
       bind:this={inputElement}
       on:keyup={filterObjects}
       on:change={filterObjects}
