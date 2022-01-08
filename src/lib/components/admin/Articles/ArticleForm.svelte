@@ -48,6 +48,7 @@
     };
 
     if (photo) data.photo = photo;
+    // we dont want to update this unless there's any changes
     if (!numericArrayEquality(authorIdsOnLoad, authorIds)) data.author_ids = [...authorIds];
 
     const { response, json } = await ApiService.put(

@@ -30,6 +30,22 @@
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
+	<a
+		href="/admin/staff/new"
+		class="button panel"
+	>
+		Add staff
+	</a>
   <h1 class="stack-32">Our Staff</h1>
   <BiosTable {bios} />
 </main>
+
+<style>
+	a {
+		float: right;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+</style>

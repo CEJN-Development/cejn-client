@@ -8,12 +8,12 @@
 			error: new Error("Could not load article")
 		};
 
-		let article = await articleRes.json();
+		let article: Article = await articleRes.json();
 
 		return {
 			props: {
-				article
-			}
+				article,
+			},
 		};
 	};
 </script>
@@ -21,19 +21,18 @@
 <script lang="ts">
 	import { getLocaleString } from "$lib/helpers";
   import type { Article } from "$lib/types/Articles";
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
 	export let article: Article;
 
-  const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/cejn-dev/image/upload";
-  const cloudinary_public_id = article.cloudinary_image_url?.split(CLOUDINARY_BASE_URL)[1];
-
-	let publishedDate: Date = new Date(article.created_at);
-  let imagePath: string;
+	let bodyParagraphs: string[];
+	let articleAuthors: string;
+	let publishedDate: string;
 
 	$: {
-		imagePath = cloudinary_public_id
-      ? `${CLOUDINARY_BASE_URL}/c_fill,g_auto,h_720,w_1280${cloudinary_public_id}`
-      : "";
+		bodyParagraphs = article.body.split("\n\n");
+		articleAuthors = article.authors.map(author => author.full_name).join(", ");
+		publishedDate = getLocaleString(new Date(article.created_at));
 	};
 </script>
 
@@ -42,22 +41,30 @@
 </svelte:head>
 
 <hr class="separator stack-48" />
-<h1 class="text-strong text-huge stack-24">{article.title}</h1>
-<p class="text-strong text-normal stack-24">{article.excerpt}</p>
-<img
-	class="stack-24"
-  src={imagePath}
-	alt={article.title}
+<h1 class="text-strong text-huge stack-24">
+	{article.title}
+</h1>
+<p class="text-strong text-normal stack-24">
+	{article.excerpt}
+</p>
+<CloudinaryImage
+	cloudinaryImageUrl={article.cloudinary_image_url}
+	options={{ height: 720, width: 1280, crop: "fill" }}
+	classes="stack-24"
 />
 <span class="text-strong text-normal stack-16">
-	{article.authors.map(author => author.full_name).join(", ")}
+	{articleAuthors}
 </span>
 <span class="text-medium text-small stack-16">
-	{getLocaleString(publishedDate)}
+	{publishedDate}
 </span>
 <span class="text-medium text-normal stack-24">
-  {#each article.body.split("\n\n") as paragraph}
-    <p class="stack-16">{@html paragraph}</p>
+  {#each bodyParagraphs as paragraph}
+    <p class="stack-16">
+			{@html paragraph}
+		</p>
   {/each}
 </span>
-<a class="stack-16" href="/articles">&lt;&lt; All articles</a>
+<a class="stack-16" href="/articles">
+	&lt;&lt; All articles
+</a>

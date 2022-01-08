@@ -2,35 +2,27 @@
   import type { Article } from "$lib/types/Articles";
   import { getLocaleString, truncateWithEllipses } from "$lib/helpers";
   import Icon from "$lib/components/shared/Icon.svelte";
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
   export let article: Article;
 
-  const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/cejn-dev/image/upload";
-  const cloudinary_public_id = article.cloudinary_image_url?.split(CLOUDINARY_BASE_URL)[1];
-
   let sample: string;
-  let authorNames: string;
-  let imagePath: string;
+  let articleAuthors: string;
 	let publishedDate: string;
 
   $: {
     sample = truncateWithEllipses(article.sample, 300);
-    authorNames = article.authors.map(author => { return author.full_name }).join(", ");
-    imagePath = cloudinary_public_id
-      ? `${CLOUDINARY_BASE_URL}/c_fill,g_auto,h_169,w_300${cloudinary_public_id}`
-      : "";
+    articleAuthors = article.authors.map(author => author.full_name).join(", ");
     publishedDate = getLocaleString(new Date(article.created_at));
   };
 </script>
 
 <div class="card">
-  {#if cloudinary_public_id}
-    <img
-      src={imagePath}
-      alt={article.title}
-      class="stack-8"
-    />
-  {/if}
+  <CloudinaryImage
+    cloudinaryImageUrl={article.cloudinary_image_url}
+    options={{ height: 169, width: 300, crop: "fill" }}
+    classes="stack-8"
+  />
   <div class="squeeze-16 stack-8">
     <div class="text-strong text-normal stack-8">
       {article.title}
@@ -38,7 +30,7 @@
     {#if article.authors.length >= 1}
       <div class="text-thin text-small">
         <span class="text-style-italic">By:</span>
-        {authorNames} 
+        {articleAuthors} 
       </div>
     {/if}
     <div class="text-thin text-small stack-8">
@@ -56,10 +48,3 @@
     <Icon name="delete" />
   </div>
 </div>
-
-<style>
-  .card > img {
-    width: 100%;
-    height: auto;
-  }
-</style>
