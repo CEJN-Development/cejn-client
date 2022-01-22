@@ -22,16 +22,15 @@
 	import { getLocaleString } from "$lib/helpers";
   import type { Article } from "$lib/types/Articles";
   import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
+	import AuthorLink from "$lib/components/Articles/AuthorLink.svelte";
 
 	export let article: Article;
 
 	let bodyParagraphs: string[];
-	let articleAuthors: string;
 	let publishedDate: string;
 
 	$: {
 		bodyParagraphs = article.body.split("\n\n");
-		articleAuthors = article.authors.map(author => author.full_name).join(", ");
 		publishedDate = getLocaleString(new Date(article.created_at));
 	};
 </script>
@@ -53,7 +52,9 @@
 	classes="stack-24"
 />
 <span class="text-strong text-normal stack-16">
-	{articleAuthors}
+	{#each article.authors as author, index}
+		<AuthorLink {author} {index} end={article.authors.length - 1 == index} />
+	{/each}
 </span>
 <span class="text-medium text-small stack-16">
 	{publishedDate}

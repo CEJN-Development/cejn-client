@@ -3,9 +3,8 @@
   import { createEventDispatcher } from "svelte";
   
   const dispatch = createEventDispatcher();
-	const close = () => {
-    dispatch("close");
-	};
+
+	const close = () => dispatch("close");
 </script>
 
 <ul>
@@ -30,7 +29,7 @@
     </a>
   </li> -->
   <li class:active={$page.path === '/who-is-cejn'}>
-    <a href="/#who-are-we" on:click={close}>
+    <a href="/#who-is-cejn" on:click={close}>
       Who is CEJN
     </a>
   </li>
