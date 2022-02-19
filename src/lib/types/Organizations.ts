@@ -1,4 +1,4 @@
-export interface Bio {
+export interface Organization {
   blurb?: string
   body?: string
   cloudinary_image_url?: string | null
@@ -9,13 +9,13 @@ export interface Bio {
   updated_at: Date
 }
 
-export interface BioCreate {
+export interface OrganizationCreate {
   blurb: string
   body: string
   name: string
   photo?: string | ArrayBuffer
 }
 
-export interface BioUpdate extends BioCreate {
+export interface OrganizationUpdate extends OrganizationCreate {
   id?: number
 }

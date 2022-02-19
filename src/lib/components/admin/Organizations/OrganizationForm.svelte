@@ -1,18 +1,25 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+  import { logOut } from '$lib/helpers';
   import { aud } from '$lib/stores/UserAgentStore';
-  import * as ApiService from "$lib/services/ApiService";
-  import type { Bio, BioCreate, BioUpdate } from '$lib/types/Bios';
+  import * as ApiService from "$lib/services/Api";
+  import * as FlashMessageService from '$lib/services/FlashMessage';
+  import type { Organization, OrganizationCreate, OrganizationUpdate } from '$lib/types/Organizations';
+  import Spinner from '$lib/components/shared/Spinner.svelte';
 
-  export let bio: Bio = null;
+  export let organization: Organization = null;
 
   let imageUploadInput: HTMLInputElement;
   let photo: string | ArrayBuffer;
   let name: string;
   let blurb: string;
   let body: string;
+  let submitting: boolean = false;
 
   const submit = async () => {
-    let data: BioCreate = {
+    submitting = true;
+
+    let data: OrganizationCreate = {
       blurb,
       body,
       name,
@@ -22,14 +29,24 @@
 
     const { response, json } = await ApiService.post(
       String(import.meta.env.VITE_API_URL),
-      "admin/bios",
-      { bio: data, creds: true },
+      "admin/organizations",
+      { organization: data, creds: true },
       { aud: $aud },
     );
+
+    if (response.status == 401) logOut();
+
+    if (response.ok) {
+      submitting = false;
+      goto("/admin/organizations", { replaceState: false });
+      FlashMessageService.setMessage({ message: "Organization successfully created!", type: "success" });
+    };
   };
 
   const update = async () => {
-    let data: BioUpdate = {
+    submitting = true;
+
+    let data: OrganizationUpdate = {
       blurb,
       body,
       name,
@@ -39,12 +56,19 @@
 
     const { response, json } = await ApiService.put(
       String(import.meta.env.VITE_API_URL),
-      `admin/bios/${bio.id}`,
-      { bio: data, creds: true },
+      `admin/organizations/${organization.id}`,
+      { organization: data, creds: true },
       { aud: $aud },
     );
-  };
 
+    if (response.status == 401) logOut();
+
+    if (response.ok) {
+      submitting = false;
+      goto("/admin/organizations", { replaceState: false });
+      FlashMessageService.setMessage({ message: "Organization successfully updated!", type: "success" });
+    };
+  };
 
   const getBaseUrl = (e) => {
     let file = e.target.files[0];
@@ -58,10 +82,10 @@
     photo = undefined;
   };
 
-  if (bio) {
-    blurb = bio.blurb;
-    body = bio.body;
-    name = bio.name;
+  if (organization) {
+    blurb = organization.blurb;
+    body = organization.body;
+    name = organization.name;
   };
 </script>
 
@@ -105,21 +129,31 @@
     on:change={getBaseUrl}
   />
   <div>
-    {#if bio?.id}
+    {#if organization?.id}
       <button
         class="panel button spread-8"
+        disabled={submitting}
         type="submit"
         on:click|preventDefault={update}
       >
-        Update
+        {#if submitting}
+          <Spinner />
+        {:else}
+          Update
+        {/if}
       </button>
     {:else}
       <button
         class="panel button spread-8"
+        disabled={submitting}
         type="submit"
         on:click|preventDefault={submit}
       >
-        Save
+        {#if submitting}
+          <Spinner />
+        {:else}
+          Save
+        {/if}
       </button>
     {/if}
   </div>

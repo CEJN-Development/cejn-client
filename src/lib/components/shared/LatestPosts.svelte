@@ -8,12 +8,12 @@
 {#if articles?.length > 0}
   {#each articles as article}
     <p class="text-strong text-normal stack-8">{article.title}</p>
-    <span class="text-medium text-normal stack-24">
+    <div class="text-medium text-normal stack-48">
       {#each article.sample.split("\n\n") as paragraph}
         <p class="stack-8">{@html paragraph}</p>
       {/each}
       <a href={`/articles/${article.slug}`}>Read full article &gt;&gt;</a>
-    </span>
+    </div>
     <hr class="separator stack-24" />
   {/each}
 {:else}

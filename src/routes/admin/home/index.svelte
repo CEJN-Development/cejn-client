@@ -19,7 +19,8 @@
 </script>
 
 <script lang="ts">
-  import type { SplashSection } from "$lib/types/SplashSections";
+  import DragAndDropSortableList from "$lib/components/admin/shared/DragAndDropSortableList.svelte";
+	import type { SplashSection } from "$lib/types/SplashSections";
 
 	export let splashSections: SplashSection[];
 </script>
@@ -36,6 +37,7 @@
 		Edit
 	</a>
   <h1 class="stack-32">Splash Page Settings</h1>
+	<DragAndDropSortableList />
 </main>
 
 <style>

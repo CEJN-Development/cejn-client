@@ -1,28 +1,32 @@
 <script lang="ts">
-  import type { Bio } from "$lib/types/Bios";
+  import type { Organization } from "$lib/types/Organizations";
   import CloudinaryImage from "../shared/CloudinaryImage.svelte";
 
-  export let bios: Bio[] = [];
+  export let organizations: Organization[] = [];
 </script>
 
-<section class="flex-row stack-24">
+<section class="flex-row stack-48">
   <h1 class="flex-row stack-24 text-large">Who is CEJN?</h1>
-  {#if bios?.length > 0}
-    {#each bios as bio}
-      <section class="stack-48">
+  {#if organizations?.length > 0}
+    {#each organizations as organization}
+      <section class="stack-24">
         <div class="image">
           <CloudinaryImage
-            cloudinaryImageUrl={bio.cloudinary_image_url}
-            options={{ height: 430, width: 242 }}
+            cloudinaryImageUrl={organization.cloudinary_image_url}
+            options={{ height: 242, width: 430, crop: "fill_pad" }}
           />
         </div>
-        <p class="text-strong text-large stack-8">{bio.name}</p>
-        <p class="text-medium text-normal stack-16">{bio.blurb}</p>
-        <a class="text-strong text-normal" href={`/who-is-cejn/${bio.slug}`}>Learn more about {bio.name}</a>
+        <p class="text-strong text-large stack-8">{organization.name}</p>
+        <p class="text-medium text-normal stack-16">{organization.blurb}</p>
+        <a class="text-strong text-normal" href={`/who-is-cejn/${organization.slug}`}>
+          Learn more about {organization.name}
+        </a>
       </section>
     {/each}
   {:else}
-    <p class="text-medium text-normal stack-16">There are currently no member bios.</p>
+    <p class="text-medium text-normal stack-16">
+      There are currently no member organizations.
+    </p>
   {/if}
 </section>
 
@@ -33,7 +37,7 @@
 
   section section .image {
     width: 100%;
-    border-radius: 10rem;
+    border-radius: 1rem;
     overflow: hidden;
     line-height: 0;
   }

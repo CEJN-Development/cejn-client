@@ -1,17 +1,17 @@
 <script lang="ts">
   import { aud } from '$lib/stores/UserAgentStore';
-  import * as ApiService from "$lib/services/ApiService";
+  import * as ApiService from "$lib/services/Api";
   import type { Writer, WriterCreate, WriterUpdate } from '$lib/types/Writers';
 
-  export let writer:Writer = null;
+  export let writer: Writer = null;
 
-  let imageUploadInput:HTMLInputElement;
-  let photo:string | ArrayBuffer;
-  let name:string;
-  let byline:string;
+  let imageUploadInput: HTMLInputElement;
+  let photo: string | ArrayBuffer;
+  let name: string;
+  let byline: string;
 
   const submit = async () => {
-    let data:WriterCreate = {
+    let data: WriterCreate = {
       byline,
       full_name: name,
     };
@@ -27,7 +27,7 @@
   };
 
   const update = async () => {
-    let data:WriterUpdate = {
+    let data: WriterUpdate = {
       byline,
       full_name: name,
     };
@@ -41,7 +41,6 @@
       { aud: $aud },
     );
   };
-
 
   const getBaseUrl = (e) => {
     let file = e.target.files[0];

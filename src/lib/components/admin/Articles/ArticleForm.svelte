@@ -1,29 +1,36 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+  import { logOut, numericArrayEquality } from '$lib/helpers';
   import { aud } from '$lib/stores/UserAgentStore';
-  import * as ApiService from "$lib/services/ApiService";
+  import * as ApiService from '$lib/services/Api';
+  import * as FlashMessageService from '$lib/services/FlashMessage';
   import type { Writer } from '$lib/types/Writers';
-  import AuthorMultiSelect from '$lib/components/admin/shared/MultiSelect.svelte';
   import type { MultiSelectObject } from '$lib/types/MultiSelect';
   import type { Article, ArticleCreate, ArticleUpdate } from '$lib/types/Articles';
-  import { numericArrayEquality } from '$lib/helpers';
+  import AuthorMultiSelect from '$lib/components/admin/shared/MultiSelect.svelte';
+  import Spinner from '$lib/components/shared/Spinner.svelte';
 
   export let article: Article = null;
   export let writers: Writer[];
 
   let authorIds: number[] = [];
   let body: string;
-  let imageUploadInput: HTMLInputElement;
   let excerpt: string;
+  let imageUploadInput: HTMLInputElement;
   let multiSelectWriters: MultiSelectObject[];
   let photo: string | ArrayBuffer;
+  let submitting: boolean = false;
   let title: string;
+
   let authorIdsOnLoad: number[] = article
     ?.authors
     .map(author => author.id)
     .sort((a,b) => a - b);
 
   const submit = async () => {
-    let data:ArticleCreate = {
+    submitting = true;
+
+    let data: ArticleCreate = {
       body,
       excerpt,
       title,
@@ -38,10 +45,20 @@
       { article: data, creds: true },
       { aud: $aud },
     );
+
+    if (response.status == 401) logOut();
+
+    if (response.ok) {
+      submitting = false;
+      goto("/admin/articles", { replaceState: false });
+      FlashMessageService.setMessage({ message: "Article successfully created!", type: "success" });
+    };
   };
 
   const update = async () => {
-    let data:ArticleUpdate = {
+    submitting = true;
+
+    let data: ArticleUpdate = {
       body,
       excerpt,
       title,
@@ -57,6 +74,14 @@
       { article: data, creds: true },
       { aud: $aud },
     );
+
+    if (response.status == 401) logOut();
+
+    if (response.ok) {
+      submitting = false;
+      goto("/admin/articles", { replaceState: false });
+      FlashMessageService.setMessage({ message: "Article successfully updated!", type: "success" });
+    };
   };
 
   const saveDraft = () => {
@@ -144,30 +169,45 @@
     bind:this={imageUploadInput}
     on:change={getBaseUrl}
   />
-  <div>
+  <div class="flex-column">
     {#if article?.id}
       <button
         class="panel button spread-8"
+        disabled={submitting}
         type="submit"
         on:click|preventDefault={update}
       >
-        Update
+        {#if submitting}
+          <Spinner />
+        {:else}
+          Update
+        {/if}
       </button>
     {:else}
       <button
         class="panel button spread-8"
+        disabled={submitting}
         type="submit"
         on:click|preventDefault={submit}
       >
-        Publish
+        {#if submitting}
+          <Spinner />
+        {:else}
+          Publish
+        {/if}
       </button>
     {/if}
     <button
       class="panel button"
+      disabled={submitting}
       type="submit"
       on:click|preventDefault={saveDraft}
     >
-      Save as Draft
+      {#if submitting}
+        <Spinner />
+      {:else}
+        Save as Draft
+      {/if}
     </button>
   </div>
 </form>
@@ -177,5 +217,9 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  button[disabled] {
+    cursor: wait;
   }
 </style>

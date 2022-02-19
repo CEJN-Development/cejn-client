@@ -2,26 +2,26 @@
 	export const prerender = true;
 
 	export async function load({ page, fetch, session, stuff }) {
-		const bioRes = await fetch(`${import.meta.env.VITE_API_URL}/bios/${page.params.slug}`);
-		if (!bioRes.ok) return {
-			status: bioRes.status,
-			error: new Error("Could not load bio")
+		const organizationRes = await fetch(`${import.meta.env.VITE_API_URL}/organizations/${page.params.slug}`);
+		if (!organizationRes.ok) return {
+			status: organizationRes.status,
+			error: new Error("Could not load organization")
 		};
 
-		let bio = await bioRes.json();
+		let organization = await organizationRes.json();
 
 		return {
 			props: {
-				bio
+				organization
 			}
 		};
 	};
 </script>
 
 <script lang="ts">
-  import type { Bio } from "$lib/types/Bios";
+  import type { Organization } from "$lib/types/Organizations";
 
-	export let bio: Bio;
+	export let organization: Organization;
 </script>
 
 <svelte:head>
@@ -32,14 +32,14 @@
 <div class="stack-24">
   <img
     class="stack-24"
-    src={`/images/bios/${bio.slug}.jpg`}
-    alt={bio.name}
+    src={`/images/organizations/${organization.slug}.jpg`}
+    alt={organization.name}
   />
   <h1 class="text-strong text-large stack-24">
-    {bio.name}
+    {organization.name}
   </h1>
   <span class="text-medium text-normal">
-    {#each bio.body.split("\n\n") as paragraph}
+    {#each organization.body.split("\n\n") as paragraph}
       <p class="stack-8">
         {@html paragraph}
       </p>

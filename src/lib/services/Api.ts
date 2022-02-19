@@ -5,9 +5,9 @@ import type { Opts, SendParams } from "$lib/types/ApiTypes"
  */
 async function send({ method, path, data, session, base }: SendParams) {
   const fetch =
-    typeof window !== "undefined" ?
-      window.fetch :
-      await import("node-fetch").then((mod) => mod.default);
+    typeof window !== "undefined"
+      ? window.fetch
+      : await import("node-fetch").then((mod) => mod.default);
   const opts: Opts = { method, headers: {} };
 
   if (data) {

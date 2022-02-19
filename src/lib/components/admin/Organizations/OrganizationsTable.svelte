@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { Bio } from "$lib/types/Bios";
+  import type { Organization } from "$lib/types/Organizations";
   import Card from "./Card.svelte";
 
-  export let bios: Bio[] = [];
+  export let organizations: Organization[] = [];
 </script>
 
 <section>
-  {#each bios as bio}
-    <Card {bio} />
+  {#each organizations as organization}
+    <Card {organization} />
   {/each}
 </section>
 

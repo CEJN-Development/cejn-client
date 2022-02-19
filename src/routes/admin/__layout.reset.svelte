@@ -1,17 +1,18 @@
 <script lang="ts">
-	import Panel from '$lib/components/admin/Navigation/AdminPanel.svelte';
 	import '../../app.css';
-	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { audBuilder, browserDetector } from '$lib/helpers';
 	import { browser, os, aud } from '$lib/stores/UserAgentStore';
 	import { user } from '$lib/stores/UserStore';
+	import Panel from '$lib/components/admin/Navigation/AdminPanel.svelte';
+	import FlashMessage from '$lib/components/admin/shared/FlashMessage.svelte';
 
 	onMount(() => {
 		user.useLocalStorage();
 		if (!$user.user) goto("/admin/login", { replaceState: true });
 		if (navigator && window) {
-			const bd = browserDetector(navigator, window).init();
+			const bd = browserDetector(navigator, window);
 			aud.set(audBuilder(bd));
 			browser.set(`${bd.browser.name}||${bd.browser.version}`);
 			os.set(`${bd.os.name}||${bd.os.version}`);
@@ -25,6 +26,7 @@
 		<slot />
 	</main>
 </div>
+<FlashMessage />
 
 <style>
 	#admin {

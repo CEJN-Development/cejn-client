@@ -8,10 +8,10 @@
 			error: new Error("Could not load articles")
 		};
 
-		const biosRes = await fetch(`${import.meta.env.VITE_API_URL}/bios`);
-		if (!biosRes.ok) return {
-			status: biosRes.status,
-			error: new Error("Could not load bios")
+		const organizationsRes = await fetch(`${import.meta.env.VITE_API_URL}/organizations`);
+		if (!organizationsRes.ok) return {
+			status: organizationsRes.status,
+			error: new Error("Could not load organizations")
 		};
 
 		const splashSectionsRes = await fetch(`${import.meta.env.VITE_API_URL}/splash_sections`);
@@ -20,14 +20,22 @@
 			error: new Error("Could not load splash sections")
 		};
 
+		const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
+		if (!aboutUsRes.ok) return {
+			status: aboutUsRes.status,
+			error: new Error("Could not load splash sections")
+		};
+
 		let articles = await articlesRes.json();
-		let bios = await biosRes.json();
+		let organizations = await organizationsRes.json();
 		let splashSections = await splashSectionsRes.json();
+		let aboutUs = await aboutUsRes.json();
 
 		return {
 			props: {
+				aboutUs,
 				articles,
-				bios,
+				organizations,
 				splashSections,
 			}
 		};
@@ -39,11 +47,13 @@
 	import WhoAreWe from "$lib/components/index/WhoAreWe.svelte";
 	import About from "$lib/components/index/About.svelte";
 	import type { Article } from "$lib/types/Articles";
-	import type { Bio } from "$lib/types/Bios";
+	import type { Organization } from "$lib/types/Organizations";
 	import type { SplashSection } from "$lib/types/SplashSections";
+	import type { LandingPage } from "$lib/types/LandingPages";
 
+	export let aboutUs: LandingPage;
 	export let articles: Article[];
-	export let bios: Bio[];
+	export let organizations: Organization[];
 	export let splashSections: SplashSection[];
 
 	const sectionPriority = (sectionName: string) => {
@@ -61,14 +71,14 @@
 		id="about"
 		name={`section_${sectionPriority("about")}`}
 	>
-		<About />
+		<About {aboutUs} />
 	</section>
 	<hr class="separator stack-48" name="hr_1" />
 	<section
 		id="who-is-cejn"
 		name={`section_${sectionPriority("staff")}`}
 	>
-		<WhoAreWe {bios} />
+		<WhoAreWe {organizations} />
 	</section>
 	<hr class="separator stack-48" name="hr_2" />
 	<section name={`section_${sectionPriority("articles")}`}>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { aud, ip, os, browser } from "$lib/stores/UserAgentStore";
-  import * as ApiService from "$lib/services/ApiService";
+  import * as ApiService from "$lib/services/Api";
   import { user } from "$lib/stores/UserStore";
 
   let email: string,
@@ -21,7 +21,7 @@
 
     const { response, json } = await ApiService.post(
       String(import.meta.env.VITE_API_URL),
-      "/login", 
+      "login", 
       {
         user: { email, password },
         browser: $browser,
