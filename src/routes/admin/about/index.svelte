@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	export const prerender = true;
 
-	export async function load({ page, fetch, session, stuff }) {
+	export async function load({ url, params, fetch, session, stuff }) {
     const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/landing_pages/about-us`);
 		if (!aboutUsRes.ok) return {
 			status: aboutUsRes.status,

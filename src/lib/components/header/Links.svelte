@@ -8,37 +8,37 @@
 </script>
 
 <ul>
-  <li class:active={$page.path === '/'}>
+  <li class:active={$page.url.pathname === '/'}>
     <a href="/" on:click={close}>
       Home
     </a>
   </li>
-  <li class:active={$page.path === '/about'}>
+  <li class:active={$page.url.pathname === '/about'}>
     <a sveltekit:prefetch href="/about" on:click={close}>
       About Us
     </a>
   </li>
-  <li class:active={$page.path === '/our-stories'}>
+  <li class:active={$page.url.pathname === '/our-stories'}>
     <a href="/articles" on:click={close}>
       Our Stories
     </a>
   </li>
-  <!-- <li class:active={$page.path === '/in-the-news'}>
+  <!-- <li class:active={$page.url.pathname === '/in-the-news'}>
     <a href="/" on:click={close}>
       CEJN in the News
     </a>
   </li> -->
-  <li class:active={$page.path === '/who-is-cejn'}>
+  <li class:active={$page.url.pathname === '/who-is-cejn'}>
     <a href="/#who-is-cejn" on:click={close}>
       Who is CEJN
     </a>
   </li>
-  <!-- <li class:active={$page.path === '/press-releases'}>
+  <!-- <li class:active={$page.url.pathname === '/press-releases'}>
     <a href="/" on:click={close}>
       Press
     </a>
   </li> -->
-  <li class:active={$page.path === '/contact'}>
+  <li class:active={$page.url.pathname === '/contact'}>
     <a sveltekit:prefetch href="/" on:click={close}>
       Contact
     </a>

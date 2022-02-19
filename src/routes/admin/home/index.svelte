@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	export const prerender = true;
 
-	export async function load({ page, fetch, session, stuff }) {
+	export async function load({ url, params, fetch, session, stuff }) {
 		const splashSectionsRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/splash_sections`);
 		if (!splashSectionsRes.ok) return {
 			status: splashSectionsRes.status,
@@ -30,12 +30,6 @@
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
-	<a
-		href="/admin/splashSections/new"
-		class="button panel"
-	>
-		Edit
-	</a>
   <h1 class="stack-32">Splash Page Settings</h1>
 	<DragAndDropSortableList />
 </main>

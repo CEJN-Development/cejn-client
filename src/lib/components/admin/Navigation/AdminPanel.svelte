@@ -13,7 +13,7 @@
 	};
 </script>
 
-{#if $page.path !== "/admin/login"}
+{#if $page.url.pathname !== "/admin/login"}
 	<header>
 		<div id="top">
 			<section id="expander" class="right panel">

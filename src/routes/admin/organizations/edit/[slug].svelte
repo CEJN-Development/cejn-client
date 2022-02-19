@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
 	export const prerender = true;
 
-	export async function load({ page, fetch, session, stuff }) {
-    const organizationRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/organizations/${page.params.slug}`);
+	export async function load({ url, params, fetch, session, stuff }) {
+    const organizationRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/organizations/${params.slug}`);
 		if (!organizationRes.ok) return {
 			status: organizationRes.status,
 			error: new Error("Could not load organization"),

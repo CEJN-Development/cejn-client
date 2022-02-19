@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
 	export const prerender = true;
 
-	export async function load({ page, fetch, session, stuff }) {
-		const writerRes = await fetch(`${import.meta.env.VITE_API_URL}/writers/${page.params.slug}`);
+	export async function load({ url, params, fetch, session, stuff }) {
+		const writerRes = await fetch(`${import.meta.env.VITE_API_URL}/writers/${params.slug}`);
 		if (!writerRes.ok) return {
 			status: writerRes.status,
 			error: new Error("Could not load writer")

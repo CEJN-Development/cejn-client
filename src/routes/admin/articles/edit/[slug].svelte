@@ -1,14 +1,14 @@
 <script context="module" lang="ts">
 	export const prerender = true;
 
-	export async function load({ page, fetch, session, stuff }) {
+	export async function load({ url, params, fetch, session, stuff }) {
 		const writersRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/writers`);
 		if (!writersRes.ok) return {
 			status: writersRes.status,
 			error: new Error("Could not load writers")
 		};
 
-    const articleRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/articles/${page.params.slug}`);
+    const articleRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/articles/${params.slug}`);
 		if (!articleRes.ok) return {
 			status: articleRes.status,
 			error: new Error("Could not load article")
