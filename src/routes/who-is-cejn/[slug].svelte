@@ -20,6 +20,7 @@
 
 <script lang="ts">
   import type { Organization } from "$lib/types/Organizations";
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
 	export let organization: Organization;
 </script>
@@ -30,10 +31,10 @@
 
 <hr class="separator stack-48" />
 <div class="stack-24">
-  <img
-    class="stack-24"
-    src={`/images/organizations/${organization.slug}.jpg`}
-    alt={organization.name}
+  <CloudinaryImage
+    cloudinaryImageUrl={organization.cloudinary_image_url}
+    options={{ height: 430, width: 242, crop: "fill" }}
+    classes="stack-24"
   />
   <h1 class="text-strong text-large stack-24">
     {organization.name}

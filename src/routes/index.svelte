@@ -2,6 +2,12 @@
 	export const prerender = true;
 
 	export async function load({ url, params, fetch, session, stuff }) {
+		const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
+		if (!aboutUsRes.ok) return {
+			status: aboutUsRes.status,
+			error: new Error("Could not load splash sections")
+		};
+
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
 		if (!articlesRes.ok) return {
 			status: articlesRes.status,
@@ -20,16 +26,10 @@
 			error: new Error("Could not load splash sections")
 		};
 
-		const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
-		if (!aboutUsRes.ok) return {
-			status: aboutUsRes.status,
-			error: new Error("Could not load splash sections")
-		};
-
+		let aboutUs = await aboutUsRes.json();
 		let articles = await articlesRes.json();
 		let organizations = await organizationsRes.json();
 		let splashSections = await splashSectionsRes.json();
-		let aboutUs = await aboutUsRes.json();
 
 		return {
 			props: {
