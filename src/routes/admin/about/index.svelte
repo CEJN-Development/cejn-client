@@ -40,7 +40,7 @@
     const { response, json } = await ApiService.put(
       String(import.meta.env.VITE_API_URL),
       `admin/landing_pages/${aboutUs.slug}`,
-      { copy_page: data, creds: true },
+      { landing_page: data, creds: true },
       { aud: $aud },
     );
 
@@ -48,7 +48,16 @@
 
     if (response.ok) {
       submitting = false;
-      FlashMessageService.setMessage({ message: "About Us successfully updated!", type: "success" });
+      FlashMessageService.setMessage({
+        message: "About Us successfully updated!",
+        type: "success"
+      });
+    } else {
+      submitting = false;
+      FlashMessageService.setMessage({
+        message: "Unexpected error. If it persists contact support.",
+        type: "error"
+      });
     };
   };
 </script>
@@ -58,7 +67,9 @@
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
-  <span class="text-large text-strong stack-16">About Us</span>
+  <h1 class="stack-16">
+    About Us
+  </h1>
   <form class="squish-24 squeeze-32 flex-row">
     <label for="body" class="text-small text-style-metadata text-style-italic">
       Preview

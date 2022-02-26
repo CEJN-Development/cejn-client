@@ -21,8 +21,8 @@
 <script lang="ts">
 	import { getLocaleString } from "$lib/helpers";
   import type { Article } from "$lib/types/Articles";
-  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 	import AuthorLink from "$lib/components/Articles/AuthorLink.svelte";
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
 	export let article: Article;
 
@@ -36,7 +36,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>{article.title}</title>
 </svelte:head>
 
 <hr class="separator stack-48" />
@@ -46,11 +46,20 @@
 <p class="text-strong text-normal stack-24">
 	{article.excerpt}
 </p>
-<CloudinaryImage
-	cloudinaryImageUrl={article.cloudinary_image_url}
-	options={{ height: 720, width: 1280, crop: "fill" }}
-	classes="stack-24"
-/>
+{#if !!article.cloudinary_image_url}
+	<div class="stack-24">
+		<CloudinaryImage
+			cloudinaryImageUrl={article.cloudinary_image_url}
+			options={{ height: 720, width: 1280, crop: "fill" }}
+			classes="stack-8"
+		/>
+		{#if !!article.caption}
+			<span class="flex-row text-style-metadata text-small align-items-end">
+				{article.caption}
+			</span>
+		{/if}
+	</div>
+{/if}
 <span class="text-strong text-normal stack-16">
 	{#each article.authors as author, index}
 		<AuthorLink {author} {index} end={article.authors.length - 1 == index} />

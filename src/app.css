@@ -170,6 +170,29 @@ input[type="file"]::file-selector-button,
 	flex-wrap: wrap;
 }
 
+.flex-1 {
+	flex: 1;
+}
+
+.flex-2 {
+	flex: 2
+}
+
+.flex-3 {
+	flex: 3
+}
+
+.flex-reactive {
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (min-width: 500px) {
+	.flex-reactive {
+		flex-direction: row;
+	}
+}
+
 /*****************************************************
 ******************************************************
 	SIZING RULES
@@ -345,8 +368,36 @@ input[type="file"]::file-selector-button,
 	align-items: first baseline;
 }
 
+.align-content-start {
+	align-content: start;
+}
+
+.align-content-end {
+	align-content: end;
+}
+
 .align-start {
 	align-items: start;
+}
+
+.align-items-end {
+	align-items: end;
+}
+
+.justify-items-end {
+	justify-items: end;
+}
+
+.justify-items-start {
+	justify-items: start;
+}
+
+.justify-content-end {
+	justify-content: end;
+}
+
+.justify-content-start {
+	justify-content: start;
 }
 
 /*****************************************************

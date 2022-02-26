@@ -8,14 +8,19 @@
   import type { MultiSelectObject } from '$lib/types/MultiSelect';
   import type { Article, ArticleCreate, ArticleUpdate } from '$lib/types/Articles';
   import AuthorMultiSelect from '$lib/components/admin/shared/MultiSelect.svelte';
+  import Base64Image from "$lib/components/shared/Base64Image.svelte";
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
   import Spinner from '$lib/components/shared/Spinner.svelte';
 
   export let article: Article = null;
   export let writers: Writer[];
 
   let authorIds: number[] = [];
+  let caption: string;
   let body: string;
   let excerpt: string;
+  let existingArticle: boolean = false;
+  let hasImage: boolean = false;
   let imageUploadInput: HTMLInputElement;
   let multiSelectWriters: MultiSelectObject[];
   let photo: string | ArrayBuffer;
@@ -32,6 +37,7 @@
 
     let data: ArticleCreate = {
       body,
+      caption,
       excerpt,
       title,
       author_ids: [...authorIds],
@@ -52,6 +58,12 @@
       submitting = false;
       goto("/admin/articles", { replaceState: false });
       FlashMessageService.setMessage({ message: "Article successfully created!", type: "success" });
+    } else {
+      submitting = false;
+      FlashMessageService.setMessage({
+        message: "Unexpected error. If it persists contact support.",
+        type: "error"
+      });
     };
   };
 
@@ -60,6 +72,7 @@
 
     let data: ArticleUpdate = {
       body,
+      caption,
       excerpt,
       title,
     };
@@ -85,10 +98,11 @@
   };
 
   const saveDraft = () => {
-    console.log(title, "title");
-    console.log(excerpt, "excerpt");
     console.log(body, "body");
+    console.log(caption, "caption");
+    console.log(excerpt, "excerpt");
     console.log(photo, "photo");
+    console.log(title, "title");
   };
 
   const getBaseUrl = (e) => {
@@ -105,12 +119,15 @@
 
   if (article) {
     authorIds = article.authors.map(author => author.id);
+    caption = article.caption;
     body = article.body;
     excerpt = article.excerpt;
     title = article.title;
   };
 
   $: {
+    existingArticle = !!article?.id;
+    hasImage = !!article?.cloudinary_image_url || !!photo;
     multiSelectWriters = writers
       .map(writer => {
         return {
@@ -169,8 +186,34 @@
     bind:this={imageUploadInput}
     on:change={getBaseUrl}
   />
-  <div class="flex-column">
-    {#if article?.id}
+  {#if hasImage}
+    {#if photo}
+      <label for="new-image" class="text-small text-style-metadata text-style-italic">
+        New Image
+      </label>
+      <Base64Image {photo} alt={caption} classes="stack-8" />
+    {:else if article.cloudinary_image_url}
+      <label for="current-image" class="text-small text-style-metadata text-style-italic">
+        Current Image
+      </label>
+      <CloudinaryImage
+        cloudinaryImageUrl={article.cloudinary_image_url}
+        options={{ height: 720, width: 1280, crop: "fill" }}
+        classes="stack-8"
+      />
+    {/if}
+  {/if}
+  <label for="caption" class="text-small text-style-metadata text-style-italic">
+    Caption
+  </label>
+  <input
+    name="caption"
+    type="text"
+    class="stack-16 squeeze-8 squish-8"
+    bind:value={caption}
+  />
+  <div class="flex-column align-center">
+    {#if existingArticle}
       <button
         class="panel button spread-8"
         disabled={submitting}
@@ -209,6 +252,9 @@
         Save as Draft
       {/if}
     </button>
+    <a class="push-8" href="/admin/articles">
+      Cancel
+    </a>
   </div>
 </form>
 

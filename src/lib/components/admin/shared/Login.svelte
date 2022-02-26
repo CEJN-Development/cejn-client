@@ -21,7 +21,7 @@
 
     const { response, json } = await ApiService.post(
       String(import.meta.env.VITE_API_URL),
-      "login", 
+      "login",
       {
         user: { email, password },
         browser: $browser,

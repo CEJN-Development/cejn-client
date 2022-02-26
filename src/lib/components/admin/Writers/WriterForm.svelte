@@ -1,14 +1,18 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+  import { logOut } from '$lib/helpers';
   import { aud } from '$lib/stores/UserAgentStore';
   import * as ApiService from "$lib/services/Api";
+  import * as FlashMessageService from '$lib/services/FlashMessage';
   import type { Writer, WriterCreate, WriterUpdate } from '$lib/types/Writers';
 
   export let writer: Writer = null;
 
+  let byline: string = null;
   let imageUploadInput: HTMLInputElement;
+  let name: string = null;
   let photo: string | ArrayBuffer;
-  let name: string;
-  let byline: string;
+  let submitting: boolean = false;
 
   const submit = async () => {
     let data: WriterCreate = {
@@ -24,6 +28,26 @@
       { writer: data, creds: true },
       { aud: $aud },
     );
+
+    if (response.status == 401) logOut();
+
+    if (response.ok) {
+      submitting = false;
+      goto("/admin/articles", { replaceState: false });
+      FlashMessageService.setMessage({ message: "Writer successfully created!", type: "success" });
+    } else {
+      submitting = false;
+      if (response.status == 422) {
+        json.messages.forEach((message: string) => FlashMessageService.setMessage({
+          message, type: "error"
+        }));
+      } else {
+        FlashMessageService.setMessage({
+          message: "An unexpected error occurred. If it persists, contact support.",
+          type: "error",
+        });
+      };
+    };
   };
 
   const update = async () => {
@@ -40,6 +64,26 @@
       { writer: data, creds: true },
       { aud: $aud },
     );
+
+    if (response.status == 401) logOut();
+
+    if (response.ok) {
+      submitting = false;
+      goto("/admin/articles", { replaceState: false });
+      FlashMessageService.setMessage({ message: "Writer successfully created!", type: "success" });
+    } else {
+      submitting = false;
+      if (response.status == 422) {
+        json.messages.forEach((message: string) => FlashMessageService.setMessage({
+          message, type: "error"
+        }));
+      } else {
+        FlashMessageService.setMessage({
+          message: "An unexpected error occurred. If it persists, contact support.",
+          type: "error",
+        });
+      };
+    };
   };
 
   const getBaseUrl = (e) => {

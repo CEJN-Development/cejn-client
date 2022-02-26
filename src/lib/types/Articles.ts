@@ -3,6 +3,7 @@ import type { Writer } from "./Writers"
 export interface Article {
   authors: Writer[]
   body?: string
+  caption?: string
   cloudinary_image_url?: string | null
   created_at: Date
   excerpt?: string
@@ -15,6 +16,7 @@ export interface Article {
 
 export interface ArticleUpdate {
   author_ids?: number[]
+  caption?: string
   body: string
   excerpt: string
   photo?: string | ArrayBuffer

@@ -36,7 +36,7 @@
 	>
 		New article
 	</a>
-  <span class="text-large text-strong stack-16">Our Stories</span>
+  <h1 class="stack-16">Our Stories</h1>
   <ArticlesTable {articles} />
 </main>
 

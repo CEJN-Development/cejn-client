@@ -25,6 +25,6 @@
   export let organization: Organization;
 </script>
 
-<h1 class="squish-16 squeeze-16">Our Staff | Edit</h1>
+<h1 class="squish-16 squeeze-16">Our Members | Edit</h1>
 
 <OrganizationForm {organization} />

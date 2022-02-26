@@ -20,12 +20,12 @@
   </li> -->
 	<li class:active={$page.url.pathname === '/admin/organizations'} class="squish-8 squeeze-8 panel">
     <a href="/admin/organizations">
-      Organizations
+      Our Members
     </a>
   </li>
 	<li class:active={$page.url.pathname === '/admin/writers'} class="squish-8 squeeze-8 panel">
     <a href="/admin/writers">
-      Writers
+      Our Contributors
     </a>
   </li>
 </ul>

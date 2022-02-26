@@ -13,7 +13,6 @@
 
 <style>
   section {
-    max-width: fit-content;
     display: grid;
     grid-gap: 1rem;
   }

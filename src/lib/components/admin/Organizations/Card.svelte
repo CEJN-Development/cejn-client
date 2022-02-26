@@ -16,12 +16,16 @@
 </script>
 
 <div class="card squeeze-16 squish-16">
-  <div class="flex-column gap-16 stack-8">
-    <CloudinaryImage
-      cloudinaryImageUrl={organization.cloudinary_image_url}
-      options={{ height: 300, width: 169 }}
-      classes="stack-8 border--rounded-16"
-    />
+  <div class="gap-16 stack-8">
+    <div class="flex-row">
+      <div class="image">
+        <CloudinaryImage
+          cloudinaryImageUrl={organization.cloudinary_image_url}
+          options={{ height: 405, width: 720, crop: "fill_pad" }}
+          classes="stack-8 border--rounded-16"
+        />
+      </div>
+    </div>
     <div class="stack-8">
       <div class="text-strong text-normal stack-8">
         {organization.name}
@@ -42,3 +46,11 @@
     <Icon name="delete" />
   </div>
 </div>
+
+<style>
+  .image {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+</style>

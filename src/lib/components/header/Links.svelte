@@ -28,8 +28,8 @@
       CEJN in the News
     </a>
   </li> -->
-  <li class:active={$page.url.pathname === '/who-is-cejn'}>
-    <a href="/#who-is-cejn" on:click={close}>
+  <li class:active={$page.url.pathname === '/' && $page.url.hash === "#our-members"}>
+    <a href="/#our-members" on:click={close}>
       Who is CEJN
     </a>
   </li>

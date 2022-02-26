@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Admin | Our Staff</title>
+	<title>Admin | Our Members</title>
 </svelte:head>
 
 <main class="squeeze-16 squish-16">
@@ -34,9 +34,9 @@
 		href="/admin/organizations/new"
 		class="button panel"
 	>
-		Add staff
+		New Organization
 	</a>
-  <h1 class="stack-32">Our Staff</h1>
+  <h1 class="stack-32">Our Members</h1>
   <OrganizationsTable {organizations} />
 </main>
 

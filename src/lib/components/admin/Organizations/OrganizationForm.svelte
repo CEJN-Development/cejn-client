@@ -6,14 +6,18 @@
   import * as FlashMessageService from '$lib/services/FlashMessage';
   import type { Organization, OrganizationCreate, OrganizationUpdate } from '$lib/types/Organizations';
   import Spinner from '$lib/components/shared/Spinner.svelte';
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
+  import Base64Image from "$lib/components/shared/Base64Image.svelte";
 
   export let organization: Organization = null;
 
-  let imageUploadInput: HTMLInputElement;
-  let photo: string | ArrayBuffer;
-  let name: string;
   let blurb: string;
   let body: string;
+  let exisitingOrganization: boolean = false;
+  let hasImage: boolean = false;
+  let imageUploadInput: HTMLInputElement;
+  let photo: string | ArrayBuffer;
+  let name: string = null;
   let submitting: boolean = false;
 
   const submit = async () => {
@@ -40,6 +44,18 @@
       submitting = false;
       goto("/admin/organizations", { replaceState: false });
       FlashMessageService.setMessage({ message: "Organization successfully created!", type: "success" });
+    } else {
+      submitting = false;
+      if (response.status == 422) {
+        json.messages.forEach((message: string) => FlashMessageService.setMessage({
+          message, type: "error"
+        }));
+      } else {
+        FlashMessageService.setMessage({
+          message: "An unexpected error occurred. If it persists, contact support.",
+          type: "error",
+        });
+      };
     };
   };
 
@@ -67,6 +83,18 @@
       submitting = false;
       goto("/admin/organizations", { replaceState: false });
       FlashMessageService.setMessage({ message: "Organization successfully updated!", type: "success" });
+    } else {
+      submitting = false;
+      if (response.status == 422) {
+        json.messages.forEach((message: string) => FlashMessageService.setMessage({
+          message, type: "error"
+        }));
+      } else {
+        FlashMessageService.setMessage({
+          message: "An unexpected error occurred. If it persists, contact support.",
+          type: "error",
+        });
+      };
     };
   };
 
@@ -86,6 +114,11 @@
     blurb = organization.blurb;
     body = organization.body;
     name = organization.name;
+  };
+
+  $: {
+    exisitingOrganization = !!organization?.id;
+    hasImage = !!organization?.cloudinary_image_url || !!photo;
   };
 </script>
 
@@ -128,8 +161,25 @@
     bind:this={imageUploadInput}
     on:change={getBaseUrl}
   />
+  {#if hasImage}
+    {#if photo}
+      <label for="new-image" class="text-small text-style-metadata text-style-italic">
+        New Image
+      </label>
+      <Base64Image {photo} classes="stack-8" />
+    {:else if organization.cloudinary_image_url}
+      <label for="current-image" class="text-small text-style-metadata text-style-italic">
+        Current Image
+      </label>
+      <CloudinaryImage
+        cloudinaryImageUrl={organization.cloudinary_image_url}
+        options={{ height: 720, width: 1280, crop: "fill" }}
+        classes="stack-8"
+      />
+    {/if}
+  {/if}
   <div>
-    {#if organization?.id}
+    {#if exisitingOrganization}
       <button
         class="panel button spread-8"
         disabled={submitting}
@@ -156,5 +206,8 @@
         {/if}
       </button>
     {/if}
+    <a href="/admin/organizations">
+      Cancel
+    </a>
   </div>
 </form>

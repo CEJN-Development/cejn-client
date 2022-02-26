@@ -5,25 +5,25 @@
 		const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
 		if (!aboutUsRes.ok) return {
 			status: aboutUsRes.status,
-			error: new Error("Could not load splash sections")
+			error: new Error("Could not load splash sections"),
 		};
 
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
 		if (!articlesRes.ok) return {
 			status: articlesRes.status,
-			error: new Error("Could not load articles")
+			error: new Error("Could not load articles"),
 		};
 
 		const organizationsRes = await fetch(`${import.meta.env.VITE_API_URL}/organizations`);
 		if (!organizationsRes.ok) return {
 			status: organizationsRes.status,
-			error: new Error("Could not load organizations")
+			error: new Error("Could not load organizations"),
 		};
 
 		const splashSectionsRes = await fetch(`${import.meta.env.VITE_API_URL}/splash_sections`);
 		if (!splashSectionsRes.ok) return {
 			status: splashSectionsRes.status,
-			error: new Error("Could not load splash sections")
+			error: new Error("Could not load splash sections"),
 		};
 
 		let aboutUs = await aboutUsRes.json();
@@ -37,27 +37,27 @@
 				articles,
 				organizations,
 				splashSections,
-			}
+			},
 		};
 	};
 </script>
 
 <script lang="ts">
-	import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
-	import WhoAreWe from "$lib/components/index/WhoAreWe.svelte";
 	import About from "$lib/components/index/About.svelte";
+	import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
+	import OurMembers from "$lib/components/index/OurMembers.svelte";
 	import type { Article } from "$lib/types/Articles";
+	import type { LandingPage } from "$lib/types/LandingPages";
 	import type { Organization } from "$lib/types/Organizations";
 	import type { SplashSection } from "$lib/types/SplashSections";
-	import type { LandingPage } from "$lib/types/LandingPages";
 
 	export let aboutUs: LandingPage;
 	export let articles: Article[];
 	export let organizations: Organization[];
 	export let splashSections: SplashSection[];
 
-	const sectionPriority = (sectionName: string) => {
-		return splashSections.find(section => section.name == sectionName).priority
+	const sectionPriority = (sectionName: string): number => {
+		return splashSections.find(section => section.name == sectionName).priority;
 	};
 </script>
 
@@ -75,10 +75,10 @@
 	</section>
 	<hr class="separator stack-48" name="hr_1" />
 	<section
-		id="who-is-cejn"
+		id="our-members"
 		name={`section_${sectionPriority("staff")}`}
 	>
-		<WhoAreWe {organizations} />
+		<OurMembers {organizations} />
 	</section>
 	<hr class="separator stack-48" name="hr_2" />
 	<section name={`section_${sectionPriority("articles")}`}>

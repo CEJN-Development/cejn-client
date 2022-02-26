@@ -1,26 +1,36 @@
 <script lang="ts">
   import type { Organization } from "$lib/types/Organizations";
-  import CloudinaryImage from "../shared/CloudinaryImage.svelte";
+  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
   export let organizations: Organization[] = [];
+
+  let hasOrganizations: boolean = false;
+
+  $:{
+    hasOrganizations = !!organizations?.length;
+  };
 </script>
 
 <section class="flex-row stack-48">
-  <h1 class="flex-row stack-24 text-large">Who is CEJN?</h1>
-  {#if organizations?.length > 0}
+  <h1 class="flex-row stack-24 text-large">
+    Our Members
+  </h1>
+  {#if hasOrganizations}
     {#each organizations as organization}
-      <section class="stack-24">
-        <div class="image">
+      <section class="stack-24 flex-reactive">
+        <div class="image flex-1 squeeze-8 squish-8">
           <CloudinaryImage
             cloudinaryImageUrl={organization.cloudinary_image_url}
-            options={{ height: 242, width: 430, crop: "fill_pad" }}
+            options={{ height: 600, width: 600, crop: "fit" }}
           />
         </div>
-        <p class="text-strong text-large stack-8">{organization.name}</p>
-        <p class="text-medium text-normal stack-16">{organization.blurb}</p>
-        <a class="text-strong text-normal" href={`/who-is-cejn/${organization.slug}`}>
-          Learn more about {organization.name}
-        </a>
+        <div class="flex-1 squeeze-8 squish-8">
+          <p class="text-strong text-large stack-8">{organization.name}</p>
+          <p class="text-medium text-normal stack-16">{organization.blurb}</p>
+          <a class="text-strong text-normal" href={`/our-members/${organization.slug}`}>
+            Learn more about {organization.name}
+          </a>
+        </div>
       </section>
     {/each}
   {:else}
@@ -50,19 +60,12 @@
     section section .image {
       width: 100%;
       min-width: 175px;
-      max-width: 30%;
       height: fit-content;
-      float: left;
-      margin: var(--spacing-8) var(--spacing-8) 0 0;
     }
 
     section section:nth-child(2n) {
       text-align: left;
-    }
-
-    section section:nth-child(2n) .image {
-      float: right;
-      margin: var(--spacing-8) 0 0 var(--spacing-8);
+      flex-direction: row-reverse;
     }
   }
 </style>
