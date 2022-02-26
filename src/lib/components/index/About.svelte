@@ -1,9 +1,29 @@
+<script lang="ts">
+	import type { LandingPage } from '$lib/types/LandingPages';
+
+  export let aboutUs: LandingPage;
+
+	let bodyParagraphs: string[];
+  let hasContent: boolean;
+
+	$: {
+		bodyParagraphs = aboutUs?.preview?.split("\n\n");
+    hasContent = !!bodyParagraphs?.length;
+	};
+</script>
+
 <section class="flex-row stack-48 text-normal">
   <h1 class="flex-row stack-24 text-large">About Us</h1>
   <p class="stack-16">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl pretium fusce id velit ut. Netus et malesuada fames ac turpis egestas. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Eget velit aliquet sagittis id consectetur purus ut. Eget arcu dictum varius duis at. Maecenas pharetra convallis posuere morbi leo urna.
+    {#if hasContent}
+      {#each bodyParagraphs as paragraph}
+        <p class="stack-16">
+          {@html paragraph}
+        </p>
+      {/each}
+    {/if}
   </p>
-  <a sveltekit:prefetch href="/about">Learn more about CEJN</a>
+  <a href="/about">Learn more about CEJN</a>
 </section>
 
 <style>

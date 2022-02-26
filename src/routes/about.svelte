@@ -1,30 +1,50 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
-
-	// we don't need any JS on this page, though we'll load
-	// it in dev so that we get hot module replacement...
-	export const hydrate = dev;
-
-	// ...but if the client-side router is already loaded
-	// (i.e. we came here from elsewhere in the app), use it
-	export const router = browser;
-
-	// since there's no dynamic data here, we can prerender
-	// it so that it gets served as a static asset in prod
+<script context="module" lang="ts">
 	export const prerender = true;
+
+	export async function load({ url, params, fetch, session, stuff }) {
+    const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
+		if (!aboutUsRes.ok) return {
+			status: aboutUsRes.status,
+			error: new Error("Could not load writer")
+		};
+
+		let aboutUs: LandingPage = await aboutUsRes.json();
+
+		return {
+			props: {
+        aboutUs,
+			},
+		};
+	};
+</script>
+
+<script lang="ts">
+	import type { LandingPage } from '$lib/types/LandingPages';
+
+  export let aboutUs: LandingPage;
+
+	let bodyParagraphs: string[];
+	let hasBody: boolean;
+
+	$: {
+		hasBody = !!aboutUs?.body?.length;
+		bodyParagraphs = aboutUs?.body?.split("\n\n");
+	};
 </script>
 
 <svelte:head>
-	<title>About</title>
+	<title>About Us</title>
 </svelte:head>
 
-<div class="content">
-</div>
-
-<style>
-	.content {
-		width: 100%;
-		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
-	}
-</style>
+<main>
+	<section id="about" class="squish-16">
+		<h1 class="flex-row stack-24 text-large">About Us</h1>
+		{#if hasBody}
+			{#each bodyParagraphs as paragraph}
+				<p class="stack-16">
+					{@html paragraph}
+				</p>
+			{/each}
+		{/if}
+	</section>
+</main>

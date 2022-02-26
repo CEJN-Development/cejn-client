@@ -1,17 +1,18 @@
 <script lang="ts">
-	import Header from '$lib/components/admin/shared/header/Header.svelte';
 	import '../../app.css';
-	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { audBuilder, browserDetector } from '$lib/helpers';
 	import { browser, os, aud } from '$lib/stores/UserAgentStore';
 	import { user } from '$lib/stores/UserStore';
+	import Panel from '$lib/components/admin/Navigation/AdminPanel.svelte';
+	import FlashMessage from '$lib/components/admin/shared/FlashMessage.svelte';
 
 	onMount(() => {
 		user.useLocalStorage();
 		if (!$user.user) goto("/admin/login", { replaceState: true });
 		if (navigator && window) {
-			const bd = browserDetector(navigator, window).init();
+			const bd = browserDetector(navigator, window);
 			aud.set(audBuilder(bd));
 			browser.set(`${bd.browser.name}||${bd.browser.version}`);
 			os.set(`${bd.os.name}||${bd.os.version}`);
@@ -19,30 +20,27 @@
 	});
 </script>
 
-<Header />
-
-<main>
-	<slot />
-</main>
+<div id="admin">
+	<Panel />
+	<main>
+		<slot />
+	</main>
+</div>
+<FlashMessage />
 
 <style>
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 5rem 2rem 0 2rem;
+	#admin {
+		display: grid;
+		grid-template-areas: "navigation content";
+		grid-template-columns: minmax(200px, 20%) 1fr;
 		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
+		max-width: 100vw;
+		min-height: 100vh;
+		overflow-x: hidden;
 	}
 
-	@media screen and (min-width: 500px) {
-		main {
-			max-width: 880px;
-			min-width: 500px;
-			width: 90vw;
-			padding: 7rem 2rem 0 2rem;
-		}
+	main {
+		grid-area: content;
+		width: 100%;
 	}
 </style>
