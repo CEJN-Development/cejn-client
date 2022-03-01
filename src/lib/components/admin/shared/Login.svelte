@@ -12,7 +12,7 @@
     submitting = true;
 
     try {
-      const jsResponse = await fetch('https://jsonip.com/');
+      const jsResponse = await fetch('https://ipv4.jsonip.com/');
       const jsip = await jsResponse.json();
       ip.set(jsip.ip);
     } catch (error) {
