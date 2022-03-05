@@ -18,7 +18,8 @@
 		<div id="top">
 			<section id="expander" class="right panel">
 				<button class="button button-flat" on:click={open}>
-					&#9776;
+					<!-- &#9776; -->
+					&nbsp;
 				</button>
 			</section>
 			<section id="logo" class="panel squish-16 squeeze-8">
