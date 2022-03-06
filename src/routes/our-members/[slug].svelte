@@ -33,7 +33,7 @@
 <div class="stack-24">
   <CloudinaryImage
     cloudinaryImageUrl={organization.cloudinary_image_url}
-    options={{ height: 430, width: 242, crop: "fill" }}
+    options={{ height: 405, width: 720, crop: "fill_pad" }}
     classes="stack-24"
   />
   <h1 class="text-strong text-large stack-24">
@@ -47,22 +47,6 @@
     {/each}
   </span>
 </div>
-<a class="stack-16" href="/#who-is-cejn">
+<a class="stack-16" href="/#our-members">
   &lt;&lt; Who is CEJN?
 </a>
-
-<style>
-  img {
-    border-radius: 10rem;
-    overflow: hidden;
-    max-width: 100%;
-  }
-
-  @media screen and (min-width: 500px) {
-    img {
-      float: right;
-      max-width: 15rem;
-      margin-left: 2rem;
-    }
-  }
-</style>
