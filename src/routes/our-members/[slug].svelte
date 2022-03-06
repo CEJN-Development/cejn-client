@@ -33,7 +33,7 @@
 <div class="stack-24">
   <CloudinaryImage
     cloudinaryImageUrl={organization.cloudinary_image_url}
-    options={{ height: 405, width: 720, crop: "fill_pad" }}
+    options={{ height: 405, width: 720, crop: "fit" }}
     classes="stack-24"
   />
   <h1 class="text-strong text-large stack-24">
