@@ -400,6 +400,14 @@ input[type="file"]::file-selector-button,
 	justify-content: start;
 }
 
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
 /*****************************************************
 ******************************************************
 	TEXT RULES
@@ -482,6 +490,10 @@ input[type="file"]::file-selector-button,
 
 .border--rounded-24 {
 	border-radius: var(--spacing-24);
+}
+
+.border--rounded-circle {
+	border-radius: 50%;
 }
 
 .bordered {

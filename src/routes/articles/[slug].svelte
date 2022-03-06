@@ -23,6 +23,7 @@
   import type { Article } from "$lib/types/Articles";
 	import AuthorLink from "$lib/components/Articles/AuthorLink.svelte";
   import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
+	import Byline from "$lib/components/shared/Byline.svelte";
 
 	export let article: Article;
 
@@ -62,7 +63,7 @@
 {/if}
 <span class="text-strong text-normal stack-16">
 	{#each article.authors as author, index}
-		<AuthorLink {author} {index} end={article.authors.length - 1 == index} />
+		<AuthorLink {author} end={article.authors.length - 1 == index} />
 	{/each}
 </span>
 <span class="text-medium text-small stack-16">
@@ -75,6 +76,12 @@
 		</p>
   {/each}
 </span>
-<a class="stack-16" href="/articles">
+<a class="stack-48" href="/articles">
 	&lt;&lt; All articles
 </a>
+<p class="text-strong text-large stack-24">
+	About the Author{#if article.authors.length > 1}s{/if}
+</p>
+{#each article.authors as author}
+	<Byline writer={author} linkToByline={true} />
+{/each}
