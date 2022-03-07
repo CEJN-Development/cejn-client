@@ -1,4 +1,9 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  import { logOut } from '$lib/helpers';
+  import { aud } from '$lib/stores/UserAgentStore';
+  import * as ApiService from '$lib/services/Api';
+  import * as FlashMessageService from '$lib/services/FlashMessage';
   import type { Writer } from "$lib/types/Writers";
   import { getLocaleString } from "$lib/helpers";
   import Icon from "$lib/components/shared/Icon.svelte";
@@ -7,6 +12,31 @@
   export let writer:Writer;
 
   let createdDate: string;
+
+  const dispatch = createEventDispatcher();
+
+  const deleteWriter = async (e) => {
+    if (confirm("Are you sure you want to delete this writer?")) {
+      const { response } = await ApiService.del(
+        String(import.meta.env.VITE_API_URL),
+        `admin/writers/${writer.id}`,
+        { creds: true },
+        { aud: $aud },
+      );
+
+      if (response.status == 401) logOut();
+
+      if (response.ok) {
+        FlashMessageService.setMessage({ message: "Writer successfully deleted!", type: "success" });
+        dispatch("writerDeleted", writer);
+      } else {
+        FlashMessageService.setMessage({
+          message: "Unexpected error. If it persists contact support.",
+          type: "error"
+        });
+      };
+    }
+  };
 
   $: {
     createdDate = getLocaleString(new Date(writer.created_at));
@@ -38,6 +68,8 @@
         name="edit"
       />
     </a>
-    <Icon name="delete" />
+    <span class="cursor-pointer" on:click={deleteWriter}>
+      <Icon name="delete" />
+    </span>
   </td>
 </tr>

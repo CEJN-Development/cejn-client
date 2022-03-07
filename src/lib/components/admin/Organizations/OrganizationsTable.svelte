@@ -3,11 +3,15 @@
   import Card from "./Card.svelte";
 
   export let organizations: Organization[] = [];
+
+  const removeOrganization = (e) => {
+    organizations = organizations.filter(organization => organization.id != e.detail.id);
+  };
 </script>
 
 <section>
   {#each organizations as organization}
-    <Card {organization} />
+    <Card {organization} on:organizationDeleted={removeOrganization} />
   {/each}
 </section>
 

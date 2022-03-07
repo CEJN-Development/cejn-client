@@ -3,11 +3,15 @@
   import Card from "./Card.svelte";
 
   export let articles: Article[] = [];
+
+  const removeArticle = (e) => {
+    articles = articles.filter(article => article.id != e.detail.id);
+  };
 </script>
 
 <section>
   {#each articles as article}
-    <Card {article} />
+    <Card {article} on:articleDeleted={removeArticle} />
   {/each}
 </section>
 
