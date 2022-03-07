@@ -49,11 +49,6 @@ export function browserDetector(navigator: Navigator, window: any): BrowserData 
     { name: 'Palm', value: 'Palm', version: 'PalmOS' }
   ];
   const agent = header.join('');
-
-  console.log(agent, 'agent');
-  console.log(matchItem(agent, dataOS), 'match os');
-  console.log(matchItem(agent, dataBrowser), 'match browser');
-  
   const os = matchItem(agent, dataOS);
   const browser = matchItem(agent, dataBrowser);
 

@@ -1,4 +1,9 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  import { logOut } from '$lib/helpers';
+  import { aud } from '$lib/stores/UserAgentStore';
+  import * as ApiService from '$lib/services/Api';
+  import * as FlashMessageService from '$lib/services/FlashMessage';
   import type { Organization } from "$lib/types/Organizations";
   import { getLocaleString, truncateWithEllipses } from "$lib/helpers";
   import Icon from "$lib/components/shared/Icon.svelte";
@@ -8,6 +13,31 @@
 
   let blurb: string;
 	let createdDate: string;
+
+  const dispatch = createEventDispatcher();
+
+  const deleteOrganization = async (e) => {
+    if (confirm("Are you sure you want to delete this organization?")) {
+      const { response } = await ApiService.del(
+        String(import.meta.env.VITE_API_URL),
+        `admin/organizations/${organization.id}`,
+        { creds: true },
+        { aud: $aud },
+      );
+
+      if (response.status == 401) logOut();
+
+      if (response.ok) {
+        FlashMessageService.setMessage({ message: "Organization successfully deleted!", type: "success" });
+        dispatch("organizationDeleted", organization);
+      } else {
+        FlashMessageService.setMessage({
+          message: "Unexpected error. If it persists contact support.",
+          type: "error"
+        });
+      };
+    }
+  };
 
   $: {
     blurb = truncateWithEllipses(organization?.blurb, 300);
@@ -43,7 +73,9 @@
     <a href={`/admin/organizations/edit/${organization.id}`}>
       <Icon name="edit" />
     </a>
-    <Icon name="delete" />
+    <span class="cursor-pointer" on:click={deleteOrganization}>
+      <Icon name="delete" />
+    </span>
   </div>
 </div>
 
