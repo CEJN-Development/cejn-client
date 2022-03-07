@@ -8,7 +8,7 @@
 <h1 class="text-strong text-large stack-48">Recent Articles</h1>
 {#if articles?.length > 0}
   {#each articles as article}
-    <section class="flex-column gap-16 stack-48">
+    <section class="flex-reactive gap-16 stack-48">
       <div>
         <CloudinaryImage
             cloudinaryImageUrl={article.cloudinary_image_url}
