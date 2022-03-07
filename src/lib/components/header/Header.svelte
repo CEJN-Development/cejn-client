@@ -112,7 +112,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		justify-content: end;
 		padding-right: 0.5rem;
 	}
 
