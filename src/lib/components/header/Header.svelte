@@ -55,7 +55,6 @@
 		grid-template-columns: 1fr 1fr;
 		width: 100%;
 		max-width: 100vw;
-		max-height: 4rem;
 	}
 
 	#links {
@@ -112,6 +111,7 @@
 	.right {
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
 		justify-content: end;
 		padding-right: 0.5rem;
 	}
