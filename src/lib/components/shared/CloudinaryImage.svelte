@@ -49,6 +49,5 @@
 <style>
   img {
     width: 100%;
-    height: fit-content;
   }
 </style>
