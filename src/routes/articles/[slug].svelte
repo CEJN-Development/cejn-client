@@ -31,9 +31,6 @@
 	let bodyParagraphs: string[];
 	let publishedDate: string;
 
-	console.log(article);
-	
-
 	$: {
 		bodyParagraphs = article.body.split("\n\n");
 		publishedDate = getLocaleString(new Date(article.created_at));
