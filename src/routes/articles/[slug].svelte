@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+	import { MetaTags } from "svelte-meta-tags";
 	import { getLocaleString } from "$lib/helpers";
   import type { Article } from "$lib/types/Articles";
 	import AuthorLink from "$lib/components/Articles/AuthorLink.svelte";
@@ -30,6 +31,9 @@
 	let bodyParagraphs: string[];
 	let publishedDate: string;
 
+	console.log(article);
+	
+
 	$: {
 		bodyParagraphs = article.body.split("\n\n");
 		publishedDate = getLocaleString(new Date(article.created_at));
@@ -39,6 +43,33 @@
 <svelte:head>
 	<title>{article.title}</title>
 </svelte:head>
+
+<MetaTags
+  title={article.title}
+  description={article.excerpt}
+  canonical="https://www.chicagoejn.org/"
+  openGraph={{
+    url: 'https://www.chicagoejn.org/articles/' + article.slug,
+    title: article.title,
+    description: article.excerpt,
+    images: [
+      {
+        url: article.cloudinary_image_url,
+        alt: article.caption
+      }
+    ],
+    site_name: 'Chicago Environmental Justice Network'
+  }}
+  twitter={{
+    handle: '@cejnetwork',
+    site: '@cejnetwork',
+    cardType: 'summary_large_image',
+    title: article.title,
+    description: article.excerpt,
+    image: article.cloudinary_image_url,
+    imageAlt: article.caption
+  }}
+/>
 
 <hr class="separator stack-48" />
 <h1 class="text-strong text-huge stack-24">
