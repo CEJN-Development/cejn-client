@@ -47,6 +47,7 @@
     {/each}
   </span>
 </div>
-<a class="stack-16" href="/#our-members">
+<a class="stack-48" href="/#our-members">
   &lt;&lt; Who is CEJN?
 </a>
+<hr class="separator stack-48" />

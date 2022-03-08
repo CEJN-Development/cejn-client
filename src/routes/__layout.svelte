@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Header from '$lib/components/header/Header.svelte';
+	import Contact from '$lib/components/shared/Contact.svelte';
 	import '../app.css';
 </script>
 
 <Header />
-
 <main>
 	<slot />
+	<Contact />
 </main>
 
 <style>

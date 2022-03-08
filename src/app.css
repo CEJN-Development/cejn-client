@@ -413,6 +413,10 @@ input[type="file"]::file-selector-button,
 	float: right;
 }
 
+.text-align-center {
+	text-align: center;
+}
+
 /*****************************************************
 ******************************************************
 	TEXT RULES

@@ -79,9 +79,12 @@
 <a class="stack-48" href="/articles">
 	&lt;&lt; All articles
 </a>
-<p class="text-strong text-large stack-24">
-	About the Author{#if article.authors.length > 1}s{/if}
-</p>
-{#each article.authors as author}
-	<Byline writer={author} linkToByline={true} />
-{/each}
+<section>
+	<p class="text-strong text-large stack-24">
+		About the Author{#if article.authors.length > 1}s{/if}
+	</p>
+	{#each article.authors as author}
+		<Byline writer={author} linkToByline={true} />
+	{/each}
+</section>
+<hr class="separator stack-48" />

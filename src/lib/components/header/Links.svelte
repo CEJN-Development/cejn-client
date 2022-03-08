@@ -14,7 +14,7 @@
     </a>
   </li>
   <li class:active={$page.url.pathname === '/about'}>
-    <a sveltekit:prefetch href="/about" on:click={close}>
+    <a href="/about" on:click={close}>
       About Us
     </a>
   </li>
@@ -39,7 +39,7 @@
     </a>
   </li> -->
   <li class:active={$page.url.pathname === '/contact'}>
-    <a sveltekit:prefetch href="/" on:click={close}>
+    <a href="/#contact-us" on:click={close}>
       Contact
     </a>
   </li>
