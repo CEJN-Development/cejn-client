@@ -43,6 +43,7 @@
 </script>
 
 <script lang="ts">
+	import { MetaTags } from "svelte-meta-tags";
 	import About from "$lib/components/index/About.svelte";
 	import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
 	import OurMembers from "$lib/components/index/OurMembers.svelte";
@@ -64,6 +65,33 @@
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
+
+<MetaTags
+  title="Chicago Environmental Justice Network"
+  description="Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities."
+  canonical="https://www.chicagoejn.org/"
+  openGraph={{
+    url: 'https://www.chicagoejn.org/',
+    title: "Chicago Environmental Justice Network",
+    description: "Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.",
+    images: [
+      {
+        url: "https://www.chicagoejn.org/images/logo_blue.png",
+        alt: "CEJN Logo"
+      }
+    ],
+    site_name: 'Chicago Environmental Justice Network'
+  }}
+  twitter={{
+    handle: '@cejnetwork',
+    site: '@cejnetwork',
+    cardType: 'summary_large_image',
+    title: 'Chicago Environmental Justice Network',
+    description: 'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
+    image: "https://www.chicagoejn.org/images/logo_blue.png",
+    imageAlt: "CEJN Logo"
+  }}
+/>
 
 <main>
 	<hr class="separator stack-48" name="hr_0" />
