@@ -22,6 +22,10 @@
 	--text-normal: 1rem;
 	--text-large: 1.25rem;
 	--text-huge: 1.5rem;
+	--height-small: 1rem;
+	--height-normal: 1.2rem;
+	--height-large: 1.5rem;
+	--height-huge: 1.75;
 	--spacing-8: 0.5rem;
 	--spacing-16: 1rem;
 	--spacing-24: 1.5rem;
@@ -457,6 +461,30 @@ input[type="file"]::file-selector-button,
 
 .text-style-italic {
 	font-style: italic;
+}
+
+.height-huge {
+	line-height: var(--height-huge);
+}
+
+.height-large {
+	line-height: var(--height-large);
+}
+
+.height-normal {
+	line-height: var(--height-normal);
+}
+
+.height-small {
+	line-height: var(--height-small);
+}
+
+.font-color-primary {
+	color: var(--heading-color)
+}
+
+.hover-decoration-none:hover {
+	text-decoration: none;
 }
 
 /*****************************************************

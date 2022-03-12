@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export const prerender = true;
+	export const prerender = false;
 
 	export async function load({ url, params, fetch, session, stuff }) {
 		const splashSectionsRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/splash_sections`);
