@@ -63,7 +63,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Chicago Environmental Justice Network</title>
 </svelte:head>
 
 <MetaTags
