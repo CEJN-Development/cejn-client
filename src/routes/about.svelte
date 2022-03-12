@@ -48,3 +48,4 @@
 		{/if}
 	</section>
 </main>
+<hr class="separator stack-48" />
