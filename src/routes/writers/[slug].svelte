@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+	import { MetaTags } from "svelte-meta-tags";
   import type { Writer } from "$lib/types/Writers";
   import Byline from "$lib/components/shared/Byline.svelte";
   import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
@@ -27,8 +28,35 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>{writer.full_name}</title>
 </svelte:head>
+
+<MetaTags
+  title={writer.full_name}
+  description={writer.byline}
+  canonical="https://www.chicagoejn.org/"
+  openGraph={{
+    url: `https://www.chicagoejn.org/our-members/${writer.slug}`,
+    title: writer.full_name,
+    description: writer.byline,
+    images: [
+      {
+        url: writer.cloudinary_image_url,
+        alt: writer.full_name
+      }
+    ],
+    site_name: 'Chicago Environmental Justice Network'
+  }}
+  twitter={{
+    handle: '@cejnetwork',
+    site: '@cejnetwork',
+    cardType: 'summary_large_image',
+    title: writer.full_name,
+    description: writer.byline,
+    image: writer.cloudinary_image_url,
+    imageAlt: writer.full_name
+  }}
+/>
 
 <hr class="separator stack-48" />
 <Byline {writer} />

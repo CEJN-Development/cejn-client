@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+	import { MetaTags } from 'svelte-meta-tags';
 	import type { LandingPage } from '$lib/types/LandingPages';
 
   export let aboutUs: LandingPage;
@@ -35,6 +36,33 @@
 <svelte:head>
 	<title>About Us</title>
 </svelte:head>
+
+<MetaTags
+  title="About Us"
+  description="Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities."
+  canonical="https://www.chicagoejn.org/"
+  openGraph={{
+    url: 'https://www.chicagoejn.org/about',
+    title: "Chicago Environmental Justice Network",
+    description: "Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.",
+    images: [
+      {
+        url: "https://www.chicagoejn.org/images/logo_blue.png",
+        alt: "CEJN Logo"
+      }
+    ],
+    site_name: 'Chicago Environmental Justice Network'
+  }}
+  twitter={{
+    handle: '@cejnetwork',
+    site: '@cejnetwork',
+    cardType: 'summary_large_image',
+    title: 'About Us',
+    description: 'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
+    image: "https://www.chicagoejn.org/images/logo_blue.png",
+    imageAlt: "CEJN Logo"
+  }}
+/>
 
 <main>
 	<section id="about" class="squish-16">
