@@ -33,11 +33,11 @@
       Who is CEJN
     </a>
   </li>
-  <!-- <li class:active={$page.url.pathname === '/press-releases'}>
-    <a href="/" on:click={close}>
+  <li class:active={$page.url.pathname === '/press'}>
+    <a href="/press" on:click={close}>
       Press
     </a>
-  </li> -->
+  </li>
   <li class:active={$page.url.pathname === '/contact'}>
     <a href="/#contact-us" on:click={close}>
       Contact
