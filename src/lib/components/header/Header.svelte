@@ -15,10 +15,12 @@
 <header>
 	<nav>
 		<section id="logo" class="left">
-			<img src="/favicon.png" alt="Organization logo" />
-			<b class="container text-small">
-				Chicago Environmental Justice Network
-			</b>
+			<a href="/" class="flex-column hover-decoration-none">
+				<img src="/favicon.png" alt="Organization logo" />
+				<b class="font-color-primary container text-small">
+					Chicago Environmental Justice Network
+				</b>
+			</a>
 		</section>
 		<section id="expander" class="right">
 			<button class="button" on:click={open}>

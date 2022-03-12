@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export const prerender = true;
+	export const prerender = false;
 
 	export async function load({ url, params, fetch, session, stuff }) {
 		const articleRes = await fetch(`${import.meta.env.VITE_API_URL}/articles/${params.slug}`);
@@ -69,7 +69,7 @@
 />
 
 <hr class="separator stack-48" />
-<h1 class="text-strong text-huge stack-24">
+<h1 class="text-strong text-huge height-huge stack-24">
 	{article.title}
 </h1>
 <p class="text-strong text-normal stack-24">
