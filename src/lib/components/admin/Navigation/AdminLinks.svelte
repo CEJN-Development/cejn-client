@@ -4,41 +4,39 @@
 
 <ul>
 	<li class:active={$page.url.pathname === '/'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/about">
-      About Us
-    </a>
-  </li>
+		<a href="/admin/about">About Us</a>
+	</li>
 	<li class:active={$page.url.pathname === '/admin/articles'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/articles">
-      Our Stories
-    </a>
-  </li>
-  <!-- <li class:active={$page.url.pathname === '/'} class="squish-8 squeeze-8 panel">
+		<a href="/admin/articles">Our Stories</a>
+	</li>
+	<!-- <li class:active={$page.url.pathname === '/'} class="squish-8 squeeze-8 panel">
     <a href="/admin/home">
       Splash
     </a>
   </li> -->
 	<li class:active={$page.url.pathname === '/admin/organizations'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/organizations">
-      Our Members
-    </a>
-  </li>
+		<a href="/admin/organizations">Our Members</a>
+	</li>
 	<li class:active={$page.url.pathname === '/admin/writers'} class="squish-8 squeeze-8 panel">
-    <a href="/admin/writers">
-      Our Contributors
-    </a>
-  </li>
+		<a href="/admin/writers">Our Contributors</a>
+	</li>
+	<li
+		class:active={$page.url.pathname === '/admin/press_releases'}
+		class="squish-8 squeeze-8 panel"
+	>
+		<a href="/admin/press_releases">Press Releases</a>
+	</li>
 </ul>
 
 <style>
-  ul {
+	ul {
 		position: relative;
 		padding: 0;
 		margin: 0;
 		list-style: none;
 	}
 
-  a {
+	a {
 		color: var(--heading-color);
 		text-decoration: none;
 		transition: color 0.2s linear;
@@ -48,9 +46,9 @@
 		color: var(--accent-color);
 	}
 
-  @media screen and (min-width: 500px) {
+	@media screen and (min-width: 500px) {
 		li > a {
 			font-size: var(--text-medium);
 		}
-  }
+	}
 </style>
