@@ -17,5 +17,6 @@ module.exports = {
 			'<rootDir>/.svelte-kit/build/runtime/app$1'
 		]
 	},
-	setupFilesAfterEnv: ['<rootDir>/jest-setup.ts']
+	setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+	testEnvironment: "jsdom"
 };
