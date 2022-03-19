@@ -3,28 +3,29 @@
 
 	export async function load({ url, params, fetch, session, stuff }) {
 		const articleRes = await fetch(`${import.meta.env.VITE_API_URL}/articles/${params.slug}`);
-		if (!articleRes.ok) return {
-			status: articleRes.status,
-			error: new Error("Could not load article")
-		};
+		if (!articleRes.ok)
+			return {
+				status: articleRes.status,
+				error: new Error('Could not load article')
+			};
 
 		let article: Article = await articleRes.json();
 
 		return {
 			props: {
-				article,
-			},
+				article
+			}
 		};
-	};
+	}
 </script>
 
 <script lang="ts">
-	import { MetaTags } from "svelte-meta-tags";
-	import { getLocaleString } from "$lib/helpers";
-  import type { Article } from "$lib/types/Articles";
-	import AuthorLink from "$lib/components/Articles/AuthorLink.svelte";
-  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
-	import Byline from "$lib/components/shared/Byline.svelte";
+	import { MetaTags } from 'svelte-meta-tags';
+	import { getLocaleString } from '$lib/helpers';
+	import type { Article } from '$lib/types/Articles';
+	import AuthorLink from '$lib/components/Articles/AuthorLink.svelte';
+	import CloudinaryImage from '$lib/components/shared/CloudinaryImage.svelte';
+	import Byline from '$lib/components/shared/Byline.svelte';
 
 	export let article: Article;
 
@@ -32,9 +33,9 @@
 	let publishedDate: string;
 
 	$: {
-		bodyParagraphs = article.body.split("\n\n");
+		bodyParagraphs = article.body.split('\n\n');
 		publishedDate = getLocaleString(new Date(article.created_at));
-	};
+	}
 </script>
 
 <svelte:head>
@@ -42,30 +43,30 @@
 </svelte:head>
 
 <MetaTags
-  title={article.title}
-  description={article.excerpt}
-  canonical="https://www.chicagoejn.org/"
-  openGraph={{
-    url: 'https://www.chicagoejn.org/articles/' + article.slug,
-    title: article.title,
-    description: article.excerpt,
-    images: [
-      {
-        url: article.cloudinary_image_url,
-        alt: article.caption
-      }
-    ],
-    site_name: 'Chicago Environmental Justice Network'
-  }}
-  twitter={{
-    handle: '@cejnetwork',
-    site: '@cejnetwork',
-    cardType: 'summary_large_image',
-    title: article.title,
-    description: article.excerpt,
-    image: article.cloudinary_image_url,
-    imageAlt: article.caption
-  }}
+	title={article.title}
+	description={article.excerpt}
+	canonical="https://www.chicagoejn.org/"
+	openGraph={{
+		url: 'https://www.chicagoejn.org/articles/' + article.slug,
+		title: article.title,
+		description: article.excerpt,
+		images: [
+			{
+				url: article.cloudinary_image_url,
+				alt: article.caption
+			}
+		],
+		site_name: 'Chicago Environmental Justice Network'
+	}}
+	twitter={{
+		handle: '@cejnetwork',
+		site: '@cejnetwork',
+		cardType: 'summary_large_image',
+		title: article.title,
+		description: article.excerpt,
+		image: article.cloudinary_image_url,
+		imageAlt: article.caption
+	}}
 />
 
 <hr class="separator stack-48" />
@@ -79,7 +80,7 @@
 	<div class="stack-24">
 		<CloudinaryImage
 			cloudinaryImageUrl={article.cloudinary_image_url}
-			options={{ height: 720, width: 1280, crop: "fill" }}
+			options={{ height: 720, width: 1280, crop: 'fill' }}
 			classes="stack-8"
 		/>
 		{#if !!article.caption}
@@ -98,15 +99,13 @@
 	{publishedDate}
 </span>
 <span class="text-medium text-normal stack-24">
-  {#each bodyParagraphs as paragraph}
-    <p class="stack-16">
+	{#each bodyParagraphs as paragraph}
+		<p class="stack-16">
 			{@html paragraph}
 		</p>
-  {/each}
+	{/each}
 </span>
-<a class="stack-48" href="/articles">
-	&lt;&lt; All articles
-</a>
+<a class="stack-48" href="/articles"> &lt;&lt; All articles </a>
 <section>
 	<p class="text-strong text-large stack-24">
 		About the Author{#if article.authors.length > 1}s{/if}
