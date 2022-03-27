@@ -286,6 +286,22 @@ input[type="file"]::file-selector-button,
 ******************************************************
 *****************************************************/
 
+.drop-8 {
+	margin-top: var(--spacing-8);
+}
+
+.drop-16 {
+	margin-top: var(--spacing-16);
+}
+
+.drop-24 {
+	margin-top: var(--spacing-24);
+}
+
+.drop-32 {
+	margin-top: var(--spacing-32);
+}
+
 .stack-8 {
 	margin-bottom: var(--spacing-8);
 }
@@ -419,6 +435,12 @@ input[type="file"]::file-selector-button,
 
 .text-align-center {
 	text-align: center;
+}
+
+.margin-x--auto {
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 /*****************************************************
@@ -584,6 +606,48 @@ input[type="file"]::file-selector-button,
 
 .raised-2 {
 	box-shadow: 0 0.2rem 0.4rem -0.2rem rgba(0, 0, 0, 0.7);
+}
+
+/*****************************************************
+******************************************************
+  MODAL RULES
+******************************************************
+*****************************************************/
+
+.modal-overlay {
+	z-index: +5;
+	position: fixed;
+	min-height: 100vh;
+	min-width: 100vw;
+	overflow-x: hidden;
+	top: 0;
+	left: 0;
+}
+
+.modal-small {
+	max-width: 315px;
+}
+
+.modal-medium {
+	max-width: 500px;
+}
+
+.modal-large {
+	max-width: 90vw;
+}
+
+/*****************************************************
+******************************************************
+  BACKGROUND RULES
+******************************************************
+*****************************************************/
+
+.background-white {
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.background-shade {
+	background-color: rgba(115, 115, 115, 0.3);
 }
 
 /*****************************************************
