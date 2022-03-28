@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Contact from '$lib/components/shared/Contact.svelte';
-  import Icon from '$lib/components/shared/Icon.svelte';
+	import Icon from '$lib/components/shared/Icon.svelte';
 
 	export let show: boolean = false;
 	export let size: 'small' | 'medium' | 'large' = 'small';
@@ -23,11 +23,11 @@
 					<Icon name="close" />
 				</span>
 			</div>
-      <div class="max-width--tablet margin-x--auto">
-        <slot />
-        <hr class="separator stack-48" />
-        <Contact />
-      </div>
+			<div class="max-width--tablet margin-x--auto">
+				<slot />
+				<hr class="separator stack-48" />
+				<Contact />
+			</div>
 		</section>
 	</section>
 {/if}

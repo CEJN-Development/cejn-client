@@ -5,5 +5,5 @@
 </script>
 
 <Modal bind:show size={'large'}>
-  <slot />
+	<slot />
 </Modal>
