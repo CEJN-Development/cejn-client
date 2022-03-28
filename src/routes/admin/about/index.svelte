@@ -24,10 +24,17 @@
   import * as FlashMessageService from '$lib/services/FlashMessage';
   import * as ApiService from "$lib/services/Api";
   import { aud } from '$lib/stores/UserAgentStore';
+  import PreviewModal from '$lib/components/admin/shared/PreviewModal.svelte';
+  import AboutUs from '$lib/components/admin/shared/AboutUs.svelte';
 
   export let aboutUs: LandingPage;
 
   let submitting: boolean = false;
+  let show: boolean = false;
+
+  const preview = () => {
+    show = true;
+  }
 
   const update = async () => {
     submitting = true;
@@ -97,9 +104,27 @@
       >
         Update
       </button>
+      <button
+        class="panel button spread-8"
+        type="submit"
+        on:click|preventDefault={preview}
+      >
+        Preview
+      </button>
       <a class="spread-8" href="/admin">
         Cancel
       </a>
     </div>
   </form>
 </main>
+
+<PreviewModal bind:show>
+  <AboutUs aboutUs={{
+    body: aboutUs.body,
+    created_at: new Date(),
+    updated_at: new Date(),
+    slug: "about-us",
+    name: "about us",
+    id: 0
+  }} />
+</PreviewModal>

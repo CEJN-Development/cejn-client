@@ -224,6 +224,18 @@ input[type="file"]::file-selector-button,
 	width: 25%;
 }
 
+.max-width--desktop {
+	max-width: 1400px;
+}
+
+.max-width--tablet {
+	max-width: 800px;
+}
+
+.max-width--mobile {
+	max-width: 500px;
+}
+
 /*****************************************************
 ******************************************************
 	PADDING RULES
