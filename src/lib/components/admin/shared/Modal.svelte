@@ -23,10 +23,14 @@
 					<Icon name="close" />
 				</span>
 			</div>
-			<div class="max-width--tablet margin-x--auto">
-				<slot />
-				<hr class="separator stack-48" />
-				<Contact />
+			<div class="max-width--tablet margin-x--auto modal-scrollable">
+        <div>
+          <slot />
+        </div>
+        <hr class="separator stack-16" />
+        <div class="squish-24">
+          <Contact />
+        </div>
 			</div>
 		</section>
 	</section>

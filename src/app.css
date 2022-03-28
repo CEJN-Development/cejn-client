@@ -646,6 +646,13 @@ input[type="file"]::file-selector-button,
 
 .modal-large {
 	max-width: 90vw;
+	overflow-y: hidden;
+	max-height: calc(100vh - 4rem);
+}
+
+.modal-scrollable {
+	overflow-y: auto;
+	max-height: inherit;
 }
 
 /*****************************************************
