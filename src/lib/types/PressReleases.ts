@@ -1,4 +1,4 @@
-export interface PressRelease {
+export interface PressReleaseType {
   body?: string
   created_at: Date
   summary?: string

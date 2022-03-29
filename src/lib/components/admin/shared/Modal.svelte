@@ -23,10 +23,10 @@
 				</span>
 			</div>
 			<div class="max-width--tablet margin-x--auto modal-scrollable">
-        <div class="stack-48">
-          <slot />
-        </div>
-        <hr class="separator" />
+				<div class="stack-48">
+					<slot />
+				</div>
+				<hr class="separator invisible" />
 			</div>
 		</section>
 	</section>

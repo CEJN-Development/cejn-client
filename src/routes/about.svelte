@@ -22,7 +22,7 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
 	import type { LandingPage } from '$lib/types/LandingPages';
-	import AboutUs from '$lib/components/admin/shared/AboutUs.svelte';
+	import AboutUs from '$lib/components/shared/AboutUs.svelte';
 
 	export let aboutUs: LandingPage;
 </script>

@@ -26,7 +26,7 @@
 	import * as ApiService from '$lib/services/Api';
 	import { aud } from '$lib/stores/UserAgentStore';
 	import PreviewModal from '$lib/components/admin/shared/PreviewModal.svelte';
-	import AboutUs from '$lib/components/admin/shared/AboutUs.svelte';
+	import AboutUs from '$lib/components/shared/AboutUs.svelte';
 
 	export let aboutUs: LandingPage;
 
