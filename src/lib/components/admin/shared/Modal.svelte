@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Contact from '$lib/components/shared/Contact.svelte';
 	import Icon from '$lib/components/shared/Icon.svelte';
 
 	export let show: boolean = false;
@@ -24,13 +23,10 @@
 				</span>
 			</div>
 			<div class="max-width--tablet margin-x--auto modal-scrollable">
-        <div>
+        <div class="stack-48">
           <slot />
         </div>
-        <hr class="separator stack-16" />
-        <div class="squish-24">
-          <Contact />
-        </div>
+        <hr class="separator" />
 			</div>
 		</section>
 	</section>
