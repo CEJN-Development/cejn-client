@@ -139,7 +139,7 @@
   };
 </script>
 
-<form class="squish-24 squeeze-24 flex-row">
+<form class="squish-24 squeeze-24 flex-row form">
   <label for="title" class="text-small text-style-metadata text-style-italic">
     Title
   </label>
@@ -259,12 +259,6 @@
 </form>
 
 <style>
-  form {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   button[disabled] {
     cursor: wait;
   }

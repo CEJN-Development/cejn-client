@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { Organization } from "$lib/types/Organizations";
+  import type { OrganizationType } from "$lib/types/Organizations";
   import Card from "./Card.svelte";
 
-  export let organizations: Organization[] = [];
+  export let organizations: OrganizationType[] = [];
 
   const removeOrganization = (e) => {
     organizations = organizations.filter(organization => organization.id != e.detail.id);

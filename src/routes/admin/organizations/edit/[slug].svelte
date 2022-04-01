@@ -8,7 +8,7 @@
 			error: new Error("Could not load organization"),
 		};
 
-		let organization: Organization = await organizationRes.json();
+		let organization: OrganizationType = await organizationRes.json();
 
 		return {
 			props: {
@@ -20,9 +20,9 @@
 
 <script lang="ts">
   import OrganizationForm from '$lib/components/admin/Organizations/OrganizationForm.svelte';
-	import type { Organization } from '$lib/types/Organizations';
+	import type { OrganizationType } from '$lib/types/Organizations';
 
-  export let organization: Organization;
+  export let organization: OrganizationType;
 </script>
 
 <h1 class="squish-16 squeeze-16">Our Members | Edit</h1>

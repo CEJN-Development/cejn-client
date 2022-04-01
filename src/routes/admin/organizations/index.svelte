@@ -20,9 +20,9 @@
 
 <script lang="ts">
   import OrganizationsTable from "$lib/components/admin/Organizations/OrganizationsTable.svelte";
-  import type { Organization } from "$lib/types/Organizations";
+  import type { OrganizationType } from "$lib/types/Organizations";
 
-	export let organizations: Organization[];
+	export let organizations: OrganizationType[];
 </script>
 
 <svelte:head>

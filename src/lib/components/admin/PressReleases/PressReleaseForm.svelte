@@ -119,7 +119,7 @@
 	}
 </script>
 
-<form class="squish-24 squeeze-32 flex-row">
+<form class="squish-24 flex-row form">
 	<label for="title" class="text-small text-style-metadata text-style-italic">Title</label>
 	<input title="title" type="text" class="stack-16 squeeze-8 squish-8" bind:value={title} />
 	<label for="summary" class="text-small text-style-metadata text-style-italic">Summary</label>

@@ -1,4 +1,4 @@
-export interface Organization {
+export interface OrganizationType {
   blurb?: string
   body?: string
   cloudinary_image_url?: string | null

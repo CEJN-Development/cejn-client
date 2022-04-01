@@ -49,12 +49,12 @@
 	import OurMembers from "$lib/components/index/OurMembers.svelte";
 	import type { Article } from "$lib/types/Articles";
 	import type { LandingPage } from "$lib/types/LandingPages";
-	import type { Organization } from "$lib/types/Organizations";
+	import type { OrganizationType } from "$lib/types/Organizations";
 	import type { SplashSection } from "$lib/types/SplashSections";
 
 	export let aboutUs: LandingPage;
 	export let articles: Article[];
-	export let organizations: Organization[];
+	export let organizations: OrganizationType[];
 	export let splashSections: SplashSection[];
 
 	const sectionPriority = (sectionName: string): number => {

@@ -8,7 +8,7 @@
 			error: new Error("Could not load organization")
 		};
 
-		let organization = await organizationRes.json();
+		let organization: OrganizationType = await organizationRes.json();
 
 		return {
 			props: {
@@ -20,10 +20,10 @@
 
 <script lang="ts">
 	import { MetaTags } from "svelte-meta-tags";
-  import type { Organization } from "$lib/types/Organizations";
-  import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
+  import type { OrganizationType } from "$lib/types/Organizations";
+  import Organization from "$lib/components/Organizations/Organization.svelte";
 
-	export let organization: Organization;
+	export let organization: OrganizationType;
 </script>
 
 <svelte:head>
@@ -58,23 +58,7 @@
 />
 
 <hr class="separator stack-48" />
-<div class="stack-24">
-  <CloudinaryImage
-    cloudinaryImageUrl={organization.cloudinary_image_url}
-    options={{ height: 405, width: 720, crop: "fit" }}
-    classes="stack-24"
-  />
-  <h1 class="text-strong text-large stack-24">
-    {organization.name}
-  </h1>
-  <span class="text-medium text-normal">
-    {#each organization.body.split("\n\n") as paragraph}
-      <p class="stack-8">
-        {@html paragraph}
-      </p>
-    {/each}
-  </span>
-</div>
+<Organization {organization} />
 <a class="stack-48" href="/#our-members">
   &lt;&lt; Who is CEJN?
 </a>

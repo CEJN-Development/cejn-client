@@ -4,12 +4,12 @@
   import { aud } from '$lib/stores/UserAgentStore';
   import * as ApiService from '$lib/services/Api';
   import * as FlashMessageService from '$lib/services/FlashMessage';
-  import type { Organization } from "$lib/types/Organizations";
+  import type { OrganizationType } from "$lib/types/Organizations";
   import { getLocaleString, truncateWithEllipses } from "$lib/helpers";
   import Icon from "$lib/components/shared/Icon.svelte";
   import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
-  export let organization: Organization;
+  export let organization: OrganizationType;
 
   let blurb: string;
 	let createdDate: string;

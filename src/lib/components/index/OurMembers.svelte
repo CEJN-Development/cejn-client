@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { Organization } from "$lib/types/Organizations";
+  import type { OrganizationType } from "$lib/types/Organizations";
   import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
 
-  export let organizations: Organization[] = [];
+  export let organizations: OrganizationType[] = [];
 
   let hasOrganizations: boolean = false;
 

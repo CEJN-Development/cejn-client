@@ -76,15 +76,15 @@
 
 <main class="squeeze-16 squish-16">
 	<h1 class="stack-16">About Us</h1>
-	<form class="squish-24 squeeze-32 flex-row">
-		<label for="body" class="text-small text-style-metadata text-style-italic"> Preview </label>
+	<form class="squish-24 squeeze-32 flex-row form">
+		<label for="body" class="text-small text-style-metadata text-style-italic">Preview</label>
 		<textarea
 			name="body"
 			class="stack-16 squeeze-8 squish-8 text-medium text-normal"
 			rows="10"
 			bind:value={aboutUs.preview}
 		/>
-		<label for="body" class="text-small text-style-metadata text-style-italic"> Body </label>
+		<label for="body" class="text-small text-style-metadata text-style-italic">Body</label>
 		<textarea
 			name="body"
 			class="stack-16 squeeze-8 squish-8 text-medium text-normal"

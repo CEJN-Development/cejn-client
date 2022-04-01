@@ -4,12 +4,14 @@
   import { aud } from '$lib/stores/UserAgentStore';
   import * as ApiService from "$lib/services/Api";
   import * as FlashMessageService from '$lib/services/FlashMessage';
-  import type { Organization, OrganizationCreate, OrganizationUpdate } from '$lib/types/Organizations';
+  import type { OrganizationType, OrganizationCreate, OrganizationUpdate } from '$lib/types/Organizations';
   import Spinner from '$lib/components/shared/Spinner.svelte';
   import CloudinaryImage from "$lib/components/shared/CloudinaryImage.svelte";
   import Base64Image from "$lib/components/shared/Base64Image.svelte";
+  import Organization from '$lib/components/Organizations/Organization.svelte';
+  import PreviewModal from '$lib/components/admin/shared/PreviewModal.svelte';
 
-  export let organization: Organization = null;
+  export let organization: OrganizationType = null;
 
   let blurb: string;
   let body: string;
@@ -17,8 +19,24 @@
   let hasImage: boolean = false;
   let imageUploadInput: HTMLInputElement;
   let photo: string | ArrayBuffer;
+  let previewOrganization: OrganizationType = null;
   let name: string = null;
+  let show: boolean = false;
   let submitting: boolean = false;
+
+  const preview = () => {
+    previewOrganization = {
+			body,
+			created_at: new Date(),
+			updated_at: new Date(),
+			slug: '',
+			name,
+			id: 0,
+		}
+    if (exisitingOrganization) previewOrganization.cloudinary_image_url = organization.cloudinary_image_url;
+
+    show = true;
+  };
 
   const submit = async () => {
     submitting = true;
@@ -122,9 +140,9 @@
   };
 </script>
 
-<form class="squish-24 squeeze-32 flex-row">
+<form class="squish-24 squeeze-32 flex-row form">
   <label for="title" class="text-small text-style-metadata text-style-italic">
-    Full name
+    Name
   </label>
   <input
     name="title"
@@ -206,8 +224,19 @@
         {/if}
       </button>
     {/if}
+    <button class="panel button spread-8" type="submit" on:click|preventDefault={preview}>
+      Preview
+    </button>
     <a href="/admin/organizations">
       Cancel
     </a>
   </div>
 </form>
+<PreviewModal bind:show>
+  <div class="squeeze-24 squish-24">
+    <Organization
+      organization={previewOrganization}
+      previewPhoto={photo}
+    />
+  </div>
+</PreviewModal>
