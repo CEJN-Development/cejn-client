@@ -25,8 +25,7 @@
   export let writers: Writer[];
 </script>
 
-<h1 class="squish-16 squeeze-16">Our Stories | New</h1>
-
-<div>
+<div class="squish-24 squeeze-24">
+	<h1 class="stack-24">Our Stories | New</h1>
   <ArticleForm {writers} />
 </div>

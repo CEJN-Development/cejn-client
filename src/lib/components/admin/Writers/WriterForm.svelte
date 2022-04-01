@@ -104,7 +104,7 @@
   };
 </script>
 
-<form class="squish-24 squeeze-32 flex-row">
+<form class="flex-row form">
   <label for="title" class="text-small text-style-metadata text-style-italic">
     Full name
   </label>

@@ -74,14 +74,14 @@
 	<title>Admin | About Us</title>
 </svelte:head>
 
-<main class="squeeze-16 squish-16">
-	<h1 class="stack-16">About Us</h1>
-	<form class="squish-24 squeeze-32 flex-row form">
+<main class="squeeze-24 squish-24">
+	<h1 class="stack-24">About Us</h1>
+	<form class="flex-row form">
 		<label for="body" class="text-small text-style-metadata text-style-italic">Preview</label>
 		<textarea
 			name="body"
 			class="stack-16 squeeze-8 squish-8 text-medium text-normal"
-			rows="10"
+			rows="8"
 			bind:value={aboutUs.preview}
 		/>
 		<label for="body" class="text-small text-style-metadata text-style-italic">Body</label>

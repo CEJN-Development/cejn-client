@@ -139,7 +139,7 @@
   };
 </script>
 
-<form class="squish-24 squeeze-24 flex-row form">
+<form class="flex-row form">
   <label for="title" class="text-small text-style-metadata text-style-italic">
     Title
   </label>

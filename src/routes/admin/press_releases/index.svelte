@@ -21,9 +21,9 @@
 
 <script lang="ts">
 	import PressReleasesTable from '$lib/components/admin/PressReleases/PressReleasesTable.svelte';
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 
-	export let pressReleases: PressRelease[];
+	export let pressReleases: PressReleaseType[];
 </script>
 
 <svelte:head>

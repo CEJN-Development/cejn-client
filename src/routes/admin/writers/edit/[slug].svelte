@@ -25,6 +25,7 @@
   export let writer: Writer;
 </script>
 
-<h1 class="squish-16 squeeze-16">Our Contributors | Edit</h1>
-
-<WriterForm {writer} />
+<main class="squeeze-24 squish-24">
+	<h1 class="stack-24">Our Contributors | Edit</h1>
+	<WriterForm {writer} />
+</main>

@@ -140,7 +140,7 @@
   };
 </script>
 
-<form class="squish-24 squeeze-32 flex-row form">
+<form class="flex-row form">
   <label for="title" class="text-small text-style-metadata text-style-italic">
     Name
   </label>
@@ -192,7 +192,7 @@
       <CloudinaryImage
         cloudinaryImageUrl={organization.cloudinary_image_url}
         options={{ height: 720, width: 1280, crop: "fill" }}
-        classes="stack-8"
+        classes="stack-16"
       />
     {/if}
   {/if}

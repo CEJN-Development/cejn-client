@@ -9,7 +9,7 @@
 	import PressRelease from '$lib/components/shared/PressRelease.svelte';
 	import PreviewModal from '$lib/components/admin/shared/PreviewModal.svelte';
 
-	export let pressRelease: PressReleaseType;
+	export let pressRelease: PressReleaseType = null;
 
 	let body: string = '';
 	let exisitingPressRelease: boolean = false;
