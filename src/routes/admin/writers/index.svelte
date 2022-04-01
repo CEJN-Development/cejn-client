@@ -3,10 +3,11 @@
 
 	export async function load({ url, params, fetch, session, stuff }) {
 		const writersRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/writers`);
-		if (!writersRes.ok) return {
-			status: writersRes.status,
-			error: new Error("Could not load writers")
-		};
+		if (!writersRes.ok)
+			return {
+				status: writersRes.status,
+				error: new Error('Could not load writers')
+			};
 
 		let writers = await writersRes.json();
 
@@ -15,12 +16,12 @@
 				writers
 			}
 		};
-	};
+	}
 </script>
 
 <script lang="ts">
-  import WritersTable from "$lib/components/admin/Writers/WritersTable.svelte";
-  import type { Writer } from "$lib/types/Writers";
+	import WritersTable from '$lib/components/admin/Writers/WritersTable.svelte';
+	import type { Writer } from '$lib/types/Writers';
 
 	export let writers: Writer[];
 </script>
@@ -29,15 +30,10 @@
 	<title>Admin | Our Contributors</title>
 </svelte:head>
 
-<main class="squeeze-16 squish-16">
-	<a
-		href="/admin/writers/new"
-		class="button panel"
-	>
-		New writer
-	</a>
-  <h1 class="stack-32">Our Contributors</h1>
-  <WritersTable {writers} />
+<main class="squeeze-24 squish-24">
+	<a href="/admin/writers/new" class="button panel"> New writer </a>
+	<h1 class="stack-24">Our Contributors</h1>
+	<WritersTable {writers} />
 </main>
 
 <style>

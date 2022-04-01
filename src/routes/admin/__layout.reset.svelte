@@ -10,13 +10,13 @@
 
 	onMount(() => {
 		user.useLocalStorage();
-		if (!$user.user) goto("/admin/login", { replaceState: true });
+		if (!$user.user) goto('/admin/login', { replaceState: true });
 		if (navigator && window) {
 			const bd = browserDetector(navigator, window);
 			aud.set(audBuilder(bd));
 			browser.set(`${bd.browser.name}||${bd.browser.version}`);
 			os.set(`${bd.os.name}||${bd.os.version}`);
-		};
+		}
 	});
 </script>
 
@@ -31,7 +31,7 @@
 <style>
 	#admin {
 		display: grid;
-		grid-template-areas: "navigation content";
+		grid-template-areas: 'navigation content';
 		grid-template-columns: minmax(200px, 20%) 1fr;
 		width: 100%;
 		max-width: 100vw;

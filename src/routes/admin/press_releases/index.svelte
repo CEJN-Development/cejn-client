@@ -30,9 +30,9 @@
 	<title>Admin | Press Releases</title>
 </svelte:head>
 
-<main class="squeeze-16 squish-16">
-	<a href="/admin/press_releases/new" class="button panel"> New press release </a>
-	<h1 class="stack-16">Our Press Releases</h1>
+<main class="squeeze-24 squish-24">
+	<a href="/admin/press_releases/new" class="button panel">New press release</a>
+	<h1 class="stack-24">Our Press Releases</h1>
 	<PressReleasesTable {pressReleases} />
 </main>
 

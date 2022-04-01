@@ -3,10 +3,11 @@
 
 	export async function load({ url, params, fetch, session, stuff }) {
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/articles`);
-		if (!articlesRes.ok) return {
-			status: articlesRes.status,
-			error: new Error("Could not load articles")
-		};
+		if (!articlesRes.ok)
+			return {
+				status: articlesRes.status,
+				error: new Error('Could not load articles')
+			};
 
 		let articles = await articlesRes.json();
 
@@ -15,12 +16,12 @@
 				articles
 			}
 		};
-	};
+	}
 </script>
 
 <script lang="ts">
-  import ArticlesTable from "$lib/components/admin/Articles/ArticlesTable.svelte";
-  import type { Article } from "$lib/types/Articles";
+	import ArticlesTable from '$lib/components/admin/Articles/ArticlesTable.svelte';
+	import type { Article } from '$lib/types/Articles';
 
 	export let articles: Article[];
 </script>
@@ -29,15 +30,10 @@
 	<title>Admin | Our Stories</title>
 </svelte:head>
 
-<main class="squeeze-16 squish-16">
-	<a
-		href="/admin/articles/new"
-		class="button panel"
-	>
-		New article
-	</a>
-  <h1 class="stack-16">Our Stories</h1>
-  <ArticlesTable {articles} />
+<main class="squeeze-24 squish-24">
+	<a href="/admin/articles/new" class="button panel">New article</a>
+	<h1 class="stack-24">Our Stories</h1>
+	<ArticlesTable {articles} />
 </main>
 
 <style>
@@ -47,9 +43,5 @@
 
 	a:hover {
 		text-decoration: none;
-	}
-	
-	main > span {
-		display: inline-block;
 	}
 </style>
