@@ -6,14 +6,13 @@
 	export let organization: OrganizationType;
 	export let previewPhoto: string | ArrayBuffer = null;
 
-  let bodyParagraphs: string[];
+	let bodyParagraphs: string[];
 	let hasBody: boolean;
 
 	$: {
 		hasBody = !!organization?.body?.length;
 		bodyParagraphs = organization?.body?.split('\n\n');
-	};
-  
+	}
 </script>
 
 <div class="stack-24">
@@ -27,15 +26,15 @@
 		/>
 	{/if}
 	<h1 class="text-strong text-large stack-24">
-		{organization.name || ""}
+		{organization.name || ''}
 	</h1>
 	<span class="text-medium text-normal">
-    {#if hasBody}
-      {#each bodyParagraphs as paragraph}
-        <p class="stack-8">
-          {@html paragraph}
-        </p>
-      {/each}
-    {/if}
+		{#if hasBody}
+			{#each bodyParagraphs as paragraph}
+				<p class="stack-8">
+					{@html paragraph}
+				</p>
+			{/each}
+		{/if}
 	</span>
 </div>
