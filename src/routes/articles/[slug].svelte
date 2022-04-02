@@ -21,21 +21,11 @@
 
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
-	import { getLocaleString } from '$lib/helpers';
-	import type { Article } from '$lib/types/Articles';
-	import AuthorLink from '$lib/components/Articles/AuthorLink.svelte';
-	import CloudinaryImage from '$lib/components/shared/CloudinaryImage.svelte';
+	import type { ArticleType } from '$lib/types/Articles';
 	import Byline from '$lib/components/shared/Byline.svelte';
+	import Article from '$lib/components/Articles/Article.svelte';
 
-	export let article: Article;
-
-	let bodyParagraphs: string[];
-	let publishedDate: string;
-
-	$: {
-		bodyParagraphs = article.body.split('\n\n');
-		publishedDate = getLocaleString(new Date(article.created_at));
-	}
+	export let article: ArticleType;
 </script>
 
 <svelte:head>
@@ -70,41 +60,7 @@
 />
 
 <hr class="separator stack-48" />
-<h1 class="text-strong text-huge height-huge stack-24">
-	{article.title}
-</h1>
-<p class="text-strong text-normal stack-24">
-	{article.excerpt}
-</p>
-{#if !!article.cloudinary_image_url}
-	<div class="stack-24">
-		<CloudinaryImage
-			cloudinaryImageUrl={article.cloudinary_image_url}
-			options={{ height: 720, width: 1280, crop: 'fill' }}
-			classes="stack-8"
-		/>
-		{#if !!article.caption}
-			<span class="flex-row text-style-metadata text-small align-items-end">
-				{article.caption}
-			</span>
-		{/if}
-	</div>
-{/if}
-<span class="text-strong text-normal stack-16">
-	{#each article.authors as author, index}
-		<AuthorLink {author} end={article.authors.length - 1 == index} />
-	{/each}
-</span>
-<span class="text-medium text-small stack-16">
-	{publishedDate}
-</span>
-<span class="text-medium text-normal stack-24">
-	{#each bodyParagraphs as paragraph}
-		<p class="stack-16">
-			{@html paragraph}
-		</p>
-	{/each}
-</span>
+<Article {article} />
 <a class="stack-48" href="/articles"> &lt;&lt; All articles </a>
 <section>
 	<p class="text-strong text-large stack-24">

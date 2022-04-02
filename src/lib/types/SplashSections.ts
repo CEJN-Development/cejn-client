@@ -1,4 +1,4 @@
 export interface SplashSection {
-  name: string
-  priority: number
+	name: string;
+	priority: number;
 }

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 	import Card from './Card.svelte';
 
-	export let pressReleases: PressRelease[] = [];
+	export let pressReleases: PressReleaseType[] = [];
 
 	const removePressRelease = (e) => {
 		pressReleases = pressReleases.filter((pressRelease) => pressRelease.id != e.detail.id);

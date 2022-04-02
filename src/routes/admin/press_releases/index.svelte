@@ -21,18 +21,18 @@
 
 <script lang="ts">
 	import PressReleasesTable from '$lib/components/admin/PressReleases/PressReleasesTable.svelte';
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 
-	export let pressReleases: PressRelease[];
+	export let pressReleases: PressReleaseType[];
 </script>
 
 <svelte:head>
 	<title>Admin | Press Releases</title>
 </svelte:head>
 
-<main class="squeeze-16 squish-16">
-	<a href="/admin/press_releases/new" class="button panel"> New press release </a>
-	<h1 class="stack-16">Our Press Releases</h1>
+<main class="squeeze-24 squish-24">
+	<a href="/admin/press_releases/new" class="button panel">New press release</a>
+	<h1 class="stack-24">Our Press Releases</h1>
 	<PressReleasesTable {pressReleases} />
 </main>
 

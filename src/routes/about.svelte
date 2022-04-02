@@ -2,35 +2,29 @@
 	export const prerender = false;
 
 	export async function load({ url, params, fetch, session, stuff }) {
-    const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
-		if (!aboutUsRes.ok) return {
-			status: aboutUsRes.status,
-			error: new Error("Could not load writer")
-		};
+		const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
+		if (!aboutUsRes.ok)
+			return {
+				status: aboutUsRes.status,
+				error: new Error('Could not load writer')
+			};
 
 		let aboutUs: LandingPage = await aboutUsRes.json();
 
 		return {
 			props: {
-        aboutUs,
-			},
+				aboutUs
+			}
 		};
-	};
+	}
 </script>
 
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
 	import type { LandingPage } from '$lib/types/LandingPages';
+	import AboutUs from '$lib/components/shared/AboutUs.svelte';
 
-  export let aboutUs: LandingPage;
-
-	let bodyParagraphs: string[];
-	let hasBody: boolean;
-
-	$: {
-		hasBody = !!aboutUs?.body?.length;
-		bodyParagraphs = aboutUs?.body?.split("\n\n");
-	};
+	export let aboutUs: LandingPage;
 </script>
 
 <svelte:head>
@@ -38,42 +32,37 @@
 </svelte:head>
 
 <MetaTags
-  title="About Us"
-  description="Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities."
-  canonical="https://www.chicagoejn.org/"
-  openGraph={{
-    url: 'https://www.chicagoejn.org/about',
-    title: "Chicago Environmental Justice Network",
-    description: "Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.",
-    images: [
-      {
-        url: "https://www.chicagoejn.org/images/logo_blue.png",
-        alt: "CEJN Logo"
-      }
-    ],
-    site_name: 'Chicago Environmental Justice Network'
-  }}
-  twitter={{
-    handle: '@cejnetwork',
-    site: '@cejnetwork',
-    cardType: 'summary_large_image',
-    title: 'About Us',
-    description: 'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
-    image: "https://www.chicagoejn.org/images/logo_blue.png",
-    imageAlt: "CEJN Logo"
-  }}
+	title="About Us"
+	description="Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities."
+	canonical="https://www.chicagoejn.org/"
+	openGraph={{
+		url: 'https://www.chicagoejn.org/about',
+		title: 'Chicago Environmental Justice Network',
+		description:
+			'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
+		images: [
+			{
+				url: 'https://www.chicagoejn.org/images/logo_blue.png',
+				alt: 'CEJN Logo'
+			}
+		],
+		site_name: 'Chicago Environmental Justice Network'
+	}}
+	twitter={{
+		handle: '@cejnetwork',
+		site: '@cejnetwork',
+		cardType: 'summary_large_image',
+		title: 'About Us',
+		description:
+			'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
+		image: 'https://www.chicagoejn.org/images/logo_blue.png',
+		imageAlt: 'CEJN Logo'
+	}}
 />
 
 <main>
 	<section id="about" class="squish-16">
-		<h1 class="flex-row stack-24 text-large">About Us</h1>
-		{#if hasBody}
-			{#each bodyParagraphs as paragraph}
-				<p class="stack-16">
-					{@html paragraph}
-				</p>
-			{/each}
-		{/if}
+		<AboutUs {aboutUs} />
 	</section>
 </main>
 <hr class="separator stack-48" />

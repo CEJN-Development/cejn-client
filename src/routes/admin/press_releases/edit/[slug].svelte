@@ -11,7 +11,7 @@
 				error: new Error('Could not load press release')
 			};
 
-		let pressRelease: PressRelease = await pressReleaseRes.json();
+		let pressRelease: PressReleaseType = await pressReleaseRes.json();
 
 		return {
 			props: {
@@ -23,11 +23,13 @@
 
 <script lang="ts">
 	import PressReleaseForm from '$lib/components/admin/PressReleases/PressReleaseForm.svelte';
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 
-	export let pressRelease: PressRelease;
+	export let pressRelease: PressReleaseType;
 </script>
 
-<h1 class="squish-16 squeeze-16">Press Release | Edit</h1>
+<main class="squeeze-24 squish-24">
+	<h1>Press Release | Edit</h1>
 
-<PressReleaseForm {pressRelease} />
+	<PressReleaseForm {pressRelease} />
+</main>

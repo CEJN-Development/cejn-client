@@ -4,16 +4,23 @@
 	import { aud } from '$lib/stores/UserAgentStore';
 	import * as ApiService from '$lib/services/Api';
 	import * as FlashMessageService from '$lib/services/FlashMessage';
-	import type { PressRelease, PressReleaseUpdate } from '$lib/types/PressReleases';
+	import type { PressReleaseType, PressReleaseUpdate } from '$lib/types/PressReleases';
 	import Spinner from '$lib/components/shared/Spinner.svelte';
+	import PressRelease from '$lib/components/shared/PressRelease.svelte';
+	import PreviewModal from '$lib/components/admin/shared/PreviewModal.svelte';
 
-	export let pressRelease: PressRelease = null;
+	export let pressRelease: PressReleaseType = null;
 
-	let body: string;
+	let body: string = '';
 	let exisitingPressRelease: boolean = false;
+	let show: boolean = false;
 	let submitting: boolean = false;
-	let summary: string;
-	let title: string = null;
+	let summary: string = '';
+	let title: string = '';
+
+	const preview = () => {
+		show = true;
+	};
 
 	const submit = async () => {
 		submitting = true;
@@ -62,8 +69,8 @@
 		submitting = true;
 
 		let data: PressReleaseUpdate = {
-			summary,
 			body,
+			summary,
 			title
 		};
 
@@ -112,7 +119,7 @@
 	}
 </script>
 
-<form class="squish-24 squeeze-32 flex-row">
+<form class="squish-24 flex-row form">
 	<label for="title" class="text-small text-style-metadata text-style-italic">Title</label>
 	<input title="title" type="text" class="stack-16 squeeze-8 squish-8" bind:value={title} />
 	<label for="summary" class="text-small text-style-metadata text-style-italic">Summary</label>
@@ -157,6 +164,22 @@
 				{/if}
 			</button>
 		{/if}
+		<button class="panel button spread-8" type="submit" on:click|preventDefault={preview}>
+			Preview
+		</button>
 		<a href="/admin/press_releases">Cancel</a>
 	</div>
 </form>
+<PreviewModal bind:show>
+	<PressRelease
+		pressRelease={{
+			body,
+			summary,
+			created_at: new Date(),
+			updated_at: new Date(),
+			slug: '',
+			title,
+			id: 0
+		}}
+	/>
+</PreviewModal>

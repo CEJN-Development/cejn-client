@@ -23,18 +23,10 @@
 
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
-	import { getLocaleString } from '$lib/helpers';
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
+	import PressRelease from '$lib/components/shared/PressRelease.svelte';
 
-	export let pressRelease: PressRelease;
-
-	let bodyParagraphs: string[];
-	let publishedDate: string;
-
-	$: {
-		bodyParagraphs = pressRelease.body.split('\n\n');
-		publishedDate = getLocaleString(new Date(pressRelease.created_at));
-	}
+	export let pressRelease: PressReleaseType;
 </script>
 
 <svelte:head>
@@ -69,18 +61,6 @@
 />
 
 <hr class="separator stack-48" />
-<h1 class="text-strong text-huge height-huge stack-24">
-	{pressRelease.title}
-</h1>
-<span class="text-medium text-small stack-16">
-	{publishedDate}
-</span>
-<span class="text-medium text-normal stack-24">
-	{#each bodyParagraphs as paragraph}
-		<p class="stack-16">
-			{@html paragraph}
-		</p>
-	{/each}
-</span>
+<PressRelease {pressRelease} />
 <a class="stack-48" href="/press">&lt;&lt; All press releases</a>
 <hr class="separator stack-48" />

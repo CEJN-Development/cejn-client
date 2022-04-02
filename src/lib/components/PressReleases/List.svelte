@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 
-	export let pressReleases: PressRelease[] = [];
+	export let pressReleases: PressReleaseType[] = [];
 </script>
 
 <h1 class="text-strong text-large stack-48">Press Releases</h1>
