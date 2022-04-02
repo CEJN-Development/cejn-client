@@ -34,11 +34,7 @@
 	let authorIdsOnLoad: number[] = article?.authors.map((author) => author.id).sort((a, b) => a - b);
 
 	const preview = () => {
-		let authors = writers.map((writer) => {
-			if (authorIds.includes(writer.id)) return writer;
-		});
-
-		console.log(authors);
+		let authors = writers.filter((writer) => authorIds.includes(writer.id));
 
 		previewArticle = {
 			authors,
