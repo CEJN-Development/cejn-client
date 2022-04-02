@@ -38,6 +38,8 @@
 			if (authorIds.includes(writer.id)) return writer;
 		});
 
+		console.log(authors);
+
 		previewArticle = {
 			authors,
 			body,
