@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Links from './Links.svelte';
 
-	let showNavbar:boolean = false;
+	let showNavbar: boolean = false;
 
 	const close = () => {
 		showNavbar = false;
@@ -23,17 +23,12 @@
 			</a>
 		</section>
 		<section id="expander" class="right">
-			<button class="button" on:click={open}>
-				&#9776;
-			</button>
+			<button class="button" on:click={open}> &#9776; </button>
 		</section>
 		<section id="links" class:active={showNavbar}>
-			<section class="left">
-			</section>
+			<section class="left" />
 			<section class="right">
-				<button class="button" on:click={close}>
-					X
-				</button>
+				<button class="button" on:click={close}> X </button>
 			</section>
 			<Links on:close={close} />
 		</section>
@@ -53,7 +48,7 @@
 
 	nav {
 		display: grid;
-		grid-template-areas: "logo expander";
+		grid-template-areas: 'logo expander';
 		grid-template-columns: 1fr 1fr;
 		width: 100%;
 		max-width: 100vw;
@@ -71,8 +66,8 @@
 		transition: left 0.3s ease-in-out;
 		background-color: rgba(255, 255, 255, 1);
 		grid-template-areas:
-			"left right"
-			"links links";
+			'left right'
+			'links links';
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 4rem 1fr;
 	}
@@ -127,8 +122,8 @@
 
 		nav {
 			grid-template-areas:
-				"logo expander"
-				"links links";
+				'logo expander'
+				'links links';
 			max-width: 1000px;
 			max-height: inherit;
 		}

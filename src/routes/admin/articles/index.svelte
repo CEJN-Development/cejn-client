@@ -21,9 +21,9 @@
 
 <script lang="ts">
 	import ArticlesTable from '$lib/components/admin/Articles/ArticlesTable.svelte';
-	import type { Article } from '$lib/types/Articles';
+	import type { ArticleType } from '$lib/types/Articles';
 
-	export let articles: Article[];
+	export let articles: ArticleType[];
 </script>
 
 <svelte:head>

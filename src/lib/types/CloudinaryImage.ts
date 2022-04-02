@@ -1,5 +1,5 @@
 export interface CloudinaryImageOptions {
-  crop?: "fit" | "fill" | "fill_pad"
-  height?: number
-  width?: number
+	crop?: 'fit' | 'fill' | 'fill_pad';
+	height?: number;
+	width?: number;
 }

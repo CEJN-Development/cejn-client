@@ -16,7 +16,7 @@
 				error: new Error('Could not load article')
 			};
 
-		let article: Article = await articleRes.json();
+		let article: ArticleType = await articleRes.json();
 		let writers: Writer[] = await writersRes.json();
 
 		return {
@@ -30,10 +30,10 @@
 
 <script lang="ts">
 	import ArticleForm from '$lib/components/admin/Articles/ArticleForm.svelte';
-	import type { Article } from '$lib/types/Articles';
+	import type { ArticleType } from '$lib/types/Articles';
 	import type { Writer } from '$lib/types/Writers';
 
-	export let article: Article;
+	export let article: ArticleType;
 	export let writers: Writer[];
 </script>
 

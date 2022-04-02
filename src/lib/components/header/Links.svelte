@@ -1,52 +1,40 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-  import { createEventDispatcher } from "svelte";
-  
-  const dispatch = createEventDispatcher();
+	import { createEventDispatcher } from 'svelte';
 
-	const close = () => dispatch("close");
+	const dispatch = createEventDispatcher();
+
+	const close = () => dispatch('close');
 </script>
 
 <ul>
-  <li class:active={$page.url.pathname === '/'}>
-    <a href="/" on:click={close}>
-      Home
-    </a>
-  </li>
-  <li class:active={$page.url.pathname === '/about'}>
-    <a href="/about" on:click={close}>
-      About Us
-    </a>
-  </li>
-  <li class:active={$page.url.pathname === '/our-stories'}>
-    <a href="/articles" on:click={close}>
-      Our Stories
-    </a>
-  </li>
-  <!-- <li class:active={$page.url.pathname === '/in-the-news'}>
+	<li class:active={$page.url.pathname === '/'}>
+		<a href="/" on:click={close}> Home </a>
+	</li>
+	<li class:active={$page.url.pathname === '/about'}>
+		<a href="/about" on:click={close}> About Us </a>
+	</li>
+	<li class:active={$page.url.pathname === '/our-stories'}>
+		<a href="/articles" on:click={close}> Our Stories </a>
+	</li>
+	<!-- <li class:active={$page.url.pathname === '/in-the-news'}>
     <a href="/" on:click={close}>
       CEJN in the News
     </a>
   </li> -->
-  <li class:active={$page.url.pathname === '/' && $page.url.hash === "#our-members"}>
-    <a href="/#our-members" on:click={close}>
-      Who is CEJN
-    </a>
-  </li>
-  <li class:active={$page.url.pathname === '/press'}>
-    <a href="/press" on:click={close}>
-      Press
-    </a>
-  </li>
-  <li class:active={$page.url.pathname === '/contact'}>
-    <a href="/#contact-us" on:click={close}>
-      Contact
-    </a>
-  </li>
+	<li class:active={$page.url.pathname === '/' && $page.url.hash === '#our-members'}>
+		<a href="/#our-members" on:click={close}> Who is CEJN </a>
+	</li>
+	<li class:active={$page.url.pathname === '/press'}>
+		<a href="/press" on:click={close}> Press </a>
+	</li>
+	<li class:active={$page.url.pathname === '/contact'}>
+		<a href="/#contact-us" on:click={close}> Contact </a>
+	</li>
 </ul>
 
 <style>
-  ul {
+	ul {
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -62,7 +50,7 @@
 		height: 100%;
 	}
 
-  a {
+	a {
 		display: flex;
 		height: 100%;
 		align-items: center;
@@ -76,13 +64,13 @@
 		color: var(--accent-color);
 	}
 
-  @media screen and (min-width: 500px) {
-    ul {
+	@media screen and (min-width: 500px) {
+		ul {
 			flex-direction: row;
 		}
 
 		li > a {
 			font-size: var(--text-small);
 		}
-  }
+	}
 </style>

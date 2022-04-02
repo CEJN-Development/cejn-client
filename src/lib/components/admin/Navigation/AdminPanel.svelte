@@ -13,7 +13,7 @@
 	};
 </script>
 
-{#if $page.url.pathname !== "/admin/login"}
+{#if $page.url.pathname !== '/admin/login'}
 	<header>
 		<div id="top">
 			<section id="expander" class="right panel">
@@ -24,9 +24,7 @@
 			</section>
 			<section id="logo" class="panel squish-16 squeeze-8">
 				<img src="/favicon.png" alt="Organization logo" />
-				<b class="container text-small">
-					Chicago Environmental Justice Network
-				</b>
+				<b class="container text-small"> Chicago Environmental Justice Network </b>
 			</section>
 		</div>
 		<nav>

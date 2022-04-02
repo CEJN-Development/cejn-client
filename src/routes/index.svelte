@@ -3,28 +3,32 @@
 
 	export async function load({ url, params, fetch, session, stuff }) {
 		const aboutUsRes = await fetch(`${import.meta.env.VITE_API_URL}/landing_pages/about-us`);
-		if (!aboutUsRes.ok) return {
-			status: aboutUsRes.status,
-			error: new Error("Could not load splash sections"),
-		};
+		if (!aboutUsRes.ok)
+			return {
+				status: aboutUsRes.status,
+				error: new Error('Could not load splash sections')
+			};
 
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
-		if (!articlesRes.ok) return {
-			status: articlesRes.status,
-			error: new Error("Could not load articles"),
-		};
+		if (!articlesRes.ok)
+			return {
+				status: articlesRes.status,
+				error: new Error('Could not load articles')
+			};
 
 		const organizationsRes = await fetch(`${import.meta.env.VITE_API_URL}/organizations`);
-		if (!organizationsRes.ok) return {
-			status: organizationsRes.status,
-			error: new Error("Could not load organizations"),
-		};
+		if (!organizationsRes.ok)
+			return {
+				status: organizationsRes.status,
+				error: new Error('Could not load organizations')
+			};
 
 		const splashSectionsRes = await fetch(`${import.meta.env.VITE_API_URL}/splash_sections`);
-		if (!splashSectionsRes.ok) return {
-			status: splashSectionsRes.status,
-			error: new Error("Could not load splash sections"),
-		};
+		if (!splashSectionsRes.ok)
+			return {
+				status: splashSectionsRes.status,
+				error: new Error('Could not load splash sections')
+			};
 
 		let aboutUs = await aboutUsRes.json();
 		let articles = await articlesRes.json();
@@ -36,29 +40,29 @@
 				aboutUs,
 				articles,
 				organizations,
-				splashSections,
-			},
+				splashSections
+			}
 		};
-	};
+	}
 </script>
 
 <script lang="ts">
-	import { MetaTags } from "svelte-meta-tags";
-	import About from "$lib/components/index/About.svelte";
-	import LatestPosts from "$lib/components/shared/LatestPosts.svelte";
-	import OurMembers from "$lib/components/index/OurMembers.svelte";
-	import type { Article } from "$lib/types/Articles";
-	import type { LandingPage } from "$lib/types/LandingPages";
-	import type { OrganizationType } from "$lib/types/Organizations";
-	import type { SplashSection } from "$lib/types/SplashSections";
+	import { MetaTags } from 'svelte-meta-tags';
+	import About from '$lib/components/index/About.svelte';
+	import LatestPosts from '$lib/components/shared/LatestPosts.svelte';
+	import OurMembers from '$lib/components/index/OurMembers.svelte';
+	import type { ArticleType } from '$lib/types/Articles';
+	import type { LandingPage } from '$lib/types/LandingPages';
+	import type { OrganizationType } from '$lib/types/Organizations';
+	import type { SplashSection } from '$lib/types/SplashSections';
 
 	export let aboutUs: LandingPage;
-	export let articles: Article[];
+	export let articles: ArticleType[];
 	export let organizations: OrganizationType[];
 	export let splashSections: SplashSection[];
 
 	const sectionPriority = (sectionName: string): number => {
-		return splashSections.find(section => section.name == sectionName).priority;
+		return splashSections.find((section) => section.name == sectionName).priority;
 	};
 </script>
 
@@ -67,49 +71,45 @@
 </svelte:head>
 
 <MetaTags
-  title="Chicago Environmental Justice Network"
-  description="Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities."
-  canonical="https://www.chicagoejn.org/"
-  openGraph={{
-    url: 'https://www.chicagoejn.org/',
-    title: "Chicago Environmental Justice Network",
-    description: "Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.",
-    images: [
-      {
-        url: "https://www.chicagoejn.org/images/logo_blue.png",
-        alt: "CEJN Logo"
-      }
-    ],
-    site_name: 'Chicago Environmental Justice Network'
-  }}
-  twitter={{
-    handle: '@cejnetwork',
-    site: '@cejnetwork',
-    cardType: 'summary_large_image',
-    title: 'Chicago Environmental Justice Network',
-    description: 'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
-    image: "https://www.chicagoejn.org/images/logo_blue.png",
-    imageAlt: "CEJN Logo"
-  }}
+	title="Chicago Environmental Justice Network"
+	description="Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities."
+	canonical="https://www.chicagoejn.org/"
+	openGraph={{
+		url: 'https://www.chicagoejn.org/',
+		title: 'Chicago Environmental Justice Network',
+		description:
+			'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
+		images: [
+			{
+				url: 'https://www.chicagoejn.org/images/logo_blue.png',
+				alt: 'CEJN Logo'
+			}
+		],
+		site_name: 'Chicago Environmental Justice Network'
+	}}
+	twitter={{
+		handle: '@cejnetwork',
+		site: '@cejnetwork',
+		cardType: 'summary_large_image',
+		title: 'Chicago Environmental Justice Network',
+		description:
+			'Chicago Environmental Justice Network is a coalition bringing together neighborhood-based, grassroots, environmental justice organizations throughout the Chicago metro area in frontline communities.',
+		image: 'https://www.chicagoejn.org/images/logo_blue.png',
+		imageAlt: 'CEJN Logo'
+	}}
 />
 
 <main>
 	<hr class="separator stack-48" name="hr_0" />
-	<section
-		id="about"
-		name={`section_${sectionPriority("about")}`}
-	>
+	<section id="about" name={`section_${sectionPriority('about')}`}>
 		<About {aboutUs} />
 	</section>
 	<hr class="separator stack-48" name="hr_1" />
-	<section
-		id="our-members"
-		name={`section_${sectionPriority("staff")}`}
-	>
+	<section id="our-members" name={`section_${sectionPriority('staff')}`}>
 		<OurMembers {organizations} />
 	</section>
 	<hr class="separator stack-48" name="hr_2" />
-	<section name={`section_${sectionPriority("articles")}`}>
+	<section name={`section_${sectionPriority('articles')}`}>
 		<LatestPosts {articles} />
 	</section>
 </main>
@@ -118,35 +118,35 @@
 	main {
 		display: grid;
 		grid-template-areas:
-			"hr_0"
-			"area_0"
-			"hr_1"
-			"area_1"
-			"hr_2"
-			"area_2";
+			'hr_0'
+			'area_0'
+			'hr_1'
+			'area_1'
+			'hr_2'
+			'area_2';
 	}
 
-	section[name="section_0"] {
-		grid-area: area_0
+	section[name='section_0'] {
+		grid-area: area_0;
 	}
 
-	section[name="section_1"] {
-		grid-area: area_1
+	section[name='section_1'] {
+		grid-area: area_1;
 	}
 
-	section[name="section_2"] {
-		grid-area: area_2
+	section[name='section_2'] {
+		grid-area: area_2;
 	}
 
-	hr[name="hr_0"] {
-		grid-area: hr_0
+	hr[name='hr_0'] {
+		grid-area: hr_0;
 	}
 
-	hr[name="hr_1"] {
-		grid-area: hr_1
+	hr[name='hr_1'] {
+		grid-area: hr_1;
 	}
 
-	hr[name="hr_2"] {
-		grid-area: hr_2
+	hr[name='hr_2'] {
+		grid-area: hr_2;
 	}
 </style>

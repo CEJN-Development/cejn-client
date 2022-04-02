@@ -231,7 +231,7 @@
 		<button class="panel button spread-8" type="submit" on:click|preventDefault={preview}>
 			Preview
 		</button>
-		<a href="/admin/organizations"> Cancel </a>
+		<a href="/admin/organizations">Cancel</a>
 	</div>
 </form>
 <PreviewModal bind:show>

@@ -4,11 +4,11 @@
 	import { aud } from '$lib/stores/UserAgentStore';
 	import * as ApiService from '$lib/services/Api';
 	import * as FlashMessageService from '$lib/services/FlashMessage';
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 	import { getLocaleString } from '$lib/helpers';
 	import Icon from '$lib/components/shared/Icon.svelte';
 
-	export let pressRelease: PressRelease;
+	export let pressRelease: PressReleaseType;
 
 	let publishedDate: string;
 

@@ -9,7 +9,7 @@
 				error: new Error('Could not load press releases')
 			};
 
-		let pressReleases: PressRelease[] = await pressReleasesRes.json();
+		let pressReleases: PressReleaseType[] = await pressReleasesRes.json();
 
 		return {
 			props: {
@@ -21,9 +21,9 @@
 
 <script lang="ts">
 	import PressReleasesList from '$lib/components/PressReleases/List.svelte';
-	import type { PressRelease } from '$lib/types/PressReleases';
+	import type { PressReleaseType } from '$lib/types/PressReleases';
 
-	export let pressReleases: PressRelease[];
+	export let pressReleases: PressReleaseType[];
 </script>
 
 <svelte:head>
