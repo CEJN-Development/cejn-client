@@ -49,7 +49,7 @@
 </script>
 
 <div class="card squeeze-16 squish-16">
-	<div class="gap-16 stack-8">
+	<div class="gap-16 stack-8 height-100">
 		<div class="flex-row">
 			<div class="image">
 				<CloudinaryImage
