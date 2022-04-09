@@ -4,6 +4,7 @@ import type { DateTimeFormatOptions } from '$lib/types/DateTimeFormatOptions';
 import type { Browser, BrowserData, OS } from '$lib/types/AudTypes';
 import * as ApiService from '$lib/services/Api';
 import { aud } from '$lib/stores/UserAgentStore';
+import { ClientSizeStore } from '$lib/stores/ClientSizeStore';
 
 export const audBuilder = (bd: BrowserData): string => {
 	const version = parseInt(bd.browser.version);
@@ -97,6 +98,18 @@ export const logOut = async (): Promise<void> => {
 	);
 	localStorage.removeItem('user');
 	window.location.reload();
+};
+
+export const lastIndexOfArray = (array: any[]): number => {
+	return !!array.length ? array.length - 1 : -1;
+};
+
+export const recalculateViewportDimensions = (e): void => {
+	ClientSizeStore.set({ width: e.target.innerWidth, height: e.target.innerHeight });
+};
+
+export const setCurrentClientSize = (client: Window): void => {
+	ClientSizeStore.set({ width: client.innerWidth, height: client.innerHeight });
 };
 
 const numericSort = (array: number[]) => {

@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { setCurrentClientSize, recalculateViewportDimensions } from '$lib/helpers';
 	import Header from '$lib/components/header/Header.svelte';
 	import Contact from '$lib/components/shared/Contact.svelte';
 	import '../app.css';
+
+	onMount(() => setCurrentClientSize(window));
 </script>
+
+<svelte:window on:resize={recalculateViewportDimensions} />
 
 <Header />
 <main>

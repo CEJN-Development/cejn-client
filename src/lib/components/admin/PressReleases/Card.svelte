@@ -46,7 +46,7 @@
 </script>
 
 <div class="card squish-16">
-	<div class="squeeze-16 stack-8">
+	<div class="squeeze-16 stack-8 height-100">
 		<div class="text-strong text-normal stack-8">
 			{pressRelease.title}
 		</div>

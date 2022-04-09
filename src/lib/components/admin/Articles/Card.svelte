@@ -56,7 +56,7 @@
 		options={{ height: 169, width: 300, crop: 'fill' }}
 		classes="stack-8"
 	/>
-	<div class="squeeze-16 stack-8">
+	<div class="squeeze-16 stack-8 height-100">
 		<div class="text-strong text-normal stack-8">
 			{article.title}
 		</div>
