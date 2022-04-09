@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { breakpoints } from '$lib/constants';
 	import { lastIndexOfArray } from '$lib/helpers';
+	import { ClientSizeStore } from '$lib/stores/ClientSizeStore';
 	import type { ArticleType } from '$lib/types/Articles';
 	import CloudinaryImage from '$lib/components/shared/CloudinaryImage.svelte';
 
@@ -16,7 +18,7 @@
 					options={{ height: 300, width: 350, crop: 'fill' }}
 				/>
 			</div>
-			<div class="width-80">
+			<div class:width-80={$ClientSizeStore.width > breakpoints.sm}>
 				<p class="text-strong text-normal stack-8">{article.title}</p>
 				<div class="text-medium text-normal">
 					{#each article.excerpt.split('\n\n') as paragraph}
