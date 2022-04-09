@@ -99,6 +99,10 @@ export const logOut = async (): Promise<void> => {
 	window.location.reload();
 };
 
+export const lastIndexOfArray = (array: any[]): number => {
+	return !!array.length ? array.length - 1 : -1;
+};
+
 const numericSort = (array: number[]) => {
 	return array.sort((a, b) => a - b);
 };
