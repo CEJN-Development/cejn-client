@@ -1,21 +1,50 @@
 <script lang="ts">
 	import '../../app.css';
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { audBuilder, browserDetector } from '$lib/helpers';
+	import { audBuilder, browserDetector, authorizationCheck, logOut } from '$lib/helpers';
 	import { browser, os, aud } from '$lib/stores/UserAgentStore';
 	import { user } from '$lib/stores/UserStore';
+	import { SessionStore } from '$lib/stores/SessionStore';
 	import Panel from '$lib/components/admin/Navigation/AdminPanel.svelte';
 	import FlashMessage from '$lib/components/admin/shared/FlashMessage.svelte';
 
-	onMount(() => {
-		user.useLocalStorage();
-		if (!$user.user) goto('/admin/login', { replaceState: true });
+	onMount(async () => {
 		if (navigator && window) {
 			const bd = browserDetector(navigator, window);
 			aud.set(audBuilder(bd));
 			browser.set(`${bd.browser.name}||${bd.browser.version}`);
 			os.set(`${bd.os.name}||${bd.os.version}`);
+		}
+
+		if ($SessionStore.authenticated == false) {
+			if ($SessionStore.authenticating == true) {
+				user.useLocalStorage();
+
+				if (!$user.user) {
+					$SessionStore.authenticating = false;
+					return goto('/admin/login', { replaceState: true });
+				}
+
+				const authorization = await authorizationCheck();
+
+				if (!authorization.response.ok) {
+					$SessionStore.authenticating = false;
+					return logOut();
+				} else {
+					SessionStore.set({
+						authenticated: true,
+						authenticating: false,
+						user: $user.user
+					});
+
+					if ($page.url.pathname === '/admin/login') {
+						goto('/admin', { replaceState: true });
+						window.location.reload();
+					}
+				}
+			}
 		}
 	});
 </script>
