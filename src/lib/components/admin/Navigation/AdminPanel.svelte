@@ -1,34 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { logOut } from '$lib/helpers';
 	import AdminLinks from './AdminLinks.svelte';
-
-	let showNavbar: boolean = false;
-
-	const open = () => {
-		showNavbar = true;
-	};
-
-	const close = () => {
-		showNavbar = false;
-	};
 </script>
 
 {#if $page.url.pathname !== '/admin/login'}
 	<header>
 		<div id="top">
 			<section id="expander" class="right panel">
-				<button class="button button-flat" on:click={open}>
-					<!-- &#9776; -->
-					&nbsp;
-				</button>
+				<button class="button button-flat" on:click={logOut}>Logout</button>
 			</section>
 			<section id="logo" class="panel squish-16 squeeze-8">
 				<img src="/favicon.png" alt="Organization logo" />
-				<b class="container text-small"> Chicago Environmental Justice Network </b>
+				<b class="container text-small">Chicago Environmental Justice Network</b>
 			</section>
 		</div>
 		<nav>
-			<section id="links" class:active={showNavbar}>
+			<section id="links">
 				<AdminLinks on:close={close} />
 			</section>
 		</nav>

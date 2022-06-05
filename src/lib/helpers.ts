@@ -100,6 +100,15 @@ export const logOut = async (): Promise<void> => {
 	window.location.reload();
 };
 
+export const authorizationCheck = async (): Promise<any> => {
+	return await ApiService.post(
+		String(import.meta.env.VITE_API_URL),
+		'admin/authorization',
+		{ creds: true },
+		{ aud: get(aud) }
+	);
+};
+
 export const lastIndexOfArray = (array: any[]): number => {
 	return !!array.length ? array.length - 1 : -1;
 };
