@@ -664,6 +664,10 @@ input[type="file"]::file-selector-button,
 	box-shadow: 0 0.2rem 0.4rem -0.2rem rgba(0, 0, 0, 0.7);
 }
 
+.raised-3 {
+	box-shadow: 0 0.4rem 0.6rem -0.3rem rgba(0, 0, 0, 0.7);
+}
+
 /*****************************************************
 ******************************************************
   MODAL RULES
