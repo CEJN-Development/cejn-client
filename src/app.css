@@ -144,6 +144,11 @@ input[type="file"].panel::file-selector-button {
 	padding: 10px;
 }
 
+.button-primary {
+	background-color: var(--accent-color);
+	color: rgba(255, 255, 255, 1.0);
+}
+
 .button.button-flat {
 	box-shadow: none;
 	background-color: transparent;
