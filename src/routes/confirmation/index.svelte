@@ -5,10 +5,10 @@
 		const confirmationToken = url.searchParams.get('confirmation_token');
 		const email = url.searchParams.get('email');
 
-		if (!email || !confirmationToken || true) {
+		if (!email || !confirmationToken) {
 			return {
 				props: {
-					confirmation: { status: 201, message: { invalid: 'Confirmation Token is invalid.' } },
+					confirmation: { status: 401, message: { invalid: 'Confirmation Token is invalid.' } },
 					email
 				}
 			};
