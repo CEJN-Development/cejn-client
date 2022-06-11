@@ -38,6 +38,6 @@
 </script>
 
 <div class="squish-24 squeeze-24">
-	<h1 class="stack-24">Our Stories | Edit</h1>
+	<h1 class="stack-24">Articles | Edit</h1>
 	<ArticleForm {article} {writers} />
 </div>

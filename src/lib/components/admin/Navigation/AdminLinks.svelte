@@ -7,7 +7,7 @@
 		<a href="/admin/about">About Us</a>
 	</li>
 	<li class:active={$page.url.pathname === '/admin/articles'} class="squish-8 squeeze-8 panel">
-		<a href="/admin/articles">Our Stories</a>
+		<a href="/admin/articles">Articles</a>
 	</li>
 	<!-- <li class:active={$page.url.pathname === '/'} class="squish-8 squeeze-8 panel">
     <a href="/admin/home">
@@ -15,19 +15,19 @@
     </a>
   </li> -->
 	<li class:active={$page.url.pathname === '/admin/organizations'} class="squish-8 squeeze-8 panel">
-		<a href="/admin/organizations">Our Members</a>
-	</li>
-	<li class:active={$page.url.pathname === '/admin/writers'} class="squish-8 squeeze-8 panel">
-		<a href="/admin/writers">Our Contributors</a>
-	</li>
-	<li class:active={$page.url.pathname === '/admin/team'} class="squish-8 squeeze-8 panel">
-		<a href="/admin/team">Our Team</a>
+		<a href="/admin/organizations">Organizations</a>
 	</li>
 	<li
 		class:active={$page.url.pathname === '/admin/press_releases'}
 		class="squish-8 squeeze-8 panel"
 	>
 		<a href="/admin/press_releases">Press Releases</a>
+	</li>
+	<li class:active={$page.url.pathname === '/admin/team'} class="squish-8 squeeze-8 panel">
+		<a href="/admin/team">Team</a>
+	</li>
+	<li class:active={$page.url.pathname === '/admin/writers'} class="squish-8 squeeze-8 panel">
+		<a href="/admin/writers">Writers</a>
 	</li>
 </ul>
 

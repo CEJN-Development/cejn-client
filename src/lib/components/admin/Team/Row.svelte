@@ -7,10 +7,12 @@
 	import { getLocaleString } from '$lib/helpers';
 	import Icon from '$lib/components/shared/Icon.svelte';
 	import type { MemberType } from '$lib/types/TeamTypes';
+	import { user } from '$lib/stores/UserStore';
 
 	export let member: MemberType;
 
 	let createdDate: string;
+	let userId: number;
 
 	const dispatch = createEventDispatcher();
 
@@ -42,6 +44,7 @@
 
 	$: {
 		createdDate = getLocaleString(new Date(member.created_at));
+		userId = $user.user?.id;
 	}
 </script>
 
@@ -57,9 +60,11 @@
 		</p>
 	</td>
 	<td>
-		<a href={`/admin/team/edit/${member.id}`}>
-			<Icon classes="spread-8 push-8" name="edit" />
-		</a>
+		{#if userId == member.id}
+			<a href={`/admin/team/edit/${member.id}`}>
+				<Icon classes="spread-8 push-8" name="edit" />
+			</a>
+		{/if}
 		<span class="cursor-pointer" on:click={deleteMember}>
 			<Icon name="delete" />
 		</span>

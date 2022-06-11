@@ -27,12 +27,12 @@
 </script>
 
 <svelte:head>
-	<title>Admin | Our Team</title>
+	<title>Admin | Team</title>
 </svelte:head>
 
 <main class="squeeze-24 squish-24">
-	<a href="/admin/organizations/new" class="button panel">New Member</a>
-	<h1 class="stack-24">Our Team</h1>
+	<a href="/admin/team/new" class="button panel">New member</a>
+	<h1 class="stack-24">Team</h1>
 	<Members {team} />
 </main>
 

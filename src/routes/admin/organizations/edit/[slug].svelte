@@ -29,6 +29,6 @@
 </script>
 
 <main class="squish-24 squeeze-24">
-	<h1 class="stack-24">Our Members | Edit</h1>
+	<h1 class="stack-24">Organizations | Edit</h1>
 	<OrganizationForm {organization} />
 </main>

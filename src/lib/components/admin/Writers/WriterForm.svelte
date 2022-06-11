@@ -34,6 +34,8 @@
 	};
 
 	const submit = async () => {
+		submitting = true;
+
 		let data: WriterCreate = {
 			byline,
 			full_name: name
@@ -91,7 +93,7 @@
 
 		if (response.ok) {
 			submitting = false;
-			goto('/admin/articles', { replaceState: false });
+			goto('/admin/writers', { replaceState: false });
 			FlashMessageService.setMessage({ message: 'Writer successfully created!', type: 'success' });
 		} else {
 			submitting = false;

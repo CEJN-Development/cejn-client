@@ -27,12 +27,12 @@
 </script>
 
 <svelte:head>
-	<title>Admin | Our Stories</title>
+	<title>Admin | Articles</title>
 </svelte:head>
 
 <main class="squeeze-24 squish-24">
 	<a href="/admin/articles/new" class="button panel">New article</a>
-	<h1 class="stack-24">Our Stories</h1>
+	<h1 class="stack-24">Articles</h1>
 	<ArticlesTable {articles} />
 </main>
 

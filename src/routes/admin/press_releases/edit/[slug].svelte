@@ -29,7 +29,7 @@
 </script>
 
 <main class="squeeze-24 squish-24">
-	<h1>Press Release | Edit</h1>
+	<h1>Press Releases | Edit</h1>
 
 	<PressReleaseForm {pressRelease} />
 </main>
