@@ -77,13 +77,13 @@
 			<button
 				class="panel button squeeze-24 raised-1"
 				on:click|preventDefault={attemptLogin}
-				disabled={submitting}
+				disabled={submitting || !email || !password}
 			>
 				Login
 			</button>
 		</div>
 		<p class="text-small full-width">
-			Forgot your password? Request a reset <a href="">here</a>
+			Forgot your password? Request reset instructions <a href="/password/new">here</a>
 		</p>
 	</form>
 </div>
