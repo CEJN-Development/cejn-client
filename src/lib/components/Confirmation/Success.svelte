@@ -22,7 +22,7 @@
 		);
 
 		if (response.ok) {
-			goto(`confirmation/set_password?${getSearchParamsString(json)}`, { replaceState: true });
+			goto(`password/set?${getSearchParamsString(json)}`, { replaceState: true });
 		}
 	};
 
