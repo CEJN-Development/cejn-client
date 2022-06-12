@@ -48,9 +48,14 @@
 	}
 </script>
 
-<tr>
+<tr class="bordered raised-2">
 	<td class="squish-16 squeeze-16">
-		<p class="text-strong text-normal">
+		{#if member.full_name}
+			<p class="height-normal stack-8">
+				{member.full_name}
+			</p>
+		{/if}
+		<p class="height-small text-small">
 			{member.email}
 		</p>
 	</td>
@@ -59,7 +64,7 @@
 			{createdDate}
 		</p>
 	</td>
-	<td>
+	<td class="squeeze-16 text-align-right">
 		{#if userId == member.id}
 			<a href={`/admin/team/edit/${member.id}`}>
 				<Icon classes="spread-8 push-8" name="edit" />

@@ -9,10 +9,10 @@
 	};
 </script>
 
-<table>
+<table class="full-width">
 	<thead>
 		<tr>
-			<th>Email</th>
+			<th>Contact Info</th>
 			<th>Date added</th>
 			<th />
 		</tr>
@@ -23,3 +23,9 @@
 		{/each}
 	</tbody>
 </table>
+
+<style>
+	th {
+		text-align: left;
+	}
+</style>
