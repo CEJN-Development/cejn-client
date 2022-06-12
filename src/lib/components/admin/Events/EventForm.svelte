@@ -14,7 +14,7 @@
 	export let event: EventType = null;
 
 	let body: string;
-	let date: Date;
+	let date: Date | string;
 	let description: string;
 	let exisitingEvent: boolean = false;
 	let hasImage: boolean = false;
@@ -51,6 +51,7 @@
 		};
 
 		if (photo) data.photo = photo;
+		if (date) data.date = new Date(date).toISOString();
 
 		const { response, json } = await ApiService.post(
 			String(import.meta.env.VITE_API_URL),
@@ -97,6 +98,7 @@
 		};
 
 		if (photo) data.photo = photo;
+		if (date) data.date = new Date(date).toISOString();
 
 		const { response, json } = await ApiService.put(
 			String(import.meta.env.VITE_API_URL),
@@ -147,13 +149,13 @@
 	if (event) {
 		description = event.description;
 		body = event.body;
+		date = new Date(event.date).toLocaleString();
 		name = event.name;
 	}
 
 	$: {
 		exisitingEvent = !!event?.id;
 		hasImage = !!event?.cloudinary_image_url || !!photo;
-		console.log(date);
 	}
 </script>
 

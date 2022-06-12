@@ -2,7 +2,7 @@ export interface EventType {
 	body?: string;
 	cloudinary_image_url?: string | null;
 	created_at: Date;
-	date: Date;
+	date: Date | string;
 	description?: string;
 	id: number;
 	name: string;
@@ -13,7 +13,7 @@ export interface EventType {
 export interface EventCreate {
 	body: string;
 	description: string;
-	date: Date;
+	date: Date | string;
 	name: string;
 	photo?: string | ArrayBuffer;
 }
