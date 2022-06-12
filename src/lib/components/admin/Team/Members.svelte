@@ -9,7 +9,7 @@
 	};
 </script>
 
-<table class="full-width">
+<table class="full-width max-width--tablet">
 	<thead>
 		<tr>
 			<th>Contact Info</th>
