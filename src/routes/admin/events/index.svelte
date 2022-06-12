@@ -21,11 +21,9 @@
 
 <script lang="ts">
 	// import EventsTable from '$lib/components/admin/Events/EventsTable.svelte';
-	// import type { EventType } from '$lib/types/Events';
+	import type { EventType } from '$lib/types/Events';
 
-	// export let events: EventType[];
-
-	export let events;
+	export let events: EventType[];
 
 	console.log(events);
 </script>
