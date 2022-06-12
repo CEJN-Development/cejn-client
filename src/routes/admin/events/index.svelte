@@ -20,7 +20,7 @@
 </script>
 
 <script lang="ts">
-	// import EventsTable from '$lib/components/admin/Events/EventsTable.svelte';
+	import EventsTable from '$lib/components/admin/Events/EventsTable.svelte';
 	import type { EventType } from '$lib/types/Events';
 
 	export let events: EventType[];
@@ -35,7 +35,7 @@
 <main class="squeeze-24 squish-24">
 	<a href="/admin/events/new" class="button panel">New Event</a>
 	<h1 class="stack-24">Our Events</h1>
-	<!-- <EventsTable {events} /> -->
+	<EventsTable {events} />
 </main>
 
 <style>
