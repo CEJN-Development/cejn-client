@@ -27,12 +27,12 @@
 </script>
 
 <svelte:head>
-	<title>Admin | Our Contributors</title>
+	<title>Admin | Writers</title>
 </svelte:head>
 
 <main class="squeeze-24 squish-24">
-	<a href="/admin/writers/new" class="button panel"> New writer </a>
-	<h1 class="stack-24">Our Contributors</h1>
+	<a href="/admin/writers/new" class="button panel">New writer</a>
+	<h1 class="stack-24">Writers</h1>
 	<WritersTable {writers} />
 </main>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { aud, ip, os, browser } from '$lib/stores/UserAgentStore';
 	import * as ApiService from '$lib/services/Api';
+	import * as FlashMessageService from '$lib/services/FlashMessage';
 	import { user } from '$lib/stores/UserStore';
 
 	let email: string,
@@ -32,39 +33,57 @@
 			{ aud: $aud }
 		);
 
-		if (response.status === 200) {
+		if (response.ok) {
 			user.set(json);
 			window.location.href = '/admin';
 		} else if (response.status === 401) {
-			json.error ? (errors = [...errors, json.error]) : (errors = [...errors, 'Error.']);
+			json.error ? (errors = [json.error]) : (errors = ['Error.']);
+			errors.forEach((message) => {
+				FlashMessageService.setMessage({
+					message,
+					type: 'error'
+				});
+			});
 		} else if (response.status === 500) {
 			errors = ['Oops, something went wrong! How embarrassing, try again soon.'];
+			errors.forEach((message) => {
+				FlashMessageService.setMessage({
+					message,
+					type: 'error'
+				});
+			});
 		}
 
 		submitting = false;
 	};
 </script>
 
-<form class="flex-row squeeze-32 squish-32 card">
-	<label for="email" class="text-small text-style-metadata text-style-italic"> Email </label>
-	<input type="email" name="email" class="stack-16 squeeze-8 squish-8" bind:value={email} />
-	<label for="password" class="text-small text-style-metadata text-style-italic"> Password </label>
-	<input
-		type="password"
-		name="password"
-		class="stack-16 squeeze-8 squish-8"
-		bind:value={password}
-	/>
-	<div>
-		<button class="panel button" on:click|preventDefault={attemptLogin} disabled={submitting}>
-			Login
-		</button>
-	</div>
-</form>
-
-<style>
-	form {
-		max-width: 500px;
-		width: 100%;
-	}
-</style>
+<div
+	class="max-width--mobile flex-row bordered border--rounded raised-2 squeeze-24 squish-24 align-center full-width"
+>
+	<form class="flex-row full-width">
+		<label for="email" class="text-small text-style-metadata text-style-italic">Email</label>
+		<input type="email" name="email" class="stack-16 squeeze-8 squish-8" bind:value={email} />
+		<label for="password" class="text-small text-style-metadata text-style-italic">
+			Password
+		</label>
+		<input
+			type="password"
+			name="password"
+			class="stack-16 squeeze-8 squish-8"
+			bind:value={password}
+		/>
+		<div class="flex-row full-width align-center stack-16">
+			<button
+				class="panel button squeeze-24 raised-1"
+				on:click|preventDefault={attemptLogin}
+				disabled={submitting || !email || !password}
+			>
+				Login
+			</button>
+		</div>
+		<p class="text-small full-width">
+			Forgot your password? Request reset instructions <a href="/password/new">here</a>
+		</p>
+	</form>
+</div>

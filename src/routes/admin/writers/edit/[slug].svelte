@@ -27,6 +27,6 @@
 </script>
 
 <main class="squeeze-24 squish-24">
-	<h1 class="stack-24">Our Contributors | Edit</h1>
+	<h1 class="stack-24">Writers | Edit</h1>
 	<WriterForm {writer} />
 </main>

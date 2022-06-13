@@ -3,6 +3,6 @@
 </script>
 
 <main class="squeeze-24 squish-24">
-	<h1 class="stack-24">Our Contributors | New</h1>
+	<h1 class="stack-24">Writers | New</h1>
 	<WriterForm />
 </main>

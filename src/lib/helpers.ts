@@ -121,6 +121,16 @@ export const setCurrentClientSize = (client: Window): void => {
 	ClientSizeStore.set({ width: client.innerWidth, height: client.innerHeight });
 };
 
+export const getSearchParamsString = (params: any) => {
+	let urlParams = new URLSearchParams();
+
+	Object.entries(params).forEach((entry) => {
+		urlParams.set(...entry);
+	});
+
+	return urlParams.toString();
+};
+
 const numericSort = (array: number[]) => {
 	return array.sort((a, b) => a - b);
 };

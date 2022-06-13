@@ -32,7 +32,7 @@
 
 <main class="squeeze-24 squish-24">
 	<a href="/admin/press_releases/new" class="button panel">New press release</a>
-	<h1 class="stack-24">Our Press Releases</h1>
+	<h1 class="stack-24">Press Releases</h1>
 	<PressReleasesTable {pressReleases} />
 </main>
 
