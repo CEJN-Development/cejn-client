@@ -16,6 +16,13 @@
 				error: new Error('Could not load articles')
 			};
 
+		const nextEventsRes = await fetch(`${import.meta.env.VITE_API_URL}/events/next`);
+		if (!nextEventsRes.ok)
+			return {
+				status: nextEventsRes.status,
+				error: new Error('Could not load articles')
+			};
+
 		const organizationsRes = await fetch(`${import.meta.env.VITE_API_URL}/organizations`);
 		if (!organizationsRes.ok)
 			return {
@@ -32,6 +39,7 @@
 
 		let aboutUs = await aboutUsRes.json();
 		let articles = await articlesRes.json();
+		let nextEvent = await nextEventsRes.json();
 		let organizations = await organizationsRes.json();
 		let splashSections = await splashSectionsRes.json();
 
@@ -39,6 +47,7 @@
 			props: {
 				aboutUs,
 				articles,
+				nextEvent,
 				organizations,
 				splashSections
 			}
@@ -49,15 +58,18 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
 	import About from '$lib/components/index/About.svelte';
+	import EventShow from '$lib/components/Events/Show.svelte';
 	import LatestPosts from '$lib/components/shared/LatestPosts.svelte';
 	import OurMembers from '$lib/components/index/OurMembers.svelte';
 	import type { ArticleType } from '$lib/types/Articles';
 	import type { LandingPage } from '$lib/types/LandingPages';
 	import type { OrganizationType } from '$lib/types/Organizations';
 	import type { SplashSection } from '$lib/types/SplashSections';
+	import type { EventType } from '$lib/types/Events';
 
 	export let aboutUs: LandingPage;
 	export let articles: ArticleType[];
+	export let nextEvent: EventType = null;
 	export let organizations: OrganizationType[];
 	export let splashSections: SplashSection[];
 
@@ -101,15 +113,21 @@
 
 <main>
 	<hr class="separator stack-48" name="hr_0" />
-	<section id="about" name={`section_${sectionPriority('about')}`}>
+	<section id="about" name="section_0">
 		<About {aboutUs} />
 	</section>
-	<hr class="separator stack-48" name="hr_1" />
-	<section id="our-members" name={`section_${sectionPriority('staff')}`}>
+	{#if !!nextEvent}
+		<hr class="separator stack-48" name="hr_1" />
+		<section id="events" name="section_1">
+			<EventShow event={nextEvent} />
+		</section>
+	{/if}
+	<hr class="separator stack-48" name="hr_2" />
+	<section id="our-members" name="section_2">
 		<OurMembers {organizations} />
 	</section>
-	<hr class="separator stack-48" name="hr_2" />
-	<section name={`section_${sectionPriority('articles')}`}>
+	<hr class="separator stack-48" name="hr_3" />
+	<section name="section_3">
 		<LatestPosts {articles} />
 	</section>
 </main>
@@ -123,7 +141,9 @@
 			'hr_1'
 			'area_1'
 			'hr_2'
-			'area_2';
+			'area_2'
+			'hr_3'
+			'area_3';
 	}
 
 	section[name='section_0'] {
@@ -138,6 +158,10 @@
 		grid-area: area_2;
 	}
 
+	section[name='section_3'] {
+		grid-area: area_3;
+	}
+
 	hr[name='hr_0'] {
 		grid-area: hr_0;
 	}
@@ -148,5 +172,9 @@
 
 	hr[name='hr_2'] {
 		grid-area: hr_2;
+	}
+
+	hr[name='hr_3'] {
+		grid-area: hr_3;
 	}
 </style>

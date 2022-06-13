@@ -24,8 +24,6 @@
 	import type { EventType } from '$lib/types/Events';
 
 	export let events: EventType[];
-
-	console.log(events);
 </script>
 
 <svelte:head>
