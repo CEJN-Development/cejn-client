@@ -9,6 +9,9 @@
 	<li class:active={$page.url.pathname === '/admin/articles'} class="squish-8 squeeze-8 panel">
 		<a href="/admin/articles">Our Stories</a>
 	</li>
+	<li class:active={$page.url.pathname === '/admin/events'} class="squish-8 squeeze-8 panel">
+		<a href="/admin/events">Events</a>
+	</li>
 	<!-- <li class:active={$page.url.pathname === '/'} class="squish-8 squeeze-8 panel">
     <a href="/admin/home">
       Splash

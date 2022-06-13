@@ -78,6 +78,18 @@ export const getLocaleString = (date: Date, options: DateTimeFormatOptions = {})
 	return date.toLocaleString(undefined, options);
 };
 
+export const localeDatetimeFromUTCString = (datetime) => {
+	return [
+		datetime.split('T')[0],
+		new Date(datetime).toLocaleString('en-US', {
+			timeZone: 'America/Chicago',
+			hour12: false,
+			hour: '2-digit',
+			minute: '2-digit'
+		})
+	].join('T');
+};
+
 export const numericArrayEquality = (array1: number[], array2: number[]): boolean => {
 	array1 = numericSort(array1);
 	array2 = numericSort(array2);
