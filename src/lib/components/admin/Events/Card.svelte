@@ -11,8 +11,9 @@
 
 	export let event: EventType;
 
-	let description: string;
 	let createdDate: string;
+	let description: string;
+	let eventDate: string;
 
 	const dispatch = createEventDispatcher();
 
@@ -45,6 +46,7 @@
 	$: {
 		description = truncateWithEllipses(event?.description, 300);
 		createdDate = getLocaleString(new Date(event.created_at));
+		eventDate = getLocaleString(new Date(event.date));
 	}
 </script>
 
@@ -62,6 +64,10 @@
 		<div class="stack-8">
 			<div class="text-strong text-normal stack-8">
 				{event.name}
+			</div>
+			<div class="text-medium text-normal stack-8">
+				<span class="text-style-italic">Event date:</span>
+				{eventDate}
 			</div>
 			<div class="text-thin text-small stack-8">
 				<span class="text-style-italic">Added on:</span>
