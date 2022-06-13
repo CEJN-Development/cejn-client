@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { logOut } from '$lib/helpers';
+	import { logOut, localeDatetimeFromUTCString } from '$lib/helpers';
 	import { aud } from '$lib/stores/UserAgentStore';
 	import * as ApiService from '$lib/services/Api';
 	import * as FlashMessageService from '$lib/services/FlashMessage';
@@ -149,7 +149,7 @@
 	if (event) {
 		description = event.description;
 		body = event.body;
-		date = new Date(event.date).toLocaleString();
+		date = localeDatetimeFromUTCString(event.date);
 		name = event.name;
 	}
 
