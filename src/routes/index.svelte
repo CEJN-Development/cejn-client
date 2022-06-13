@@ -6,7 +6,7 @@
 		if (!aboutUsRes.ok)
 			return {
 				status: aboutUsRes.status,
-				error: new Error('Could not load splash sections')
+				error: new Error('Could not load about us')
 			};
 
 		const articlesRes = await fetch(`${import.meta.env.VITE_API_URL}/articles?limit=3`);
@@ -20,7 +20,7 @@
 		if (!nextEventsRes.ok)
 			return {
 				status: nextEventsRes.status,
-				error: new Error('Could not load articles')
+				error: new Error('Could not load events')
 			};
 
 		const organizationsRes = await fetch(`${import.meta.env.VITE_API_URL}/organizations`);
