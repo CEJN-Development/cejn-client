@@ -33,7 +33,10 @@
 			/>
 		{/if}
 	</div>
-	<div class="stack-48">
+	<div class="stack-24">
 		{event.description}
+	</div>
+	<div class="stack-48">
+		<a href="/events">See all events</a>
 	</div>
 {/if}
